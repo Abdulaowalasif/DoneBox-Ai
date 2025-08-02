@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/register_controller.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
 
-                // Email field
                 CustomTextField(
                   hintText: "Enter Name",
                   icon: Icons.person_outline,
@@ -53,7 +53,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
 
-                // Email field
                 CustomTextField(
                   hintText: "Enter Email",
                   icon: Icons.email_outlined,
@@ -67,7 +66,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
 
-                // Email field
                 CustomTextField(
                   hintText: "Enter Your Phone Number",
                   icon: Icons.phone,
@@ -81,7 +79,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
 
-                // Password field with eye toggle
                 Obx(
                   () => CustomTextField(
                     hintText: "Enter Password",
@@ -122,16 +119,51 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
 
-                // Sign in button
-                CustomButton(
-                  text: "Sign Up",
-                  onPressed: () {
-                    Get.offAllNamed(RoutesName.login);
-                  },
+                Obx(
+                  () => CustomButton(
+                    isEnabled: controller.isAgreed.value,
+                    text: "Sign Up",
+                    onPressed: () {
+                      if (HelperFunctions.isValidEmail(
+                            controller.emailController.text,
+                          ) &&
+                          HelperFunctions.isValidPassword(
+                            controller.passwordController.text,
+                          ) &&
+                          HelperFunctions.isValidPhoneNumber(
+                            controller.phoneController.text,
+                          )) {
+                        Get.offAllNamed(RoutesName.login);
+                      } else {
+                        String message = '';
+
+                        if (!HelperFunctions.isValidEmail(
+                          controller.emailController.text,
+                        )) {
+                          message += 'Please enter a valid email.\n';
+                        }
+
+                        if (!HelperFunctions.isValidPassword(
+                          controller.passwordController.text,
+                        )) {
+                          message += 'Please enter a valid password.\n';
+                        }
+
+                        if (!HelperFunctions.isValidPhoneNumber(
+                          controller.phoneController.text,
+                        )) {
+                          message += 'Please enter a valid phone number.\n';
+                        }
+
+                        if (message.isNotEmpty) {
+                          Get.snackbar('Invalid Input', message.trim());
+                        }
+                      }
+                    },
+                  ),
                 ),
                 const SizedBox(height: 20),
 
-                // Sign up link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

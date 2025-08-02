@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/forgot_pass_controller.dart';
 import 'package:doneboxai/feature/auth/screens/verify_code_screen.dart';
 import 'package:doneboxai/routes/routes_names.dart';
@@ -43,7 +44,11 @@ class ForgotPasswordScreen extends StatelessWidget {
               CustomButton(
                 text: "Send Otp",
                 onPressed: () {
-                  Get.toNamed(RoutesName.verifyOtp);
+                  if (HelperFunctions.isValidEmail(
+                    controller.emailController.text,
+                  )) {
+                    Get.toNamed(RoutesName.verifyOtp);
+                  }
                 },
               ),
             ],

@@ -11,6 +11,26 @@ class HelperFunctions {
     return passwordRegExp.hasMatch(password);
   }
 
+  static String validatePassword(String password) {
+    if (!RegExp(r'(?=.*[A-Z])').hasMatch(password)) {
+      return 'Password must contain at least one uppercase letter.';
+    }
+
+    if (!RegExp(r'(?=.*\d)').hasMatch(password)) {
+      return 'Password must contain at least one digit.';
+    }
+
+    if (!RegExp(r'(?=.*[@$!%*?&])').hasMatch(password)) {
+      return 'Password must contain at least one special character (@\$!%*?&).';
+    }
+
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters long.';
+    }
+
+    return '';
+  }
+
   static bool isValidPhoneNumber(String phoneNumber) {
     RegExp phoneRegExp = RegExp(r'^[0-9]{10}$');
     return phoneRegExp.hasMatch(phoneNumber);

@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/login_controller.dart';
 import 'package:doneboxai/feature/auth/screens/forgot_password_screen.dart';
 import 'package:doneboxai/feature/auth/screens/register_screen.dart';
@@ -43,7 +44,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
 
-                  // Email field
                   CustomTextField(
                     hintText: "Enter Email",
                     icon: Icons.email_outlined,
@@ -57,7 +57,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
 
-                  // Password field with eye toggle
                   Obx(
                     () => CustomTextField(
                       hintText: "Enter Password",
@@ -81,12 +80,7 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotPasswordScreen(),
-                          ),
-                        );
+                        Get.toNamed(RoutesName.forgotPass);
                       },
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.blue,
@@ -99,23 +93,41 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                  // Sign in button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: () {
+                  CustomButton(
+                    onPressed: () {
+                      if (HelperFunctions.isValidEmail(
+                            controller.emailController.text,
+                          ) &&
+                          HelperFunctions.isValidPassword(
+                            controller.passwordController.text,
+                          )) {
                         Get.offAllNamed(RoutesName.onboarding);
-                      },
-                      child: Text(
-                        "Sign In",
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ),
+                      } else {
+                        String message = '';
+
+                        if (!HelperFunctions.isValidEmail(
+                          controller.emailController.text,
+                        )) {
+                          message += 'Please enter a valid email.\n';
+                        }
+
+                        String passwordError = HelperFunctions.validatePassword(
+                          controller.passwordController.text,
+                        );
+                        if (passwordError.isNotEmpty) {
+                          message += passwordError;
+                        }
+
+                        if (message.isNotEmpty) {
+                          Get.snackbar('Invalid Input', message.trim());
+                        }
+                      }
+                    },
+                    text: 'Sign In',
                   ),
+
                   const SizedBox(height: 20),
 
-                  // Sign up link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

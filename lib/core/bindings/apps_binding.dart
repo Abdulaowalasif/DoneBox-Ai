@@ -9,11 +9,17 @@ import 'package:get/get.dart';
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
-    Get.lazyPut<LoginController>(() => LoginController());
-    Get.lazyPut<OtpController>(() => OtpController());
-    Get.lazyPut<RegisterController>(() => RegisterController());
-    Get.lazyPut<ResetPasswordController>(() => ResetPasswordController());
-    Get.lazyPut<BottomNavController>(() => BottomNavController());
+    Get.put<ForgotPasswordController>(
+      ForgotPasswordController(),
+      permanent: true,
+    );
+    Get.put<OtpController>(OtpController(), permanent: true);
+    Get.put<RegisterController>(RegisterController(), permanent: true);
+    Get.put<ResetPasswordController>(
+      ResetPasswordController(),
+      permanent: true,
+    );
+    Get.put<BottomNavController>(BottomNavController(), permanent: true);
+    Get.put<LoginController>(LoginController(), permanent: true);
   }
 }
