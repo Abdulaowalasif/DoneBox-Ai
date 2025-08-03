@@ -1,8 +1,6 @@
+import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/login_controller.dart';
-import 'package:doneboxai/feature/auth/screens/forgot_password_screen.dart';
-import 'package:doneboxai/feature/auth/screens/register_screen.dart';
-import 'package:doneboxai/feature/home/screens/onboarding_screen.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,24 +15,32 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginController controller = Get.find<LoginController>();
+    final screenSize = MediaQuery.of(context).size;
+    final isPortrait = screenSize.height > screenSize.width;
+
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(screenSize.width * 0.05),
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 153),
+                  SizedBox(height: screenSize.height * 0.1),
+
                   Text(
                     "Sign In to\nyour account",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: isPortrait ? 24 : 28,
+
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
-                    style: TextStyle(fontSize: 14, color: Colors.black),
+                    style: TextStyle(fontSize: 14),
                   ),
                   SizedBox(height: 40),
 
@@ -88,7 +94,10 @@ class LoginScreen extends StatelessWidget {
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                      child: Text("Forgot Password?"),
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(color: AppColors.buttonColor),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -136,7 +145,10 @@ class LoginScreen extends StatelessWidget {
                         onPressed: () {
                           Get.toNamed(RoutesName.register);
                         },
-                        child: const Text("Sign Up"),
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(color: AppColors.buttonColor),
+                        ),
                       ),
                     ],
                   ),

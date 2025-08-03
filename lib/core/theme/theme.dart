@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyAppThemes {
@@ -63,7 +64,7 @@ class MyAppThemes {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF005FA8),
+          backgroundColor: AppColors.buttonColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

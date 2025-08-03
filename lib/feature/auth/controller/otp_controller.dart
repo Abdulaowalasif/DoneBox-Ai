@@ -9,7 +9,7 @@ class OtpController extends GetxController {
   );
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
 
-  var otp = ''.obs; // Observable for OTP value
+  var otp = ''.obs;
 
   @override
   void onClose() {
@@ -37,9 +37,7 @@ class OtpController extends GetxController {
     if (otp.value.length == 6) {
       Get.toNamed(RoutesName.resetPass);
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Enter all 6 digits')));
+      Get.snackbar("Invalid Input", 'Enter all the digits');
     }
   }
 }

@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
         width: double.infinity,
         height: 55,
         child: TextField(
+          style: TextStyle(color: Colors.black),
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(

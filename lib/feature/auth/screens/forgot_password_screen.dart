@@ -16,42 +16,63 @@ class ForgotPasswordScreen extends StatelessWidget {
     final ForgotPasswordController controller =
         Get.find<ForgotPasswordController>();
 
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Forgot password",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "Please enter your email address to reset password.",
-                style: TextStyle(fontSize: 14, color: Colors.black),
-              ),
-              const SizedBox(height: 100),
-              CustomTextField(
-                hintText: "Enter Email",
-                icon: Icons.email_outlined,
-                controller: controller.emailController,
-              ),
-              const SizedBox(height: 20),
+    final screenSize = MediaQuery.of(context).size;
+    final isPortrait = screenSize.height > screenSize.width;
 
-              CustomButton(
-                text: "Send Otp",
-                onPressed: () {
-                  if (HelperFunctions.isValidEmail(
-                    controller.emailController.text,
-                  )) {
-                    Get.toNamed(RoutesName.verifyOtp);
-                  }
-                },
-              ),
-            ],
+    return Scaffold(
+      body: WillPopScope(
+        onWillPop: () async {
+          Get.back();
+          return false;
+        },
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(screenSize.width * 0.05),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Forgot password",
+                  style: TextStyle(
+                    fontSize: isPortrait ? 24 : 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "Please enter your email address to reset password.",
+                  style: TextStyle(fontSize: isPortrait ? 14 : 16),
+                ),
+                SizedBox(height: screenSize.height * 0.1),
+
+                const Text(
+                  "Your Email",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 8),
+
+                CustomTextField(
+                  hintText: "Enter Email",
+                  icon: Icons.email_outlined,
+                  controller: controller.emailController,
+                ),
+                const SizedBox(height: 20),
+
+                CustomButton(
+                  text: "Send Otp",
+                  onPressed: () {
+                    if (HelperFunctions.isValidEmail(
+                      controller.emailController.text,
+                    )) {
+                      Get.toNamed(RoutesName.verifyOtp);
+                    } else {
+                      Get.snackbar('Invalid Input', 'Enter a valid email');
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
@@ -9,7 +8,6 @@ class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key, required this.bottomNavController});
 
   final BottomNavController bottomNavController;
-
 
   Widget buildIcon(String asset, int index) {
     return Image.asset(
@@ -23,7 +21,8 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => BottomNavigationBar(
+      () => BottomNavigationBar(
+        backgroundColor: Colors.white,
         currentIndex: bottomNavController.selectedIndex.value,
         onTap: (index) {
           bottomNavController.selectedIndex.value = index;

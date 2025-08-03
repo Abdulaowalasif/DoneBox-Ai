@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/register_controller.dart';
 import 'package:doneboxai/routes/routes_names.dart';
@@ -14,169 +15,190 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final RegisterController controller = Get.find<RegisterController>();
 
+    final screenSize = MediaQuery.of(context).size;
+    final isPortrait = screenSize.height > screenSize.width;
+
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Sign Up to\nyour account",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  "Welcome Back! Please Enter Your Details.",
-                  style: TextStyle(fontSize: 14, color: Colors.black),
-                ),
-                SizedBox(height: 40),
-
-                const Text(
-                  "Your Name",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 8),
-
-                CustomTextField(
-                  hintText: "Enter Name",
-                  icon: Icons.person_outline,
-                  controller: controller.nameController,
-                ),
-                const SizedBox(height: 20),
-
-                const Text(
-                  "Your Email",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 8),
-
-                CustomTextField(
-                  hintText: "Enter Email",
-                  icon: Icons.email_outlined,
-                  controller: controller.emailController,
-                ),
-                const SizedBox(height: 20),
-
-                const Text(
-                  "Phone",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 8),
-
-                CustomTextField(
-                  hintText: "Enter Your Phone Number",
-                  icon: Icons.phone,
-                  controller: controller.phoneController,
-                ),
-                const SizedBox(height: 20),
-
-                const Text(
-                  "Password",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 8),
-
-                Obx(
-                  () => CustomTextField(
-                    hintText: "Enter Password",
-                    icon: Icons.lock_outline,
-                    obscureText: controller.isPasswordHidden.value,
-                    controller: controller.passwordController,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        controller.isPasswordHidden.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.grey,
-                      ),
-                      onPressed: controller.togglePass,
+      body: WillPopScope(
+        onWillPop: () async {
+          Get.back();
+          return false;
+        },
+        child: Padding(
+          padding: EdgeInsets.all(screenSize.width * 0.05),
+          // Dynamic padding based on screen size
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Sign Up to\nyour account",
+                    style: TextStyle(
+                      fontSize: isPortrait ? 24 : 28, // Dynamic font size
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Welcome Back! Please Enter Your Details.",
+                    style: TextStyle(
+                      fontSize: isPortrait ? 14 : 16, // Dynamic font size
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: screenSize.height * 0.05),
 
-                const SizedBox(height: 15),
+                  // Dynamic height based on screen size
+                  const Text(
+                    "Your Name",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 8),
 
-                Row(
-                  children: [
-                    Obx(
-                      () => Checkbox(
-                        value: controller.isAgreed.value,
-                        onChanged: (value) => controller.toggleCheckBox(),
+                  CustomTextField(
+                    hintText: "Enter Name",
+                    icon: Icons.person_outline,
+                    controller: controller.nameController,
+                  ),
+                  const SizedBox(height: 20),
+
+                  const Text(
+                    "Your Email",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 8),
+
+                  CustomTextField(
+                    hintText: "Enter Email",
+                    icon: Icons.email_outlined,
+                    controller: controller.emailController,
+                  ),
+                  const SizedBox(height: 20),
+
+                  const Text(
+                    "Phone",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 8),
+
+                  CustomTextField(
+                    hintText: "Enter Your Phone Number",
+                    icon: Icons.phone,
+                    controller: controller.phoneController,
+                  ),
+                  const SizedBox(height: 20),
+
+                  const Text(
+                    "Password",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 8),
+
+                  Obx(
+                    () => CustomTextField(
+                      hintText: "Enter Password",
+                      icon: Icons.lock_outline,
+                      obscureText: controller.isPasswordHidden.value,
+                      controller: controller.passwordController,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          controller.isPasswordHidden.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                        onPressed: controller.togglePass,
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      'By creating an account, I accept the Terms & Conditions\n& Privacy Policy.',
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
+                  ),
 
-                Obx(
-                  () => CustomButton(
-                    isEnabled: controller.isAgreed.value,
-                    text: "Sign Up",
-                    onPressed: () {
-                      if (HelperFunctions.isValidEmail(
+                  const SizedBox(height: 15),
+
+                  Row(
+                    children: [
+                      Obx(
+                        () => Checkbox(
+                          activeColor: AppColors.buttonColor,
+                          value: controller.isAgreed.value,
+                          onChanged: (value) => controller.toggleCheckBox(),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        'By creating an account, I accept the Terms & Conditions\n& Privacy Policy.',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+
+                  Obx(
+                    () => CustomButton(
+                      isEnabled: controller.isAgreed.value,
+                      text: "Sign Up",
+                      onPressed: () {
+                        if (HelperFunctions.isValidEmail(
+                              controller.emailController.text,
+                            ) &&
+                            HelperFunctions.isValidPassword(
+                              controller.passwordController.text,
+                            ) &&
+                            HelperFunctions.isValidPhoneNumber(
+                              controller.phoneController.text,
+                            )) {
+                          Get.offAllNamed(RoutesName.login);
+                        } else {
+                          String message = '';
+
+                          if (!HelperFunctions.isValidEmail(
                             controller.emailController.text,
-                          ) &&
-                          HelperFunctions.isValidPassword(
+                          )) {
+                            message += 'Please enter a valid email.\n';
+                          }
+
+                          if (!HelperFunctions.isValidPassword(
                             controller.passwordController.text,
-                          ) &&
-                          HelperFunctions.isValidPhoneNumber(
+                          )) {
+                            message += 'Please enter a valid password.\n';
+                          }
+
+                          if (!HelperFunctions.isValidPhoneNumber(
                             controller.phoneController.text,
                           )) {
-                        Get.offAllNamed(RoutesName.login);
-                      } else {
-                        String message = '';
+                            message += 'Please enter a valid phone number.\n';
+                          }
 
-                        if (!HelperFunctions.isValidEmail(
-                          controller.emailController.text,
-                        )) {
-                          message += 'Please enter a valid email.\n';
+                          if (message.isNotEmpty) {
+                            Get.snackbar('Invalid Input', message.trim());
+                          }
                         }
-
-                        if (!HelperFunctions.isValidPassword(
-                          controller.passwordController.text,
-                        )) {
-                          message += 'Please enter a valid password.\n';
-                        }
-
-                        if (!HelperFunctions.isValidPhoneNumber(
-                          controller.phoneController.text,
-                        )) {
-                          message += 'Please enter a valid phone number.\n';
-                        }
-
-                        if (message.isNotEmpty) {
-                          Get.snackbar('Invalid Input', message.trim());
-                        }
-                      }
-                    },
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Already Have An Account?"),
-                    TextButton(
-                      onPressed: () {
-                        Get.offAllNamed(RoutesName.login);
                       },
-                      child: const Text("Sign In"),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  const SizedBox(height: 20),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Already Have An Account?"),
+                      TextButton(
+                        onPressed: () {
+                          Get.offAllNamed(RoutesName.login);
+                        },
+                        child: Text(
+                          "Sign In",
+                          style: TextStyle(color: AppColors.buttonColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

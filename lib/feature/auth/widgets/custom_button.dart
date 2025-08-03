@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -23,10 +24,10 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: isEnabled ? onPressed : null,
           style: ElevatedButton.styleFrom(
-            backgroundColor: isEnabled ? Colors.blue : Colors.grey,
+            backgroundColor: isEnabled ? AppColors.buttonColor : Colors.grey,
           ),
           child: isLoading
-              ? Center(child: CircularProgressIndicator(color: Colors.white,))
+              ? Center(child: CircularProgressIndicator(color: Colors.white))
               : Text(
                   text,
                   style: const TextStyle(fontSize: 16, color: Colors.white),

@@ -9,66 +9,68 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                Checkbox(
-                  fillColor: WidgetStatePropertyAll(Colors.blue),
-                  value: true,
-                  onChanged: (value) {},
-                ),
-                Text(
-                  "DoneBox",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Checkbox(
+                    fillColor: MaterialStateProperty.all(Colors.blue),
+                    value: true,
+                    onChanged: (value) {},
                   ),
+                  Text(
+                    "DoneBox",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: screenWidth * 0.06,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: screenHeight * 0.05),
+              Image.asset(
+                ImageConst.onboarding,
+                height: screenHeight * 0.35,
+                width: screenWidth * 0.9,
+                fit: BoxFit.cover,
+              ),
+              SizedBox(height: screenHeight * 0.05),
+              Text(
+                'Welcome to DoneBox',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.08,
+                  fontWeight: FontWeight.w700,
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Image.asset(
-              ImageConst.onboarding,
-              height: 400,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Welcome to doneBox',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'The best tools to organize your tasks',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
+              SizedBox(height: screenHeight * 0.02),
+              Text(
+                'The best tools to organize your tasks',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.04,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
+              SizedBox(height: screenHeight * 0.05),
 
-            Padding(
-              padding: EdgeInsetsGeometry.all(20),
-              child: CustomButton(
-                text: 'Get Started',
-                onPressed: () {
-                  Get.offAllNamed(RoutesName.home);
-                },
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                child: CustomButton(
+                  text: 'Get Started',
+                  onPressed: () {
+                    Get.offAllNamed(RoutesName.home);
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
