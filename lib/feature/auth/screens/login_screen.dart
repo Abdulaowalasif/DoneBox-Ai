@@ -103,6 +103,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   CustomButton(
+                    width:  double.infinity,
                     onPressed: () {
                       if (HelperFunctions.isValidEmail(
                             controller.emailController.text,

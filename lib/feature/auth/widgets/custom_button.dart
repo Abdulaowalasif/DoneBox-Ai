@@ -6,6 +6,8 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isEnabled;
   final bool isLoading;
+  final IconData? leading;
+  final double width;
 
   const CustomButton({
     super.key,
@@ -13,25 +15,38 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.isEnabled = true,
     this.isLoading = false,
+    this.leading,
+    required this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: double.infinity,
-        height: 55,
-        child: ElevatedButton(
-          onPressed: isEnabled ? onPressed : null,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: isEnabled ? AppColors.buttonColor : Colors.grey,
-          ),
-          child: isLoading
-              ? Center(child: CircularProgressIndicator(color: Colors.white))
-              : Text(
-                  text,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
-                ),
+    return SizedBox(
+      height: 50,
+      width: width,
+      child: ElevatedButton(
+        onPressed: isEnabled ? onPressed : null,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isEnabled ? AppColors.buttonColor : Colors.grey,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            leading != null
+                ? CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 15,
+                    child: Icon(leading),
+                  )
+                : SizedBox(),
+            const SizedBox(width: 10),
+            isLoading
+                ? Center(child: CircularProgressIndicator(color: Colors.white))
+                : Text(
+                    text,
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+          ],
         ),
       ),
     );

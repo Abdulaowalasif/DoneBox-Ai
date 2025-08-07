@@ -90,6 +90,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   const SizedBox(height: 20),
 
                   CustomButton(
+                    width: double.infinity,
                     text: "Reset Password",
                     onPressed: () {
                       showModalBottomSheet(
@@ -155,6 +156,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
                                 const SizedBox(height: 20),
                                 CustomButton(
+                                  width:  double.infinity,
                                   text: 'Back to Sign In',
                                   onPressed: () {
                                     Get.offAllNamed(RoutesName.login);

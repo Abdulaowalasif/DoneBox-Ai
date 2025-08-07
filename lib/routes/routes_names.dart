@@ -1,14 +1,19 @@
 class RoutesName {
   //authentication
-  static final String login = "/login";
-  static final String register = "/register";
-  static final String forgotPass = "/forgot-password";
-  static final String resetPass = "/reset-password";
-  static final String verifyOtp = "/verifyOtp";
+  static const String login = "/login";
+  static const String register = "/register";
+  static const String forgotPass = "/forgot-password";
+  static const String resetPass = "/reset-password";
+  static const String verifyOtp = "/verifyOtp";
 
   //onboarding
-  static final String onboarding = "/onboarding";
+  static const String onboarding = "/onboarding";
 
   //home
-  static final String home = "/home";
+  static const String main = "/main";
+  static const String home = "/home";
+  static const String newNote = "/new-note";
+  static const String newEvent = "/new-event";
+  static const String newTask = "/new-task";
+  static const String actions = "/action";
 }

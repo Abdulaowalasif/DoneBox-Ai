@@ -1,4 +1,4 @@
-import 'package:doneboxai/core/image_string/image_icon_const.dart';
+import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class OnboardingScreen extends StatelessWidget {
               Row(
                 children: [
                   Checkbox(
-                    fillColor: MaterialStateProperty.all(Colors.blue),
+                    fillColor: WidgetStatePropertyAll(Colors.blue),
                     value: true,
                     onChanged: (value) {},
                   ),
@@ -63,9 +63,10 @@ class OnboardingScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                 child: CustomButton(
+                  width: double.infinity,
                   text: 'Get Started',
                   onPressed: () {
-                    Get.offAllNamed(RoutesName.home);
+                    Get.offAllNamed(RoutesName.main);
                   },
                 ),
               ),

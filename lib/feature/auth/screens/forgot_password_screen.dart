@@ -60,6 +60,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 CustomButton(
+                  width: double.infinity,
                   text: "Send Otp",
                   onPressed: () {
                     if (HelperFunctions.isValidEmail(

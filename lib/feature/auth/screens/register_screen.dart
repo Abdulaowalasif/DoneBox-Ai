@@ -139,6 +139,7 @@ class RegisterScreen extends StatelessWidget {
 
                   Obx(
                     () => CustomButton(
+                      width:  double.infinity,
                       isEnabled: controller.isAgreed.value,
                       text: "Sign Up",
                       onPressed: () {

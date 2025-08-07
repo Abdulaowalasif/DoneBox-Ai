@@ -45,8 +45,8 @@ class VerifyCodeScreen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6.0),
                       child: SizedBox(
-                        width: screenSize.width * 0.12,
-                        height: screenSize.height * 0.07,
+                        width: 50,
+                        height: 50,
                         child: TextFormField(
                           controller: controller.controllers[index],
                           focusNode: controller.focusNodes[index],
@@ -66,13 +66,13 @@ class VerifyCodeScreen extends StatelessWidget {
                             fillColor: AppColors.otpFieldColor,
                             contentPadding: EdgeInsets.zero,
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.circular(15),
                               borderSide: const BorderSide(
                                 color: Color(0xff005fa8),
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.circular(15),
                               borderSide: const BorderSide(
                                 color: Color(0xff005fa8),
                                 width: 2,
@@ -98,6 +98,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 CustomButton(
+                  width: double.infinity,
                   text: "Verify Otp",
                   onPressed: () {
                     controller.verifyOtp(context);
