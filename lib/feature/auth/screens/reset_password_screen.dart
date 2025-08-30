@@ -1,9 +1,11 @@
+import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/auth/controller/reset_pass_controller.dart';
-import 'package:doneboxai/feature/auth/screens/login_screen.dart';
+import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/image_icon_const.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_fields.dart';
 
@@ -18,10 +20,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final ResetPasswordController controller =
-    Get.find<ResetPasswordController>();
+        Get.find<ResetPasswordController>();
 
     final screenSize = MediaQuery.of(context).size;
-    final isPortrait = screenSize.height > screenSize.width;
+    final width = screenSize.width;
+    final height = screenSize.height;
+    final isPortrait = height > width;
 
     return Scaffold(
       body: WillPopScope(
@@ -29,25 +33,35 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           Get.back();
           return false;
         },
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(screenSize.width * 0.05), // Dynamic padding based on screen size
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(ImageConst.topBg),
+              fit: BoxFit.cover,
+            ),
+          ),
+          padding: EdgeInsets.all(width * 0.05), // Dynamic padding
+          child: Center(
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  AppIcon(),
+                  SizedBox(height: height * 0.02),
+
+                  /// Title
                   Text(
                     "New Password",
                     style: TextStyle(
-                      fontSize: isPortrait ? 16 : 18, // Adjust font size based on orientation
-                      fontWeight: FontWeight.w500,
+                      fontSize: isPortrait ? width * 0.05 : width * 0.035,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: height * 0.015),
 
+                  /// New Password Field
                   Obx(
-                        () => CustomTextField(
+                    () => CustomTextField(
                       hintText: "Enter Password",
                       icon: Icons.lock_outline,
                       obscureText: controller.isPasswordHidden.value,
@@ -63,14 +77,21 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                     ),
                   ),
-                  const Text(
+
+                  SizedBox(height: height * 0.03),
+
+                  /// Confirm Password
+                  Text(
                     "Confirm Password",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: isPortrait ? width * 0.045 : width * 0.035,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: height * 0.015),
 
                   Obx(
-                        () => CustomTextField(
+                    () => CustomTextField(
                       hintText: "Enter Password",
                       icon: Icons.lock_outline,
                       obscureText: controller.isConfirmPasswordHidden.value,
@@ -87,8 +108,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 20),
+                  SizedBox(height: height * 0.04),
 
+                  /// Reset Button
                   CustomButton(
                     width: double.infinity,
                     text: "Reset Password",
@@ -101,62 +123,60 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           ),
                         ),
                         builder: (context) {
-                          return Container(
-                            padding: EdgeInsets.all(screenSize.width * 0.05), // Dynamic padding
-                            width: double.infinity,
+                          return Padding(
+                            padding: EdgeInsets.all(width * 0.06),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                /// Success Icon
                                 Container(
-                                  width: 120,
-                                  height: 120,
-                                  decoration: const BoxDecoration(
+                                  width: width * 0.3,
+                                  height: width * 0.3,
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color(0xFFE3F1FF),
+                                    color: AppColors.secondaryColor,
                                   ),
                                   alignment: Alignment.center,
                                   child: Container(
-                                    width: 72,
-                                    height: 72,
-                                    decoration: const BoxDecoration(
+                                    width: width * 0.18,
+                                    height: width * 0.18,
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Color(0xFF005FA8),
+                                      color: AppColors.buttonColor,
                                     ),
-                                    child: const Center(
-                                      child: Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
+                                    child: Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                      size: width * 0.09,
                                     ),
                                   ),
                                 ),
 
-                                const SizedBox(height: 30),
+                                SizedBox(height: height * 0.03),
 
-                                const Text(
+                                /// Success Title
+                                Text(
                                   'Password Changed!',
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: width * 0.055,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
 
-                                const SizedBox(height: 12),
+                                SizedBox(height: height * 0.015),
 
-                                const Text(
+                                /// Success Message
+                                Text(
                                   'Return to the login page to enter your\naccount with your new password.',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
+                                  style: TextStyle(fontSize: width * 0.04),
                                 ),
 
-                                const SizedBox(height: 20),
+                                SizedBox(height: height * 0.03),
+
+                                /// Back Button
                                 CustomButton(
-                                  width:  double.infinity,
+                                  width: double.infinity,
                                   text: 'Back to Sign In',
                                   onPressed: () {
                                     Get.offAllNamed(RoutesName.login);
@@ -169,7 +189,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       );
                     },
                   ),
-                  const SizedBox(height: 20),
                 ],
               ),
             ),

@@ -1,10 +1,11 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/login_controller.dart';
+import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_fields.dart';
@@ -14,54 +15,81 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginController controller = Get.find<LoginController>();
+    final LoginController controller = Get.find<LoginController>();
     final screenSize = MediaQuery.of(context).size;
     final isPortrait = screenSize.height > screenSize.width;
 
+    // dynamic scaling factors
+    final width = screenSize.width;
+    final height = screenSize.height;
+    final padding = width * 0.05;
+    final titleFontSize = isPortrait ? width * 0.07 : width * 0.05;
+    final subtitleFontSize = width * 0.035;
+    final labelFontSize = width * 0.04;
+
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(screenSize.width * 0.05),
-        child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(ImageConst.topBg),
+            fit: BoxFit.cover,
+          ),
+        ),
+        padding: EdgeInsets.all(padding),
+        child: Center(
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 500),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: screenSize.height * 0.1),
+                  SizedBox(height: height * 0.08),
+                  const AppIcon(),
+                  SizedBox(height: height * 0.02),
 
+                  // Title
                   Text(
-                    "Sign In to\nyour account",
+                    "Sign In to your account",
                     style: TextStyle(
-                      fontSize: isPortrait ? 24 : 28,
-
+                      fontSize: titleFontSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: height * 0.01),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: subtitleFontSize),
                   ),
-                  SizedBox(height: 40),
 
-                  const Text(
+                  SizedBox(height: height * 0.04),
+
+                  // Email label
+                  Text(
                     "Your Email",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: labelFontSize,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: height * 0.01),
 
                   CustomTextField(
                     hintText: "Enter Email",
                     icon: Icons.email_outlined,
                     controller: controller.emailController,
                   ),
-                  const SizedBox(height: 20),
 
-                  const Text(
+                  SizedBox(height: height * 0.025),
+
+                  // Password label
+                  Text(
                     "Password",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: labelFontSize,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: height * 0.01),
 
                   Obx(
                     () => CustomTextField(
@@ -75,19 +103,20 @@ class LoginScreen extends StatelessWidget {
                               ? Icons.visibility_off
                               : Icons.visibility,
                           color: Colors.grey,
+                          size: width * 0.055,
                         ),
-                        onPressed: () => controller.togglePass(),
+                        onPressed: controller.togglePass,
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: height * 0.01),
+
+                  // Forgot password
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {
-                        Get.toNamed(RoutesName.forgotPass);
-                      },
+                      onPressed: () => Get.toNamed(RoutesName.forgotPass),
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.blue,
                         textStyle: const TextStyle(
@@ -96,14 +125,19 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Forgot Password?",
-                        style: TextStyle(color: AppColors.buttonColor),
+                        style: TextStyle(
+                          color: AppColors.buttonColor,
+                          fontSize: subtitleFontSize,
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
 
+                  SizedBox(height: height * 0.02),
+
+                  // Sign in button
                   CustomButton(
-                    width:  double.infinity,
+                    width: double.infinity,
                     onPressed: () {
                       if (HelperFunctions.isValidEmail(
                             controller.emailController.text,
@@ -111,7 +145,7 @@ class LoginScreen extends StatelessWidget {
                           HelperFunctions.isValidPassword(
                             controller.passwordController.text,
                           )) {
-                        Get.offAllNamed(RoutesName.onboarding);
+                        // Get.offAllNamed(RoutesName.home);
                       } else {
                         String message = '';
 
@@ -124,6 +158,7 @@ class LoginScreen extends StatelessWidget {
                         String passwordError = HelperFunctions.validatePassword(
                           controller.passwordController.text,
                         );
+
                         if (passwordError.isNotEmpty) {
                           message += passwordError;
                         }
@@ -136,19 +171,24 @@ class LoginScreen extends StatelessWidget {
                     text: 'Sign In',
                   ),
 
-                  const SizedBox(height: 20),
+                  SizedBox(height: height * 0.025),
 
+                  // Sign up link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don’t Have An Account?"),
+                      Text(
+                        "Don’t Have An Account?",
+                        style: TextStyle(fontSize: subtitleFontSize),
+                      ),
                       TextButton(
-                        onPressed: () {
-                          Get.toNamed(RoutesName.register);
-                        },
+                        onPressed: () => Get.toNamed(RoutesName.register),
                         child: Text(
                           "Sign Up",
-                          style: TextStyle(color: AppColors.buttonColor),
+                          style: TextStyle(
+                            color: AppColors.buttonColor,
+                            fontSize: subtitleFontSize,
+                          ),
                         ),
                       ),
                     ],

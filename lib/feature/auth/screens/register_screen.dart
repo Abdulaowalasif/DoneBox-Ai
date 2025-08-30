@@ -5,6 +5,7 @@ import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/image_icon_const.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_fields.dart';
 
@@ -24,7 +25,13 @@ class RegisterScreen extends StatelessWidget {
           Get.back();
           return false;
         },
-        child: Padding(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(ImageConst.topBg),
+              fit: BoxFit.cover,
+            ),
+          ),
           padding: EdgeInsets.all(screenSize.width * 0.05),
           // Dynamic padding based on screen size
           child: Center(

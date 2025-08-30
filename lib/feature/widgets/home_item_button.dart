@@ -24,7 +24,7 @@ class ChooseItem extends StatelessWidget {
             ItemContainer(
               title: 'New Task',
               onPressed: () {
-                Get.toNamed(RoutesName.newTask, id: NavIds.home);
+                // Get.toNamed(RoutesName.newTask, id: NavIds.home);
               },
               image: ImageConst.newTask,
             ),
@@ -32,14 +32,14 @@ class ChooseItem extends StatelessWidget {
               image: ImageConst.newEvent,
               title: 'New Event',
               onPressed: () {
-                Get.toNamed(RoutesName.newEvent, id: NavIds.home);
+                // Get.toNamed(RoutesName.newEvent, id: NavIds.home);
               },
             ),
             ItemContainer(
               image: ImageConst.newNote,
               title: 'New Note',
               onPressed: () {
-                Get.toNamed(RoutesName.newNote, id: NavIds.home);
+                // Get.toNamed(RoutesName.newNote, id: NavIds.home);
               },
             ),
           ],

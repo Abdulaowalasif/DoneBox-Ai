@@ -1,7 +1,9 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/auth/controller/otp_controller.dart';
+import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/conts/image_icon_const.dart';
 import '../widgets/custom_button.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
@@ -10,8 +12,10 @@ class VerifyCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<OtpController>();
-    final screenSize = MediaQuery.of(context).size;
-    final isPortrait = screenSize.height > screenSize.width;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
+    final isPortrait = height > width;
 
     return Scaffold(
       body: WillPopScope(
@@ -19,106 +23,136 @@ class VerifyCodeScreen extends StatelessWidget {
           Get.back();
           return false;
         },
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(screenSize.width * 0.05),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Verify Code",
-                  style: TextStyle(
-                    fontSize: isPortrait ? 24 : 28,
-                    fontWeight: FontWeight.bold,
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(ImageConst.topBg),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.06),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppIcon(),
+                  SizedBox(height: height * 0.02),
+                  /// Title
+                  Text(
+                    "Verify Code",
+                    style: TextStyle(
+                      fontSize: isPortrait ? width * 0.07 : width * 0.05,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  "Please check your email and enter the code",
-                  style: TextStyle(fontSize: isPortrait ? 14 : 16),
-                ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(6, (index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: TextFormField(
-                          controller: controller.controllers[index],
-                          focusNode: controller.focusNodes[index],
-                          maxLength: 1,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                  const SizedBox(height: 8),
+
+                  /// Subtitle
+                  Text(
+                    "Please check your email and enter the code",
+                    style: TextStyle(
+                      fontSize: isPortrait ? width * 0.04 : width * 0.035,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  SizedBox(height: height * 0.06),
+
+                  /// OTP Fields
+                  /// OTP Fields
+                  Center(
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: width * 0.02,
+                      runSpacing: height * 0.01,
+                      children: List.generate(6, (index) {
+                        return SizedBox(
+                          width: width * 0.12, // scales with screen
+                          height: width * 0.14, // scales with screen
+                          child: TextFormField(
+                            controller: controller.controllers[index],
+                            focusNode: controller.focusNodes[index],
+                            maxLength: 1,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: width * 0.06,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) =>
+                                controller.onOtpEntered(value, index),
+                            decoration: InputDecoration(
+                              counterText: '',
+                              filled: true,
+                              fillColor: AppColors.secondaryColor,
+                              contentPadding: EdgeInsets.zero,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: AppColors.secondaryColor,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: AppColors.primaryColor,
+                                  width: 2,
+                                ),
+                              ),
+                            ),
                           ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) =>
-                              controller.onOtpEntered(value, index),
-                          decoration: InputDecoration(
-                            counterText: '',
-                            filled: true,
-                            fillColor: AppColors.otpFieldColor,
-                            contentPadding: EdgeInsets.zero,
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: const BorderSide(
-                                color: Color(0xff005fa8),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: const BorderSide(
-                                color: Color(0xff005fa8),
-                                width: 2,
-                              ),
-                            ),
+                        );
+                      }),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.03),
+
+                  /// Verify Button
+                  CustomButton(
+                    width: double.infinity,
+                    text: "Verify OTP",
+                    onPressed: () => controller.verifyOtp(context),
+                  ),
+                  SizedBox(height: height * 0.03),
+
+                  /// Timer
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '2:32',
+                      style: TextStyle(
+                        color: AppColors.buttonColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: isPortrait ? width * 0.06 : width * 0.05,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+
+                  /// Resend
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Didn’t receive code?",
+                        style: TextStyle(fontSize: width * 0.04),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Resend it",
+                          style: TextStyle(
+                            color: AppColors.buttonColor,
+                            fontSize: width * 0.04,
                           ),
                         ),
                       ),
-                    );
-                  }),
-                ),
-                const SizedBox(height: 20),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '2:32',
-                    style: TextStyle(
-                      color: AppColors.buttonColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: isPortrait ? 22 : 24,
-                    ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 20),
-                CustomButton(
-                  width: double.infinity,
-                  text: "Verify Otp",
-                  onPressed: () {
-                    controller.verifyOtp(context);
-                  },
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Didn’t receive code?"),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Resend it",
-                        style: TextStyle(color: AppColors.buttonColor),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

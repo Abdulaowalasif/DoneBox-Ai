@@ -8,6 +8,16 @@ class ImageConst {
 
   //onboarding image
   static const String onboarding = "assets/images/onboarding.png";
+  static const String onboarding1="assets/images/Task-bro.png";
+  static const String onboarding2="assets/images/Add tasks-pana.png";
+  static const String onboarding3="assets/images/Work time-pana.png";
+  static const String onboarding4="assets/images/onboarding4.png";
+
+
+  //bg
+  static const String centerBg="assets/images/center_bg.png";
+  static const String topBg="assets/images/top_bg.png";
+
 
   static const String dailyRecap = "assets/images/daily_recap.png";
   static const String explain = "assets/images/explain.png";
@@ -21,4 +31,7 @@ class ImageConst {
   static const String newTask = "assets/images/new_task.png";
   static const String newEvent = "assets/images/new_event.png";
   static const String newNote = "assets/images/new_note.png";
+
+
+
 }

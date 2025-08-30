@@ -8,12 +8,10 @@ class RoutesName {
 
   //onboarding
   static const String onboarding = "/onboarding";
+  static const String onboarding1 = "/onboarding1";
+  static const String onboarding2 = "/onboarding2";
+  static const String onboarding3 = "/onboarding3";
+  static const String onboarding4 = "/onboarding4";
 
   //home
-  static const String main = "/main";
-  static const String home = "/home";
-  static const String newNote = "/new-note";
-  static const String newEvent = "/new-event";
-  static const String newTask = "/new-task";
-  static const String actions = "/action";
 }
