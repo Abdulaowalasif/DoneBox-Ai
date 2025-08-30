@@ -27,41 +27,36 @@ class OnboardingScreen3 extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: height * 0.05),
-              Center(
-                child: Image.asset(
-                  ImageConst.onboarding1,
-                  height: height * 0.50,
-                  fit: BoxFit.contain,
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: height * 0.05),
+            Center(
+              child: Image.asset(
+                ImageConst.onboarding1,
+                height: height * 0.50,
+                fit: BoxFit.contain,
               ),
-              SizedBox(height: height * 0.04),
-              Text(
-                "AI at Your Service",
-                style: MyTextStyle.onboardingText1(context),
+            ),
+            SizedBox(height: height * 0.02),
+            Text(
+              "AI at Your Service",
+              style: MyTextStyle.onboardingText1(context),
+            ),
+            SizedBox(height: height * 0.02),
+            Text(
+              "Let DoneBox Help You Stay on Track",
+              style: MyTextStyle.onboardingText2(context),
+            ),
+            SizedBox(height: height * 0.02),
+            Text(
+              "Start Exploring!",
+              style: TextStyle(
+                fontSize: width * 0.05,
+                fontWeight: FontWeight.w400,
               ),
-              SizedBox(height: height * 0.02),
-              Text(
-                "Let DoneBox Help You Stay on Track",
-                style: MyTextStyle.onboardingText2(context),
-              ),
-              const Spacer(),
-              Padding(
-                padding: EdgeInsets.only(bottom: height * 0.02),
-                child: Text(
-                  "Start Exploring!",
-                  style: TextStyle(
-                    fontSize: width * 0.05,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
 
