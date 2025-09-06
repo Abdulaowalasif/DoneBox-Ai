@@ -14,4 +14,8 @@ class RoutesName {
   static const String onboarding4 = "/onboarding4";
 
   //home
+  static const String mainScreen = "/main";
+  static const String quickAction = "/quick-action";
+  static const String notification = "/notification";
+  static const String notificationPref = "/notification-preference";
 }

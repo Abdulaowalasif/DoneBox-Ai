@@ -3,13 +3,18 @@ import 'package:doneboxai/feature/auth/screens/login_screen.dart';
 import 'package:doneboxai/feature/auth/screens/register_screen.dart';
 import 'package:doneboxai/feature/auth/screens/reset_password_screen.dart';
 import 'package:doneboxai/feature/auth/screens/verify_code_screen.dart';
+import 'package:doneboxai/feature/home/notification/screens/notification_preference.dart';
+import 'package:doneboxai/feature/home/notification/screens/notification_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen1.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen2.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen3.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen4.dart';
+import 'package:doneboxai/feature/quick%20action/screens/quick_action_screen.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:get/get.dart';
+
+import '../feature/home/screens/main_screen.dart';
 
 class AppRoutes {
   static List<GetPage> pages = [
@@ -58,6 +63,24 @@ class AppRoutes {
     GetPage(
       name: RoutesName.onboarding4,
       page: () => OnboardingScreen4(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.mainScreen,
+      page: () => MainScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.quickAction,
+      page: () => QuickActionScreen(),
+      transition: Transition.rightToLeft,
+    ),GetPage(
+      name: RoutesName.notification,
+      page: () => NotificationScreen(),
+      transition: Transition.rightToLeft,
+    ),GetPage(
+      name: RoutesName.notificationPref,
+      page: () => NotificationPreference(),
       transition: Transition.rightToLeft,
     ),
   ];

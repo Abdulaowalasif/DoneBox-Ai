@@ -1,12 +1,22 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/routes/routes_names.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final String? route;
   final int? navIds;
+  final IconData? trailing;
 
-  const CustomAppbar({super.key, required this.title, this.navIds});
+  const CustomAppbar({
+    super.key,
+    required this.title,
+    this.navIds,
+    this.trailing,
+    this.route,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +55,15 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                onPressed: () {
+                  Get.toNamed(route!);
+                },
+                icon: Icon(trailing, color: Colors.white),
               ),
             ),
           ],

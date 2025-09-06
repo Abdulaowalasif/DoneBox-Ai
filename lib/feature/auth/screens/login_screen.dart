@@ -145,7 +145,7 @@ class LoginScreen extends StatelessWidget {
                           HelperFunctions.isValidPassword(
                             controller.passwordController.text,
                           )) {
-                        // Get.offAllNamed(RoutesName.home);
+                        Get.offAllNamed(RoutesName.mainScreen);
                       } else {
                         String message = '';
 

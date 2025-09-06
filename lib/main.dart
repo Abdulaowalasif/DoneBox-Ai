@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: MyAppThemes.lightTheme(),
       themeMode: ThemeMode.system,
       darkTheme: MyAppThemes.darkTheme(),
-      initialRoute: RoutesName.onboarding1,
+      initialRoute: RoutesName.mainScreen,
       getPages: AppRoutes.pages,
       initialBinding: AppBinding(),
     );

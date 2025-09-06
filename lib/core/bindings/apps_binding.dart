@@ -6,6 +6,8 @@ import 'package:doneboxai/feature/auth/controller/reset_pass_controller.dart';
 import 'package:doneboxai/feature/onboarding/controller/onboarding_controller.dart';
 import 'package:get/get.dart';
 
+import '../../feature/home/controllers/bottom_nav_controller.dart';
+
 class AppBinding extends Bindings {
   @override
   void dependencies() {
@@ -24,5 +26,6 @@ class AppBinding extends Bindings {
       () => OnboardingController(),
       fenix: true,
     );
+    Get.lazyPut<BottomNavController>(() => BottomNavController(), fenix: true);
   }
 }
