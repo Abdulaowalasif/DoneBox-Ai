@@ -12,7 +12,7 @@ class QuickActionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final QuickActionController controller = Get.find();
     return Scaffold(
-      appBar: CustomAppbar(title: controller.title),
+      appBar: CustomAppbar(title: controller.title, onPress: () {  },),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: controller.title == "Daily Recap"

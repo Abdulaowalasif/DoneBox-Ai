@@ -5,5 +5,7 @@ class AppColors {
   static final Color otpFieldColor = Color(0xFFD9E7F2);
   static final Color primaryColor = Color(0xFF0A7AFF);
   static final Color secondaryColor = Color(0xFFC3E2FF);
+  static final Color cardColor = Color(0xFFCEECEB) ;
+  static final Color cardColor2 = Color(0xFFDCDDF7) ;
 
 }

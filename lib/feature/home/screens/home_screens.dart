@@ -115,7 +115,7 @@ class HomeScreens extends StatelessWidget {
                     ActionCard(
                       image: ImageConst.reply,
                       title: "Reply",
-                      color: AppColors.secondaryColor,
+                      color: AppColors.cardColor,
                       onPress: () {
                         controller.title = "Reply";
                         Get.toNamed(RoutesName.quickAction);
@@ -124,7 +124,7 @@ class HomeScreens extends StatelessWidget {
                     ActionCard(
                       image: ImageConst.explain,
                       title: "Explain",
-                      color: AppColors.secondaryColor,
+                      color: AppColors.cardColor2,
                       onPress: () {
                         controller.title = "Explain";
                         Get.toNamed(RoutesName.quickAction);

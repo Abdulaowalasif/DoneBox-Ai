@@ -1,5 +1,7 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/feature/hub/screens/hub_screen.dart';
+import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +16,7 @@ class MainScreen extends StatelessWidget {
 
   final List<Widget> pages = [
     const HomeScreens(),
-    const Center(child: Text("Hub")),
+    const HubScreen(),
     const Center(child: Text("Calendar")),
     const Center(child: Text("Menu")),
   ];
@@ -42,7 +44,10 @@ class MainScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.back();
+                        Get.toNamed(RoutesName.aiAssistant);
+                      },
                       child: Container(
                         margin: EdgeInsets.all(10),
                         padding: EdgeInsets.all(20),
@@ -66,7 +71,10 @@ class MainScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.back();
+                        Get.toNamed(RoutesName.createNewTask);
+                      },
                       child: Container(
                         margin: EdgeInsets.all(10),
                         padding: EdgeInsets.all(20),

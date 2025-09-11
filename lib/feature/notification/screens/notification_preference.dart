@@ -10,7 +10,7 @@ class NotificationPreference extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(title: "Notification Preference"),
+      appBar: CustomAppbar(title: "Notification Preference", onPress: () {  },),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(

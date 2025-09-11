@@ -18,4 +18,7 @@ class RoutesName {
   static const String quickAction = "/quick-action";
   static const String notification = "/notification";
   static const String notificationPref = "/notification-preference";
+  static const String aiAssistant = "/ai-assistant";
+  static const String createNewTask="/create-new-task";
+  static const String focusMode="/focus-mode";
 }

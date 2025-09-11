@@ -3,6 +3,8 @@ import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -13,7 +15,9 @@ class NotificationScreen extends StatelessWidget {
       appBar: CustomAppbar(
         title: "Notification",
         trailing: Icons.tune,
-        route: RoutesName.notificationPref,
+        onPress: () {
+          Get.toNamed(RoutesName.notificationPref);
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

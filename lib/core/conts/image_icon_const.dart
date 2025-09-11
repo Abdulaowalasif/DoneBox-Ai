@@ -35,4 +35,5 @@ class ImageConst {
   static const String hand = "assets/images/hand.png";
   static const String floatingAi = "assets/images/floating_ai.png";
   static const String hourGlass = "assets/images/Ellipse 35.png";
+  static const String aiIcon = "assets/images/ai.png";
 }

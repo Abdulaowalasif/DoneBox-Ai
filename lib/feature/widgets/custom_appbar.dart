@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final String? route;
+  final VoidCallback onPress;
   final int? navIds;
   final IconData? trailing;
 
@@ -15,7 +15,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.navIds,
     this.trailing,
-    this.route,
+    required this.onPress,
   });
 
   @override
@@ -60,9 +60,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
-                onPressed: () {
-                  Get.toNamed(route!);
-                },
+                onPressed:onPress,
                 icon: Icon(trailing, color: Colors.white),
               ),
             ),
