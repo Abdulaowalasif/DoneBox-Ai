@@ -4,6 +4,7 @@ import 'package:doneboxai/feature/quick%20action/controllers/quick_action_contro
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuickActionScreen extends StatelessWidget {
   const QuickActionScreen({super.key});
@@ -254,7 +255,11 @@ class QuickActionScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     CustomButton(
                       text: "Share Recap",
-                      onPressed: () {},
+                      onPressed: () {
+                        Share.share(
+                          "Share your experience..."
+                        );
+                      },
                       width: double.infinity,
                     ),
                     Align(
@@ -284,7 +289,9 @@ class QuickActionScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   CustomButton(
                     text: controller.title,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     width: double.infinity,
                   ),
                   const SizedBox(height: 20),

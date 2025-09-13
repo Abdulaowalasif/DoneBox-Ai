@@ -1,20 +1,23 @@
-import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
+import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CreateNewTask extends StatelessWidget {
-  const CreateNewTask({super.key});
+import '../../../core/conts/app_colors.dart';
+
+class TaskDetails extends StatelessWidget {
+  const TaskDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
-        title: "Create New Task",
-        trailing: Icons.save_outlined,
+        title: "Meetings",
         onPress: () {
-          Get.back();
+          Get.toNamed(RoutesName.editTask);
         },
+        trailing: Icons.edit_outlined,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,75 +49,21 @@ class CreateNewTask extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("Category"),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: AppColors.primaryColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              dropdownColor: AppColors.secondaryColor,
-                              value: "Work",
-                              icon: const Icon(
-                                Icons.keyboard_arrow_down,
-                                size: 14,
-                              ),
-                              items: const [
-                                DropdownMenuItem(
-                                  value: "Work",
-                                  child: Text("Work"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Personal",
-                                  child: Text("Personal"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Shopping",
-                                  child: Text("Shopping"),
-                                ),
-                              ],
-                              onChanged: (value) {},
-                            ),
-                          ),
-                        ),
+                        const Text("Work"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Due Date"),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: AppColors.primaryColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Text("15 August"),
-                        ),
+                        Text("15 August"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Time"),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: AppColors.primaryColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Text("7:00 AM"),
-                        ),
+                        Text("7:00 AM"),
                       ],
                     ),
                     Row(
@@ -133,24 +82,7 @@ class CreateNewTask extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Reminder"),
-                        Row(
-                          children: [
-                            Text("Weekly"),
-                            Icon(Icons.arrow_forward_ios, size: 20),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Priority"),
-                        Row(
-                          children: [
-                            Text("High", style: TextStyle(color: Colors.red)),
-                            Icon(Icons.arrow_forward_ios, size: 20),
-                          ],
-                        ),
+                        Text("Weekly"),
                       ],
                     ),
                   ],
@@ -217,6 +149,9 @@ class CreateNewTask extends StatelessWidget {
                   ],
                 ),
               ),
+              CustomButton(text: "Mark as Completed", onPressed: () {
+                Get.back();
+              }, width: double.infinity)
             ],
           ),
         ),

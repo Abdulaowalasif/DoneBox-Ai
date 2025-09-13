@@ -1,6 +1,7 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FocusModeScreen extends StatelessWidget {
@@ -134,7 +135,7 @@ class FocusModeScreen extends StatelessWidget {
                           Row(
                             spacing: 10,
                             children: [
-                              Icon(Icons.watch_later_outlined),
+                              Icon(Icons.alarm),
                               Text(
                                 "Sounds",
                                 style: TextStyle(
@@ -169,8 +170,102 @@ class FocusModeScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(),
-                )
+                  padding: EdgeInsetsGeometry.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.secondaryColor,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Linked task",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          TextButton(
+                            child: Text(
+                              "Change",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            spacing: 10,
+                            children: [
+                              Icon(CupertinoIcons.text_alignleft),
+                              Text(
+                                "Write Project report",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "Work",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: LinearProgressIndicator(
+                    minHeight: 10,
+                    borderRadius: BorderRadius.circular(10),
+                    value: 0.4,
+                    color: AppColors.primaryColor,
+                    backgroundColor: AppColors.secondaryColor,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Align(
+                  alignment: AlignmentGeometry.centerLeft,
+                  child: Column(
+                    spacing: 10,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "You're on fire!",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "2 focus sessions completed.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

@@ -5,6 +5,7 @@ import 'package:doneboxai/feature/tasks/widgets/ai_assistant_remind_card.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/ai_assistant_item_card.dart';
 
@@ -254,7 +255,9 @@ class AiTaskAssistant extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomButton(text: "Save", onPressed: (){}, width: double.infinity)
+              CustomButton(text: "Save", onPressed: (){
+                Get.back();
+              }, width: double.infinity)
             ],
           ),
         ),

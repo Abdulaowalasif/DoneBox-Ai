@@ -221,13 +221,7 @@ class HubScreen extends StatelessWidget {
                   onPress: () {
                     Get.toNamed(RoutesName.focusMode);
                   },
-                ),
-                ActionCard(
-                  image: ImageConst.newNote,
-                  title: "Recent File",
-                  color: AppColors.cardColor,
-                  onPress: () {},
-                ),
+                )
               ],
             ),
           ],

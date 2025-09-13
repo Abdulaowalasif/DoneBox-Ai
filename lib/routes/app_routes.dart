@@ -3,6 +3,9 @@ import 'package:doneboxai/feature/auth/screens/login_screen.dart';
 import 'package:doneboxai/feature/auth/screens/register_screen.dart';
 import 'package:doneboxai/feature/auth/screens/reset_password_screen.dart';
 import 'package:doneboxai/feature/auth/screens/verify_code_screen.dart';
+import 'package:doneboxai/feature/home/screens/ai_task_create_screen.dart';
+import 'package:doneboxai/feature/home/screens/edit_task_screen.dart';
+import 'package:doneboxai/feature/home/screens/task_details.dart';
 import 'package:doneboxai/feature/hub/screens/focus_mode_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen2.dart';
@@ -76,25 +79,45 @@ class AppRoutes {
       name: RoutesName.quickAction,
       page: () => QuickActionScreen(),
       transition: Transition.rightToLeft,
-    ),GetPage(
+    ),
+    GetPage(
       name: RoutesName.notification,
       page: () => NotificationScreen(),
       transition: Transition.rightToLeft,
-    ),GetPage(
+    ),
+    GetPage(
       name: RoutesName.notificationPref,
       page: () => NotificationPreference(),
       transition: Transition.rightToLeft,
-    ),GetPage(
+    ),
+    GetPage(
       name: RoutesName.aiAssistant,
       page: () => AiTaskAssistant(),
       transition: Transition.rightToLeft,
-    ),GetPage(
+    ),
+    GetPage(
       name: RoutesName.createNewTask,
       page: () => CreateNewTask(),
       transition: Transition.rightToLeft,
-    ),GetPage(
+    ),
+    GetPage(
       name: RoutesName.focusMode,
       page: () => FocusModeScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.aiTaskCreate,
+      page: () => AiTaskCreateScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.taskDetails,
+      page: () => TaskDetails(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.editTask,
+      page: () => EditTaskScreen(),
       transition: Transition.rightToLeft,
     ),
   ];

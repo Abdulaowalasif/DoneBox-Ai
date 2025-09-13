@@ -1,20 +1,21 @@
-import 'package:doneboxai/core/conts/app_colors.dart';
-import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CreateNewTask extends StatelessWidget {
-  const CreateNewTask({super.key});
+import '../../../core/conts/app_colors.dart';
+import '../../widgets/custom_appbar.dart';
+
+class EditTaskScreen extends StatelessWidget {
+  const EditTaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
-        title: "Create New Task",
-        trailing: Icons.save_outlined,
+        title: "Meetings",
         onPress: () {
           Get.back();
         },
+        trailing: Icons.save_outlined,
       ),
       body: SingleChildScrollView(
         child: Padding(

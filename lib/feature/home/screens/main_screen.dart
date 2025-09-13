@@ -5,6 +5,7 @@ import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../calender/screens/custom_calendar.dart';
 import '../controllers/bottom_nav_controller.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 import 'home_screens.dart';
@@ -17,7 +18,7 @@ class MainScreen extends StatelessWidget {
   final List<Widget> pages = [
     const HomeScreens(),
     const HubScreen(),
-    const Center(child: Text("Calendar")),
+    CalendarScreen(),
     const Center(child: Text("Menu")),
   ];
 

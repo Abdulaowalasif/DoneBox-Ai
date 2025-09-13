@@ -89,7 +89,9 @@ class NotificationPreference extends StatelessWidget {
             const SizedBox(height: 20),
             CustomButton(
               text: "Save Changes",
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               width: double.infinity,
             ),
             Align(
