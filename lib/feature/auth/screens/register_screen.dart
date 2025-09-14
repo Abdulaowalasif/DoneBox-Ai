@@ -2,6 +2,7 @@ import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/register_controller.dart';
 import 'package:doneboxai/routes/routes_names.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -133,12 +134,33 @@ class RegisterScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
+                      RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            const TextSpan(
+                              text:
+                                  'By creating an account, I accept the terms & condition  &\n',
+                            ),
+                            TextSpan(
+                              text: 'Privacy Policy',
+                              style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                Get.toNamed(RoutesName.privacyPolicy);
+                                },
+                            ),
+                            const TextSpan(text: '.'),
+                          ],
                         ),
-                        'By creating an account, I accept the Terms & Conditions\n& Privacy Policy.',
                       ),
                     ],
                   ),
@@ -146,7 +168,7 @@ class RegisterScreen extends StatelessWidget {
 
                   Obx(
                     () => CustomButton(
-                      width:  double.infinity,
+                      width: double.infinity,
                       isEnabled: controller.isAgreed.value,
                       text: "Sign Up",
                       onPressed: () {

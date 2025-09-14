@@ -79,13 +79,19 @@ class MenuScreens extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    SettingsItem(icon: Icons.event_note, title: "Notes",onPress: () => Get.toNamed(RoutesName.notes),),
+                    SettingsItem(
+                      icon: Icons.event_note,
+                      title: "Notes",
+                      onPress: () => Get.toNamed(RoutesName.notes),
+                    ),
                     Container(
                       height: 1,
                       color: AppColors.secondaryColor,
                       width: double.infinity,
                     ),
-                    SettingsItem(icon: Icons.network_cell, title: "Insights"),
+                    SettingsItem(
+                        onPress: () => Get.toNamed(RoutesName.insight),
+                        icon: Icons.network_cell, title: "Insights"),
                   ],
                 ),
               ),
@@ -122,6 +128,7 @@ class MenuScreens extends StatelessWidget {
                       width: double.infinity,
                     ),
                     SettingsItem(
+                      onPress: () => Get.toNamed(RoutesName.notificationPref),
                       icon: Icons.notification_add_outlined,
                       title: "Notification Preferences",
                     ),
@@ -131,6 +138,7 @@ class MenuScreens extends StatelessWidget {
                       width: double.infinity,
                     ),
                     SettingsItem(
+                      onPress: () => Get.toNamed(RoutesName.subscription),
                       icon: Icons.subscriptions_outlined,
                       title: "Subscription Tier",
                     ),
@@ -140,6 +148,9 @@ class MenuScreens extends StatelessWidget {
                       width: double.infinity,
                     ),
                     SettingsItem(
+                      onPress: () {
+                        Get.toNamed(RoutesName.profile);
+                      },
                       icon: Icons.settings,
                       title: "Account Settings",
                     ),
@@ -149,6 +160,7 @@ class MenuScreens extends StatelessWidget {
                       width: double.infinity,
                     ),
                     SettingsItem(
+                      onPress: () => Get.toNamed(RoutesName.helpAndSupport),
                       icon: Icons.help_outline,
                       title: "Help & Support",
                     ),
@@ -158,6 +170,7 @@ class MenuScreens extends StatelessWidget {
                       width: double.infinity,
                     ),
                     SettingsItem(
+                      onPress: () => Get.toNamed(RoutesName.privacyPolicy),
                       icon: Icons.lock_open,
                       title: "Privacy & Policy",
                     ),

@@ -212,7 +212,9 @@ class HubScreen extends StatelessWidget {
                   image: ImageConst.newNote,
                   title: "Notes",
                   color: AppColors.cardColor,
-                  onPress: () {},
+                  onPress: () {
+                    Get.toNamed(RoutesName.notes);
+                  },
                 ),
                 ActionCard(
                   image: ImageConst.newNote,

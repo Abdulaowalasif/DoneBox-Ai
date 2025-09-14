@@ -41,10 +41,11 @@ class SettingsItem extends StatelessWidget {
             ),
             showToggle == true
                 ? Switch(
-              activeColor: AppColors.primaryColor,
-              value: isActive ?? true,
-              onChanged: (value) => toggleChanged,
-            )
+                    value: true,
+                    thumbColor: WidgetStatePropertyAll(Colors.white),
+                    onChanged: (value) {},
+                    activeColor: AppColors.primaryColor,
+                  )
                 : Container(),
           ],
         ),

@@ -3,8 +3,8 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CreateNewTask extends StatelessWidget {
-  const CreateNewTask({super.key});
+class CreateNewTaskScreen extends StatelessWidget {
+  const CreateNewTaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -123,9 +123,9 @@ class CreateNewTask extends StatelessWidget {
                         Text("Notification"),
                         Switch(
                           value: true,
-                          onChanged: (val) {},
+                          thumbColor: WidgetStatePropertyAll(Colors.white),
+                          onChanged: (value) {},
                           activeColor: AppColors.primaryColor,
-                          inactiveThumbColor: Colors.grey,
                         ),
                       ],
                     ),

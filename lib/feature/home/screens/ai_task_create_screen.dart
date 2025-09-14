@@ -167,6 +167,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                             ),
                             Switch(
                               value: true,
+                              thumbColor: WidgetStatePropertyAll(Colors.white),
                               onChanged: (value) {},
                               activeColor: AppColors.primaryColor,
                             ),

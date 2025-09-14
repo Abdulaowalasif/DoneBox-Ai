@@ -95,15 +95,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     ),
                     TextField(
                       controller: timeController,
-                      decoration:
-                      InputDecoration(hintText: "Time (e.g. 10:00 AM)"),
+                      decoration: InputDecoration(
+                        hintText: "Time (e.g. 10:00 AM)",
+                      ),
                     ),
                     DropdownButton<String>(
                       value: selectedPriority,
                       isExpanded: true,
                       items: ["High", "Medium", "Low"]
-                          .map((p) =>
-                          DropdownMenuItem(value: p, child: Text(p)))
+                          .map(
+                            (p) => DropdownMenuItem(value: p, child: Text(p)),
+                          )
                           .toList(),
                       onChanged: (val) {
                         if (val != null) {
@@ -221,7 +223,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: events.map((event) {
                           final Map<String, dynamic> e =
-                          event as Map<String, dynamic>;
+                              event as Map<String, dynamic>;
                           final priority = e["priority"] as String? ?? "Low";
                           final color = _getPriorityColor(priority);
 
@@ -242,12 +244,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
               ),
             ),
-            Text("Today",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
+            Text(
+              "Today",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+            ),
             Expanded(
               child: ListView.separated(
                 itemCount: _getEventsForDay(_selectedDay!).length,
                 separatorBuilder: (_, __) =>
-                    Divider(color: Colors.grey.shade300),
+                    Divider(color: AppColors.secondaryColor),
                 itemBuilder: (context, index) {
                   final event = _getEventsForDay(_selectedDay!)[index];
                   final priorityColor = _getPriorityColor(event["priority"]);
@@ -256,18 +261,36 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     leading: Icon(Icons.circle, size: 12, color: priorityColor),
                     title: Text(
                       event["title"],
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
                     ),
-                    subtitle: Text(event["category"]),
+                    subtitle: Text(
+                      event["category"],
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                      ),
+                    ),
                     trailing: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(event["time"]),
+                        Text(
+                          event["time"],
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
                         SizedBox(height: 4),
                         Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 8,
-                            vertical: 2,
+                            vertical: 4,
                           ),
                           decoration: BoxDecoration(
                             color: priorityColor,
@@ -275,8 +298,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                           child: Text(
                             event["priority"],
-                            style:
-                            TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(color: Colors.white, fontSize: 12),
                           ),
                         ),
                       ],

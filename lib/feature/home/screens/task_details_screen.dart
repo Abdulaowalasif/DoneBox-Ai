@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 
 import '../../../core/conts/app_colors.dart';
 
-class TaskDetails extends StatelessWidget {
-  const TaskDetails({super.key});
+class TaskDetailsScreen extends StatelessWidget {
+  const TaskDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

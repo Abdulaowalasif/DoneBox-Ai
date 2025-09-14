@@ -4,8 +4,8 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NotificationPreference extends StatelessWidget {
-  const NotificationPreference({super.key});
+class NotificationPreferenceScreen extends StatelessWidget {
+  const NotificationPreferenceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

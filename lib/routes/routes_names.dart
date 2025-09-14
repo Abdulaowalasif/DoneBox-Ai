@@ -25,4 +25,12 @@ class RoutesName {
   static const String taskDetails="/task-details";
   static const String editTask="/edit-task";
   static const String notes="/notes";
+  static const String profile="/profile";
+  static const String subscription="/subscription";
+  static const String privacyPolicy="/privacy-policy";
+  static const String helpAndSupport="/help-and-support";
+  static const String insight="/insight";
+  static const String getStarted="/get-started";
+  static const String liveChat="/live-chat";
+  static const String emailSupport="/email-support";
 }

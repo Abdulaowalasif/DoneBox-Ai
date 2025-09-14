@@ -244,7 +244,7 @@ class FocusModeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Align(
-                  alignment: AlignmentGeometry.centerLeft,
+                  alignment: Alignment.centerLeft,
                   child: Column(
                     spacing: 10,
                     crossAxisAlignment: CrossAxisAlignment.start,

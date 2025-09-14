@@ -30,9 +30,11 @@ class AiAssistantRemindCard extends StatelessWidget {
           ],
         ),
         Switch(
-          inactiveThumbColor: Colors.black,
-            activeColor: AppColors.primaryColor,
-            value: true, onChanged: (val){})
+          value: true,
+          thumbColor: WidgetStatePropertyAll(Colors.white),
+          onChanged: (value) {},
+          activeColor: AppColors.primaryColor,
+        ),
       ],
     );
   }

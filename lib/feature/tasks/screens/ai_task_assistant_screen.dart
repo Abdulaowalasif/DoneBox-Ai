@@ -9,19 +9,29 @@ import 'package:get/get.dart';
 
 import '../widgets/ai_assistant_item_card.dart';
 
-class AiTaskAssistant extends StatelessWidget {
-  const AiTaskAssistant({super.key});
+class AiTaskAssistantScreen extends StatelessWidget {
+  const AiTaskAssistantScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(title: "Ai Assistant", onPress: () {  },),
+      appBar: CustomAppbar(title: "Ai Assistant", onPress: () {}),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: TextField(
           decoration: InputDecoration(
-            suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.send,color: AppColors.primaryColor,)),
-            hint: Text("Ask Anything",style: TextStyle(color: Colors.grey,fontSize: 14,fontWeight: FontWeight.w400),)
+            suffixIcon: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.send, color: AppColors.primaryColor),
+            ),
+            hint: Text(
+              "Ask Anything",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
           ),
         ),
       ),
@@ -244,20 +254,28 @@ class AiTaskAssistant extends StatelessWidget {
                       category: 'Due Date',
                       title: '15/09/2025',
                     ),
-                    AiAssistantRemindCard(icon: CupertinoIcons.check_mark, category: "Remind me", title: "something"),
+                    AiAssistantRemindCard(
+                      icon: CupertinoIcons.check_mark,
+                      category: "Remind me",
+                      title: "something",
+                    ),
                     AiAssistantItemCard(
                       icon: CupertinoIcons.flag,
                       iconColor: Colors.red,
-                      category: 'Remind me',
+                      category: 'Priority',
                       title: 'High',
                       textColor: Colors.red,
                     ),
                   ],
                 ),
               ),
-              CustomButton(text: "Save", onPressed: (){
-                Get.back();
-              }, width: double.infinity)
+              CustomButton(
+                text: "Save",
+                onPressed: () {
+                  Get.back();
+                },
+                width: double.infinity,
+              ),
             ],
           ),
         ),
