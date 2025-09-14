@@ -24,4 +24,5 @@ class RoutesName {
   static const String aiTaskCreate="/ai-task-create";
   static const String taskDetails="/task-details";
   static const String editTask="/edit-task";
+  static const String notes="/notes";
 }

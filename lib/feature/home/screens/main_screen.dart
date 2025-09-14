@@ -1,6 +1,7 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/feature/hub/screens/hub_screen.dart';
+import 'package:doneboxai/feature/menu/screens/menu_screens.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class MainScreen extends StatelessWidget {
     const HomeScreens(),
     const HubScreen(),
     CalendarScreen(),
-    const Center(child: Text("Menu")),
+    const MenuScreens(),
   ];
 
   @override

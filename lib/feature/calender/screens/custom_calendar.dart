@@ -53,7 +53,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return _events[normalized] ?? [];
   }
 
-
   // 🔹 Priority color
   Color _getPriorityColor(String priority) {
     switch (priority) {
@@ -78,67 +77,73 @@ class _CalendarScreenState extends State<CalendarScreen> {
     final newEvent = await showDialog<Map<String, dynamic>>(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text("Add Event"),
-          content: SingleChildScrollView(
-            child: Column(
-              spacing: 10,
-              children: [
-                TextField(
-                  controller: titleController,
-                  decoration: InputDecoration(hintText: "Event Title"),
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: Text("Add Event"),
+              content: SingleChildScrollView(
+                child: Column(
+                  spacing: 10,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration: InputDecoration(hintText: "Event Title"),
+                    ),
+                    TextField(
+                      controller: categoryController,
+                      decoration: InputDecoration(hintText: "Category"),
+                    ),
+                    TextField(
+                      controller: timeController,
+                      decoration:
+                      InputDecoration(hintText: "Time (e.g. 10:00 AM)"),
+                    ),
+                    DropdownButton<String>(
+                      value: selectedPriority,
+                      isExpanded: true,
+                      items: ["High", "Medium", "Low"]
+                          .map((p) =>
+                          DropdownMenuItem(value: p, child: Text(p)))
+                          .toList(),
+                      onChanged: (val) {
+                        if (val != null) {
+                          setDialogState(() {
+                            selectedPriority = val;
+                          });
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                TextField(
-                  controller: categoryController,
-                  decoration: InputDecoration(hintText: "Category"),
+              ),
+              actions: [
+                TextButton(
+                  child: Text("Cancel", style: TextStyle(color: Colors.black)),
+                  onPressed: () => Navigator.pop(context),
                 ),
-                TextField(
-                  controller: timeController,
-                  decoration: InputDecoration(hintText: "Time (e.g. 10:00 AM)"),
-                ),
-                DropdownButton<String>(
-                  value: selectedPriority,
-                  isExpanded: true,
-                  items: ["High", "Medium", "Low"]
-                      .map((p) => DropdownMenuItem(value: p, child: Text(p)))
-                      .toList(),
-                  onChanged: (val) {
-                    if (val != null) {
-                      setState(() {
-                        selectedPriority = val;
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryColor,
+                  ),
+                  child: Text("Add", style: TextStyle(color: Colors.white)),
+                  onPressed: () {
+                    if (titleController.text.isNotEmpty) {
+                      Navigator.pop(context, {
+                        "title": titleController.text,
+                        "category": categoryController.text.isNotEmpty
+                            ? categoryController.text
+                            : "General",
+                        "time": timeController.text.isNotEmpty
+                            ? timeController.text
+                            : "--:--",
+                        "priority": selectedPriority,
                       });
                     }
                   },
                 ),
               ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              child: Text("Cancel", style: TextStyle(color: Colors.black)),
-              onPressed: () => Navigator.pop(context),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
-              ),
-              child: Text("Add", style: TextStyle(color: Colors.white)),
-              onPressed: () {
-                if (titleController.text.isNotEmpty) {
-                  Navigator.pop(context, {
-                    "title": titleController.text,
-                    "category": categoryController.text.isNotEmpty
-                        ? categoryController.text
-                        : "General",
-                    "time": timeController.text.isNotEmpty
-                        ? timeController.text
-                        : "--:--",
-                    "priority": selectedPriority,
-                  });
-                }
-              },
-            ),
-          ],
+            );
+          },
         );
       },
     );
@@ -146,9 +151,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     if (newEvent != null) {
       setState(() {
         final date = _normalizeDate(_selectedDay!);
-        if (_events[date] == null) {
-          _events[date] = [];
-        }
+        _events.putIfAbsent(date, () => []);
         _events[date]!.add(newEvent);
       });
     }
@@ -168,7 +171,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
           spacing: 20,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -181,11 +183,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                 ],
               ),
-
               child: TableCalendar(
                 headerStyle: HeaderStyle(
                   titleCentered: true,
-                  formatButtonVisible: false
+                  formatButtonVisible: false,
                 ),
                 firstDay: DateTime.utc(2020, 1, 1),
                 lastDay: DateTime.utc(2030, 12, 31),
@@ -209,8 +210,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   todayTextStyle: TextStyle(color: Colors.black),
                   todayDecoration: BoxDecoration(
                     color: Colors.transparent,
-                    shape: BoxShape.circle
-                  )
+                    shape: BoxShape.circle,
+                  ),
                 ),
                 eventLoader: _getEventsForDay,
                 calendarBuilders: CalendarBuilders(
@@ -219,23 +220,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: events.map((event) {
-                          final Map<String, dynamic> e = event as Map<String, dynamic>;
+                          final Map<String, dynamic> e =
+                          event as Map<String, dynamic>;
                           final priority = e["priority"] as String? ?? "Low";
-
-                          Color color;
-                          switch (priority) {
-                            case "High":
-                              color = Colors.red;
-                              break;
-                            case "Medium":
-                              color = Colors.orange;
-                              break;
-                            case "Low":
-                              color = Colors.green;
-                              break;
-                            default:
-                              color = Colors.grey;
-                          }
+                          final color = _getPriorityColor(priority);
 
                           return Container(
                             margin: EdgeInsets.symmetric(horizontal: 1),
@@ -251,16 +239,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     }
                     return SizedBox();
                   },
-
                 ),
               ),
-
             ),
-            Text("Today"),
+            Text("Today",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
             Expanded(
               child: ListView.separated(
                 itemCount: _getEventsForDay(_selectedDay!).length,
-                separatorBuilder: (_, __) => Divider(color: Colors.grey.shade300),
+                separatorBuilder: (_, __) =>
+                    Divider(color: Colors.grey.shade300),
                 itemBuilder: (context, index) {
                   final event = _getEventsForDay(_selectedDay!)[index];
                   final priorityColor = _getPriorityColor(event["priority"]);
@@ -288,7 +275,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                           child: Text(
                             event["priority"],
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style:
+                            TextStyle(color: Colors.white, fontSize: 12),
                           ),
                         ),
                       ],

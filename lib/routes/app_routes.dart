@@ -7,6 +7,7 @@ import 'package:doneboxai/feature/home/screens/ai_task_create_screen.dart';
 import 'package:doneboxai/feature/home/screens/edit_task_screen.dart';
 import 'package:doneboxai/feature/home/screens/task_details.dart';
 import 'package:doneboxai/feature/hub/screens/focus_mode_screen.dart';
+import 'package:doneboxai/feature/menu/screens/notes_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen2.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen3.dart';
@@ -118,6 +119,10 @@ class AppRoutes {
     GetPage(
       name: RoutesName.editTask,
       page: () => EditTaskScreen(),
+      transition: Transition.rightToLeft,
+    ),   GetPage(
+      name: RoutesName.notes,
+      page: () => NotesScreen(),
       transition: Transition.rightToLeft,
     ),
   ];
