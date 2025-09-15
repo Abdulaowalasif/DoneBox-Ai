@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -17,9 +18,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: MyAppThemes.lightTheme(),
-      themeMode: ThemeMode.system,
-      darkTheme: MyAppThemes.darkTheme(),
-      initialRoute: RoutesName.mainScreen,
+      themeMode: ThemeMode.light,
+      initialRoute: RoutesName.onboarding1,
       getPages: AppRoutes.pages,
       initialBinding: AppBinding(),
     );

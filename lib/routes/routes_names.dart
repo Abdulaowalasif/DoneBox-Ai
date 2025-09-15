@@ -33,4 +33,11 @@ class RoutesName {
   static const String getStarted="/get-started";
   static const String liveChat="/live-chat";
   static const String emailSupport="/email-support";
+  static const String reportBug="/report-bug";
+  static const String communityForum="/community-forum";
+  static const String productUpdate="/product-update";
+  static const String menu="/menu";
+  static const String home="/home";
+  static const String hub="/hub";
+  static const String calender="/calender";
 }

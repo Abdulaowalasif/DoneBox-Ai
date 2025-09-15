@@ -104,27 +104,30 @@ class HomeMeetingCard extends StatelessWidget {
               ),
             ),
           const SizedBox(height: 20),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-            ),
-            onPressed: () {
-              Get.toNamed(RoutesName.aiTaskCreate);
-            },
-            child: Row(
-              spacing: 10,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(ImageConst.aiIcon),
-                Text(
-                  "Task Create with ai",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryColor,
+              ),
+              onPressed: () {
+                Get.toNamed(RoutesName.aiTaskCreate);
+              },
+              child: Row(
+                spacing: 10,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(ImageConst.aiIcon),
+                  Text(
+                    "Task Create with ai",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

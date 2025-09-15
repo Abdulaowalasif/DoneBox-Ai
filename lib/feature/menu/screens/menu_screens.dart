@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/feature/menu/controllers/main_menu_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class MenuScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MainMenuController controller = Get.find();
     return Scaffold(
       appBar: CustomAppbar(title: "Settings", onPress: () {}),
       body: SingleChildScrollView(
@@ -90,8 +92,10 @@ class MenuScreens extends StatelessWidget {
                       width: double.infinity,
                     ),
                     SettingsItem(
-                        onPress: () => Get.toNamed(RoutesName.insight),
-                        icon: Icons.network_cell, title: "Insights"),
+                      onPress: () => Get.toNamed(RoutesName.insight),
+                      icon: Icons.network_cell,
+                      title: "Insights",
+                    ),
                   ],
                 ),
               ),
@@ -107,20 +111,33 @@ class MenuScreens extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    SettingsItem(
-                      icon: Icons.nightlight_outlined,
-                      title: "Dark Mode",
-                      showToggle: true,
-                    ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      icon: Icons.notifications_none,
-                      title: "Pause Notification",
-                      showToggle: true,
+                    // Obx(
+                    //   () => SettingsItem(
+                    //     icon: Icons.nightlight_outlined,
+                    //     title: "Dark Mode",
+                    //     showToggle: true,
+                    //     toggleChanged: () {
+                    //       controller.darkMode.value =
+                    //           !controller.darkMode.value;
+                    //     },
+                    //     isActive: controller.darkMode.value,
+                    //   ),
+                    // ),
+                    // Container(
+                    //   height: 1,
+                    //   color: AppColors.secondaryColor,
+                    //   width: double.infinity,
+                    // ),
+                    Obx(
+                      () => SettingsItem(
+                        isActive: controller.pauseNotification.value,
+                        icon: Icons.notifications_none,
+                        title: "Pause Notification",
+                        showToggle: true,
+                        toggleChanged: () =>
+                            controller.pauseNotification.value =
+                                !controller.pauseNotification.value,
+                      ),
                     ),
                     Container(
                       height: 1,

@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
+import 'package:doneboxai/feature/home/controllers/task_details_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:doneboxai/routes/routes_names.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +15,7 @@ class TaskDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TaskDetailsController controller = Get.find();
     return Scaffold(
       appBar: CustomAppbar(
         title: "Meetings",
@@ -47,43 +52,35 @@ class TaskDetailsScreen extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Category"),
-                        const Text("Work"),
-                      ],
+                      children: [const Text("Category"), const Text("Work")],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Due Date"),
-                        Text("15 August"),
-                      ],
+                      children: [Text("Due Date"), Text("15 August")],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Time"),
-                        Text("7:00 AM"),
-                      ],
+                      children: [Text("Time"), Text("7:00 AM")],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Notification"),
-                        Switch(
-                          value: true,
-                          onChanged: (val) {},
-                          activeColor: AppColors.primaryColor,
-                          inactiveThumbColor: Colors.grey,
+                        Obx(
+                          () =>  Switch(
+                            value: controller.activeNotification.value,
+                            onChanged: (val) {
+                              controller.activeNotification.value=!controller.activeNotification.value;
+                            },
+                            activeColor: AppColors.primaryColor,
+                            inactiveThumbColor: Colors.grey,
+                          ),
                         ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Reminder"),
-                        Text("Weekly"),
-                      ],
+                      children: [Text("Reminder"), Text("Weekly")],
                     ),
                   ],
                 ),
@@ -96,62 +93,208 @@ class TaskDetailsScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          final TextEditingController subtaskController = TextEditingController();
+                          return Dialog(
+                            insetPadding: EdgeInsets.all(20),
+                            // removes default margin
+                            child: Container(
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width, // full screen width
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    "Add Subtask",
+                                    style: TextStyle(fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  TextField(
+                                    controller: subtaskController,
+                                    decoration: const InputDecoration(
+                                      hintText: "Enter subtask",
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(ctx),
+                                        child: const Text("Cancel"),
+                                      ),
+                                      CustomButton(text: "Add", onPressed: () {
+                                        if (subtaskController.text.isNotEmpty) {
+                                          controller.addSubTask(
+                                              subtaskController.text);
+                                        }
+                                        Navigator.pop(ctx);
+                                      }, width: 100)
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                     child: Text(
                       "+ Add SubTask",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: AppColors.primaryColor,
-                      ),
+                      style: TextStyle(color: AppColors.primaryColor),
                     ),
                   ),
+
                 ],
               ),
-              SizedBox(
-                height: 150,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (int i = 0; i < 10; i++)
-                        ListTile(
+              Obx(
+                    () =>
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.subTasks.length,
+                      itemBuilder: (context, index) {
+                        final subTask = controller.subTasks[index];
+                        return ListTile(
                           leading: Checkbox(
-                            value: true,
-                            onChanged: (val) {},
+                            value: subTask["done"],
+                            onChanged: (val) =>
+                                controller.toggleSubTask(index, val ?? false),
                             activeColor: AppColors.primaryColor,
                           ),
-                          title: Text("Something"),
-                        ),
-                    ],
-                  ),
-                ),
+                          title: Text(subTask["title"]),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete, color: Colors.red),
+                            onPressed: () => controller.removeSubTask(index),
+                          ),
+                        );
+                      },
+                    ),
               ),
-              Text(
+
+              /// Attachments
+              const Text(
                 "Attachments",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.primaryColor, width: 1),
-                ),
-                child: Column(
+
+              Obx(
+                () => Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
                   children: [
-                    Icon(
-                      Icons.add_circle_outline,
-                      color: AppColors.primaryColor,
+                    /// Add New File Button
+                    InkWell(
+                      onTap: () async {
+                        final result = await FilePicker.platform.pickFiles();
+                        if (result != null &&
+                            result.files.single.path != null) {
+                          controller.addAttachment(
+                            File(result.files.single.path!),
+                          );
+                        }
+                      },
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.primaryColor),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add_circle_outline,
+                              color: AppColors.primaryColor,
+                              size: 30,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              "Add File",
+                              style: TextStyle(color: AppColors.primaryColor),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    Text(
-                      "Add New File",
-                      style: TextStyle(color: AppColors.primaryColor),
-                    ),
+
+                    /// Added files
+                    ...controller.attachments.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final file = entry.value;
+
+                      return Container(
+                        width: 120,
+                        height: 120,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.primaryColor),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.insert_drive_file,
+                                    color: Colors.blue,
+                                    size: 30,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    file.path.split('/').last,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            /// Delete button
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: GestureDetector(
+                                onTap: () => controller.removeAttachment(index),
+                                child: const CircleAvatar(
+                                  radius: 12,
+                                  backgroundColor: Colors.red,
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
                   ],
                 ),
               ),
-              CustomButton(text: "Mark as Completed", onPressed: () {
-                Get.back();
-              }, width: double.infinity)
+
+              CustomButton(
+                text: "Mark as Completed",
+                onPressed: () {
+                  Get.back();
+                },
+                width: double.infinity,
+              ),
             ],
           ),
         ),

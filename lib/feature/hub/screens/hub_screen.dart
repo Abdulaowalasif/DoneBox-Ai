@@ -24,46 +24,49 @@ class HubScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 20,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ActionCard(
-                  image: ImageConst.summerize,
-                  title: "Summerize",
-                  color: AppColors.secondaryColor,
-                  onPress: () {
-                    controller.title = "Summerize";
-                    Get.toNamed(RoutesName.quickAction);
-                  },
-                ),
-                ActionCard(
-                  image: ImageConst.reply,
-                  title: "Reply",
-                  color: AppColors.cardColor,
-                  onPress: () {
-                    controller.title = "Reply";
-                    Get.toNamed(RoutesName.quickAction);
-                  },
-                ),
-                ActionCard(
-                  image: ImageConst.explain,
-                  title: "Explain",
-                  color: AppColors.cardColor2,
-                  onPress: () {
-                    controller.title = "Explain";
-                    Get.toNamed(RoutesName.quickAction);
-                  },
-                ),
-                ActionCard(
-                  image: ImageConst.dailyRecap,
-                  title: "Daily Recap",
-                  color: AppColors.secondaryColor,
-                  onPress: () {
-                    controller.title = "Daily Recap";
-                    Get.toNamed(RoutesName.quickAction);
-                  },
-                ),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ActionCard(
+                    image: ImageConst.summerize,
+                    title: "Summerize",
+                    color: AppColors.secondaryColor,
+                    onPress: () {
+                      controller.title = "Summerize";
+                      Get.toNamed(RoutesName.quickAction);
+                    },
+                  ),
+                  ActionCard(
+                    image: ImageConst.reply,
+                    title: "Reply",
+                    color: AppColors.cardColor,
+                    onPress: () {
+                      controller.title = "Reply";
+                      Get.toNamed(RoutesName.quickAction);
+                    },
+                  ),
+                  ActionCard(
+                    image: ImageConst.explain,
+                    title: "Explain",
+                    color: AppColors.cardColor2,
+                    onPress: () {
+                      controller.title = "Explain";
+                      Get.toNamed(RoutesName.quickAction);
+                    },
+                  ),
+                  ActionCard(
+                    image: ImageConst.dailyRecap,
+                    title: "Daily Recap",
+                    color: AppColors.secondaryColor,
+                    onPress: () {
+                      controller.title = "Daily Recap";
+                      Get.toNamed(RoutesName.quickAction);
+                    },
+                  ),
+                ],
+              ),
             ),
 
             Text(

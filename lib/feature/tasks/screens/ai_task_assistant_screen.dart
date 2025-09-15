@@ -1,6 +1,7 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
+import 'package:doneboxai/feature/tasks/controllers/ai_assistant_controller.dart';
 import 'package:doneboxai/feature/tasks/widgets/ai_assistant_remind_card.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AiAssistantController controller =Get.find();
     return Scaffold(
       appBar: CustomAppbar(title: "Ai Assistant", onPress: () {}),
       bottomNavigationBar: Padding(

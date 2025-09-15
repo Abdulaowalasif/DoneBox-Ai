@@ -1,6 +1,7 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/feature/hub/screens/hub_screen.dart';
+import 'package:doneboxai/feature/menu/bindings/main_menu_binding.dart';
 import 'package:doneboxai/feature/menu/screens/menu_screens.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,17 @@ import '../widgets/custom_bottom_nav_bar.dart';
 import 'home_screens.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+  MainScreen({super.key}) {
+    MainMenuBinding().dependencies();
+  }
 
   final BottomNavController controller = Get.find();
 
   final List<Widget> pages = [
-    const HomeScreens(),
-    const HubScreen(),
+    HomeScreens(),
+    HubScreen(),
     CalendarScreen(),
-    const MenuScreens(),
+    MenuScreens(),
   ];
 
   @override
@@ -28,7 +31,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavBar(),
       body: Obx(
-        () => IndexedStack(
+            () => IndexedStack(
           index: controller.selectedIndex.value,
           children: pages,
         ),
@@ -51,17 +54,17 @@ class MainScreen extends StatelessWidget {
                         Get.toNamed(RoutesName.aiAssistant);
                       },
                       child: Container(
-                        margin: EdgeInsets.all(10),
-                        padding: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Color(0xFFD9E7F2),
+                          color: const Color(0xFFD9E7F2),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Row(
-                          spacing: 10,
                           children: [
                             Image.asset(ImageConst.floatingAi),
-                            Text(
+                            const SizedBox(width: 10),
+                            const Text(
                               "Ai Assistant",
                               style: TextStyle(
                                 fontSize: 16,
@@ -78,17 +81,17 @@ class MainScreen extends StatelessWidget {
                         Get.toNamed(RoutesName.createNewTask);
                       },
                       child: Container(
-                        margin: EdgeInsets.all(10),
-                        padding: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Color(0xFFD9E7F2),
+                          color: const Color(0xFFD9E7F2),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Row(
-                          spacing: 10,
                           children: [
                             Image.asset(ImageConst.hand),
-                            Text(
+                            const SizedBox(width: 10),
+                            const Text(
                               "Manual",
                               style: TextStyle(
                                 fontSize: 16,

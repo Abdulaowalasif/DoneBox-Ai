@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../core/conts/app_colors.dart';
 
 class SettingsItem extends StatelessWidget {
@@ -30,23 +29,25 @@ class SettingsItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              spacing: 20,
               children: [
                 Icon(icon, size: 32),
+                const SizedBox(width: 20),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
             showToggle == true
                 ? Switch(
-                    value: true,
-                    thumbColor: WidgetStatePropertyAll(Colors.white),
-                    onChanged: (value) {},
-                    activeColor: AppColors.primaryColor,
-                  )
-                : Container(),
+              value: isActive ?? false,
+              thumbColor:
+              MaterialStateProperty.all<Color>(Colors.white),
+              activeColor: AppColors.primaryColor,
+              onChanged: (value) => toggleChanged?.call(),
+            )
+                : const SizedBox.shrink(),
           ],
         ),
       ),

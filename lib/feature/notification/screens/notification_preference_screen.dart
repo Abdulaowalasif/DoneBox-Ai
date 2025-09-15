@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
+import 'package:doneboxai/feature/notification/controllers/notification_pref_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,15 +10,16 @@ class NotificationPreferenceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NotificationPrefController controller = Get.find();
+
     return Scaffold(
-      appBar: CustomAppbar(title: "Notification Preference", onPress: () {  },),
+      appBar: CustomAppbar(title: "Notification Preference", onPress: () {}),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 10,
           children: [
-            for (int i = 0; i < 5; i++)
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
@@ -54,11 +56,16 @@ class NotificationPreferenceScreen extends StatelessWidget {
                     ),
 
                     /// Toggle Switch
-                    Switch(
-                      value: true,
-                      thumbColor: WidgetStatePropertyAll(Colors.white),
-                      onChanged: (value) {},
-                      activeColor: AppColors.primaryColor,
+                    Obx(
+                      () => Switch(
+                        value: controller.isActive.value,
+                        thumbColor: WidgetStatePropertyAll(Colors.white),
+                        onChanged: (value) {
+                          controller.isActive.value =
+                              !controller.isActive.value;
+                        },
+                        activeColor: AppColors.primaryColor,
+                      ),
                     ),
                   ],
                 ),
@@ -72,20 +79,26 @@ class NotificationPreferenceScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Silent Hours",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                Text(
-                  "10:00 PM-2:00PM",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w500,
+                GestureDetector(
+                  onTap: () => controller.pickSilentHours(context),
+                  child: Obx(
+                        () => Text(
+                      controller.silentHours,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
+
             const SizedBox(height: 20),
             CustomButton(
               text: "Save Changes",

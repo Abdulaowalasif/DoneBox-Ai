@@ -19,9 +19,8 @@ class ActionCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
+        padding: EdgeInsets.all(20),
         margin: EdgeInsetsGeometry.symmetric(vertical: 10, horizontal: 5),
-        height: 80,
-        width: 80,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(10),

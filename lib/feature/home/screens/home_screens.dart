@@ -19,88 +19,86 @@ class HomeScreens extends StatelessWidget {
     final controller = Get.put(QuickActionController());
 
     return DefaultTabController(
-      length: 4, // number of tabs
+      length: 4,
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // app icon section
-                SafeArea(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const AppIcon(),
-                      IconButton(
-                        onPressed: () {
-                          Get.toNamed(RoutesName.notification);
-                        },
-                        icon: const Icon(CupertinoIcons.bell),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // progress bar
-                const ProgressCard(),
-
-                const SizedBox(height: 20),
-
-                // "My Tasks" + TabBar
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "My Tasks",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: 200,
-                      height: 30,
-                      child: TabBar(
-                        tabAlignment: TabAlignment.start,
-                        indicatorColor: AppColors.primaryColor,
-                        labelColor: AppColors.primaryColor,
-                        unselectedLabelColor: Colors.grey,
-                        isScrollable: true,
-                        indicator: const BoxDecoration(),
-                        tabs: const [
-                          Tab(text: "All"),
-                          Tab(text: "Personal"),
-                          Tab(text: "Work"),
-                          Tab(text: "Others"),
+                    SafeArea(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const AppIcon(),
+                          IconButton(
+                            onPressed: () {
+                              Get.toNamed(RoutesName.notification);
+                            },
+                            icon: const Icon(CupertinoIcons.bell),
+                          ),
                         ],
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    const ProgressCard(),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "My Tasks",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        SizedBox(
+                          width: 200,
+                          height: 30,
+                          child: TabBar(
+                            tabAlignment: TabAlignment.start,
+                            isScrollable: true,
+                            indicator: const BoxDecoration(),
+                            labelColor: AppColors.primaryColor,
+                            unselectedLabelColor: Colors.grey,
+                            tabs: const [
+                              Tab(text: "All"),
+                              Tab(text: "Personal"),
+                              Tab(text: "Work"),
+                              Tab(text: "Others"),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
-
-                const SizedBox(height: 20),
-
-                SizedBox(
-                  height: 400,
-                  child: TabBarView(
-                    children: [
-                      HomeMeetingCard(),
-                      HomeMeetingCard(),
-                      HomeMeetingCard(),
-                      HomeMeetingCard(),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  "Quick actions",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 20),
-                Row(
+              ),
+            ),
+          ],
+          body: TabBarView(
+            children: List.generate(4, (index) => const HomeMeetingCard()),
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Quick actions",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ActionCard(
@@ -141,8 +139,8 @@ class HomeScreens extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
