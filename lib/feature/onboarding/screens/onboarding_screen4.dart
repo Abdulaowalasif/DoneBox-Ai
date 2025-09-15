@@ -1,5 +1,7 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/app_consts.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/core/storage/app_storage.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +21,12 @@ class _OnboardingScreen4State extends State<OnboardingScreen4> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      Get.offAllNamed(RoutesName.login);
+      final firstTime = AppStorage.read(AppConstants.firstTime);
+      if (firstTime == null || firstTime == true) {
+        Get.offAllNamed(RoutesName.onboarding1);
+      } else {
+        Get.offAllNamed(RoutesName.login);
+      }
     });
   }
 
@@ -41,7 +48,7 @@ class _OnboardingScreen4State extends State<OnboardingScreen4> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(width * 0.05), // responsive padding
+            padding: EdgeInsets.all(width * 0.05),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

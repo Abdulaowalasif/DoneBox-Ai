@@ -18,12 +18,12 @@ class OnboardingController extends GetxController {
         curve: Curves.easeInOut,
       );
     } else {
-      Get.offAllNamed(RoutesName.onboarding4);
+      Get.offAllNamed(RoutesName.login);
     }
   }
 
   void skip() {
-    Get.offAllNamed(RoutesName.onboarding4);
+    Get.offAllNamed(RoutesName.login);
   }
 
   double updateProgress() {

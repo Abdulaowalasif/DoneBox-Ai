@@ -1,6 +1,4 @@
 import 'package:doneboxai/core/conts/image_icon_const.dart';
-import 'package:doneboxai/core/conts/navIds.dart';
-import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

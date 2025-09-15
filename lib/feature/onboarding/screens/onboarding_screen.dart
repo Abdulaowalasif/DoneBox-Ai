@@ -1,4 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/app_consts.dart';
+import 'package:doneboxai/core/storage/app_storage.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen1.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen2.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen3.dart';
@@ -31,7 +33,10 @@ class OnboardingPager extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: TextButton(
-                  onPressed: controller.skip,
+                  onPressed: () {
+                    AppStorage.write(AppConstants.firstTime, false);
+                    controller.skip();
+                  },
                   child: Text(
                     "Skip",
                     style: TextStyle(
@@ -76,7 +81,12 @@ class OnboardingPager extends StatelessWidget {
               elevation: 0,
               shape: const CircleBorder(),
               backgroundColor: AppColors.primaryColor,
-              onPressed: () => controller.nextPage(),
+              onPressed: () {
+                controller.currentPage.value == 2
+                    ? AppStorage.write(AppConstants.firstTime, false)
+                    : AppStorage.write(AppConstants.firstTime, true);
+                controller.nextPage();
+              },
               child: Icon(
                 Icons.arrow_forward,
                 color: Colors.white,
