@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/widgets/action_card.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:doneboxai/routes/routes_names.dart';
@@ -47,23 +48,21 @@ class HomeScreens extends StatelessWidget {
                     const ProgressCard(),
                     const SizedBox(height: 20),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "My Tasks",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
+                        Text("My Tasks", style: MyTextStyle.w7s20()),
+                        const SizedBox(width: 20),
                         SizedBox(
-                          width: 200,
                           height: 30,
                           child: TabBar(
+                            dividerColor: Colors.transparent,
                             tabAlignment: TabAlignment.start,
                             isScrollable: true,
-                            indicator: const BoxDecoration(),
+                            indicator: const UnderlineTabIndicator(
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 0,
+                              ),
+                            ),
                             labelColor: AppColors.primaryColor,
                             unselectedLabelColor: Colors.grey,
                             tabs: const [
@@ -92,9 +91,9 @@ class HomeScreens extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 "Quick actions",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                style:MyTextStyle.w7s20(),
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

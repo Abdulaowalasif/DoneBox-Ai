@@ -1,4 +1,5 @@
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,22 +40,10 @@ class HomeMeetingCard extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          Text(
-                            "Meeting",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
+                          Text("Meeting", style: MyTextStyle.w7s20()),
                         ],
                       ),
-                      Text(
-                        "10:00 AM",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      Text("10:00 AM", style: MyTextStyle.w7s20()),
                     ],
                   ),
                   subtitle: Row(
@@ -73,30 +62,13 @@ class HomeMeetingCard extends StatelessWidget {
                                 color: Color(0xFF72B34A),
                               ),
                             ),
-                            Text(
-                              "Work",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            Text("Work", style: MyTextStyle.w5s14()),
                           ],
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.red,
-                        ),
-                        child: Text(
-                          "High",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                      Text(
+                        "High",
+                        style: MyTextStyle.w5s14().copyWith(color: Colors.red),
                       ),
                     ],
                   ),
@@ -118,14 +90,7 @@ class HomeMeetingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(ImageConst.aiIcon),
-                  Text(
-                    "Task Create with ai",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
-                  ),
+                  Text("Task Create with ai", style: MyTextStyle.w4s16()),
                 ],
               ),
             ),

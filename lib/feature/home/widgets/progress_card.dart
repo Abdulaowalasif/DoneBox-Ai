@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/conts/image_icon_const.dart';
+import '../../../core/conts/my_text_style.dart';
 
 class ProgressCard extends StatelessWidget {
   const ProgressCard({super.key});
@@ -35,29 +36,17 @@ class ProgressCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Good Morning, Hakim",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-            ),
+            style: MyTextStyle.w4s16().copyWith(color: Colors.white),
           ),
-          const Text(
+          Text(
             "Today’s progress summary",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
+            style: MyTextStyle.w7s20().copyWith(color: Colors.white),
           ),
-          const Text(
+          Text(
             "5 Tasks",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-            ),
+            style: MyTextStyle.w4s16().copyWith(color: Colors.white),
           ),
           Row(
             children: [
@@ -100,21 +89,17 @@ class ProgressCard extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           "Progress",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
+                          style: MyTextStyle.w5s20().copyWith(
                             color: Colors.white,
                           ),
                         ),
                         Text(
                           "40%",
-                          style: TextStyle(
-                            fontSize: 18,
+                          style: MyTextStyle.w5s18().copyWith(
                             color: Colors.white,
-                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -137,4 +122,3 @@ class ProgressCard extends StatelessWidget {
     );
   }
 }
-

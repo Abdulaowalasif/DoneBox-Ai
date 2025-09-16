@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/hub/screens/hub_screen.dart';
 import 'package:doneboxai/feature/menu/bindings/main_menu_binding.dart';
 import 'package:doneboxai/feature/menu/screens/menu_screens.dart';
@@ -22,8 +23,8 @@ class MainScreen extends StatelessWidget {
 
   final List<Widget> pages = [
     HomeScreens(),
-    HubScreen(),
     CalendarScreen(),
+    HubScreen(),
     MenuScreens(),
   ];
 
@@ -32,7 +33,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavBar(),
       body: Obx(
-            () => IndexedStack(
+        () => IndexedStack(
           index: controller.selectedIndex.value,
           children: pages,
         ),
@@ -48,31 +49,21 @@ class MainScreen extends StatelessWidget {
 
         children: [
           SpeedDialChild(
-            backgroundColor: const Color(0xFFD9E7F2),
+            backgroundColor: AppColors.secondaryColor,
             label: "Ai Assistant",
-            labelStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-            child: Image.asset(
-              ImageConst.floatingAi,
-              height: 28,
-            ),
+            labelBackgroundColor: AppColors.secondaryColor,
+            labelStyle: MyTextStyle.w4s16(),
+            child: Image.asset(ImageConst.floatingAi, height: 28),
             onTap: () {
               Get.toNamed(RoutesName.aiAssistant);
             },
           ),
           SpeedDialChild(
-            backgroundColor: const Color(0xFFD9E7F2),
+            backgroundColor: AppColors.secondaryColor,
             label: "Manual",
-            labelStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-            child: Image.asset(
-              ImageConst.hand,
-              height: 28,
-            ),
+            labelBackgroundColor: AppColors.secondaryColor,
+            labelStyle: MyTextStyle.w4s16(),
+            child: Image.asset(ImageConst.hand, height: 28),
             onTap: () {
               Get.toNamed(RoutesName.createNewTask);
             },

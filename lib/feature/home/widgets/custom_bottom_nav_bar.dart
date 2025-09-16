@@ -30,8 +30,8 @@ class CustomBottomNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(ImageConst.home, "Home", 0),
-            _buildNavItem(ImageConst.hub, "Hub", 1),
-            _buildNavItem(ImageConst.calender, "Calendar", 2),
+            _buildNavItem(ImageConst.calender, "Calendar", 1),
+            _buildNavItem(ImageConst.hub, "Hub", 2),
             _buildNavItem(ImageConst.menu, "Menu", 3),
           ],
         ),
