@@ -27,7 +27,10 @@ class ActionCard extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset(image), Text(title,textAlign: TextAlign.center,)],
+          children: [
+            Image.asset(image, height: 32, width: 32),
+            Text(title, textAlign: TextAlign.center),
+          ],
         ),
       ),
     );

@@ -33,7 +33,7 @@ class OnboardingScreen3 extends StatelessWidget {
             SizedBox(height: height * 0.05),
             Center(
               child: Image.asset(
-                ImageConst.onboarding1,
+                ImageConst.onboarding3,
                 height: height * 0.50,
                 fit: BoxFit.contain,
               ),

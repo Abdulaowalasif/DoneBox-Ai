@@ -10,16 +10,16 @@ class ImageConst {
   static const String onboarding1 = "assets/images/Task-bro.png";
   static const String onboarding2 = "assets/images/Add tasks-pana.png";
   static const String onboarding3 = "assets/images/Work time-pana.png";
-  static const String onboarding4 = "assets/images/onboarding4.png";
+  static const String onboarding4 = "assets/images/Digital tools-bro 1.png";
 
   //bg
   static const String centerBg = "assets/images/center_bg.png";
   static const String topBg = "assets/images/top_bg.png";
 
-  static const String dailyRecap = "assets/images/daily_recap.png";
-  static const String explain = "assets/images/explain.png";
+  static const String dailyRecap = "assets/images/repeat.png";
+  static const String explain = "assets/images/presentation.png";
   static const String reply = "assets/images/reply.png";
-  static const String summerize = "assets/images/summerize.png";
+  static const String summerize = "assets/images/objective.png";
 
   static const String meeting = "assets/images/meeting.png";
   static const String reading = "assets/images/reading.png";
@@ -28,6 +28,8 @@ class ImageConst {
   static const String newTask = "assets/images/new_task.png";
   static const String newEvent = "assets/images/new_event.png";
   static const String newNote = "assets/images/new_note.png";
+  static const String note = "assets/images/notes.png";
+  static const String focus = "assets/images/hourglass.png";
 
   //home
   static const String user = "assets/images/user.png";

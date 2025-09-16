@@ -44,7 +44,7 @@ class OnboardingScreen2 extends StatelessWidget {
               SizedBox(height: height * 0.05),
               Center(
                 child: Image.asset(
-                  ImageConst.onboarding1,
+                  ImageConst.onboarding2,
                   height: height * 0.50, // responsive image size
                   fit: BoxFit.contain,
                 ),

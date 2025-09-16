@@ -17,7 +17,7 @@ class HubScreen extends StatelessWidget {
     final QuickActionController controller = Get.find();
 
     return Scaffold(
-      appBar: CustomAppbar(title: "Hub", onPress: () {}),
+      appBar: CustomAppbar(title: "Hub", onPress: () {}, hideBackButton: true),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -212,7 +212,7 @@ class HubScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ActionCard(
-                  image: ImageConst.newNote,
+                  image: ImageConst.note,
                   title: "Notes",
                   color: AppColors.cardColor,
                   onPress: () {
@@ -220,13 +220,13 @@ class HubScreen extends StatelessWidget {
                   },
                 ),
                 ActionCard(
-                  image: ImageConst.newNote,
+                  image: ImageConst.focus,
                   title: "Focus Mode",
                   color: AppColors.cardColor,
                   onPress: () {
                     Get.toNamed(RoutesName.focusMode);
                   },
-                )
+                ),
               ],
             ),
           ],

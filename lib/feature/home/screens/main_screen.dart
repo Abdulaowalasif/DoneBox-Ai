@@ -5,6 +5,7 @@ import 'package:doneboxai/feature/menu/bindings/main_menu_binding.dart';
 import 'package:doneboxai/feature/menu/screens/menu_screens.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 
 import '../../calender/screens/custom_calendar_screen.dart';
@@ -36,79 +37,47 @@ class MainScreen extends StatelessWidget {
           children: pages,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: SpeedDial(
         backgroundColor: AppColors.buttonColor,
+        foregroundColor: Colors.white,
+        icon: Icons.add,
+        activeIcon: Icons.close,
+        spacing: 10,
+        spaceBetweenChildren: 12,
         shape: const StadiumBorder(),
-        onPressed: () {
-          Get.dialog(
-            Dialog(
-              backgroundColor: Colors.white,
-              child: SizedBox(
-                height: 200,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                        Get.toNamed(RoutesName.aiAssistant);
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(10),
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD9E7F2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            Image.asset(ImageConst.floatingAi),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "Ai Assistant",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                        Get.toNamed(RoutesName.createNewTask);
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(10),
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD9E7F2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            Image.asset(ImageConst.hand),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "Manual",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+
+        children: [
+          SpeedDialChild(
+            backgroundColor: const Color(0xFFD9E7F2),
+            label: "Ai Assistant",
+            labelStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
             ),
-          );
-        },
-        child: const Icon(Icons.add, size: 32, color: Colors.white),
+            child: Image.asset(
+              ImageConst.floatingAi,
+              height: 28,
+            ),
+            onTap: () {
+              Get.toNamed(RoutesName.aiAssistant);
+            },
+          ),
+          SpeedDialChild(
+            backgroundColor: const Color(0xFFD9E7F2),
+            label: "Manual",
+            labelStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+            child: Image.asset(
+              ImageConst.hand,
+              height: 28,
+            ),
+            onTap: () {
+              Get.toNamed(RoutesName.createNewTask);
+            },
+          ),
+        ],
       ),
     );
   }

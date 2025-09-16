@@ -15,7 +15,11 @@ class MenuScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     final MainMenuController controller = Get.find();
     return Scaffold(
-      appBar: CustomAppbar(title: "Settings", onPress: () {}),
+      appBar: CustomAppbar(
+        title: "Settings",
+        onPress: () {},
+        hideBackButton: true,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsetsGeometry.all(20),

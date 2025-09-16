@@ -107,7 +107,7 @@ class SubscriptionScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Comminity support",
+                          "Community support",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -140,7 +140,7 @@ class SubscriptionScreen extends StatelessWidget {
                         CustomButton(
                           text: "Upgrade",
                           onPressed: () {},
-                          width: 120,
+                          width: MediaQuery.of(context).size.width*0.3,
                         ),
                       ],
                     ),

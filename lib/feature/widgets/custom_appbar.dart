@@ -9,6 +9,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onPress;
   final int? navIds;
   final IconData? trailing;
+  final bool? hideBackButton;
 
   const CustomAppbar({
     super.key,
@@ -16,6 +17,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.navIds,
     this.trailing,
     required this.onPress,
+    this.hideBackButton = false,
   });
 
   @override
@@ -34,19 +36,21 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       child: SafeArea(
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {
-                  if (navIds == null) {
-                    Get.back();
-                  } else {
-                    Get.back(id: navIds);
-                  }
-                },
-                icon: Icon(Icons.arrow_back, color: Colors.white),
-              ),
-            ),
+            hideBackButton == false
+                ? Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () {
+                        if (navIds == null) {
+                          Get.back();
+                        } else {
+                          Get.back(id: navIds);
+                        }
+                      },
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                    ),
+                  )
+                : SizedBox(),
             Center(
               child: Text(
                 title,
@@ -60,7 +64,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
-                onPressed:onPress,
+                onPressed: onPress,
                 icon: Icon(trailing, color: Colors.white),
               ),
             ),

@@ -9,14 +9,23 @@ class EmailSupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _launchEmail() async {
+    Future<void> _launchEmail(BuildContext context) async {
       final Uri emailUri = Uri(
         scheme: 'mailto',
         path: 'support@donebox.ai',
-        query: 'subject=Support Request&body=Hello, I need help with...',
+        queryParameters: {
+          'subject': 'Support Request',
+          'body': 'Hello, I need help with...',
+        },
       );
 
-      await launchUrl(emailUri, mode: LaunchMode.externalApplication);
+      if (await canLaunchUrl(emailUri)) {
+        await launchUrl(emailUri, mode: LaunchMode.externalApplication);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("No email app found on this device")),
+        );
+      }
     }
 
     const data = '''\u2022 Attach screenshots or files for better clarity
@@ -56,7 +65,7 @@ class EmailSupportScreen extends StatelessWidget {
                         color: AppColors.primaryColor,
                       ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () async => _launchEmail(),
+                        ..onTap = () async => _launchEmail(context),
                     ),
                   ],
                 ),
@@ -79,7 +88,7 @@ class EmailSupportScreen extends StatelessWidget {
                         color: AppColors.primaryColor,
                       ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () async => _launchEmail(),
+                        ..onTap = () async => _launchEmail(context),
                     ),
                     TextSpan(
                       text: " and our team will take care of the rest. ",

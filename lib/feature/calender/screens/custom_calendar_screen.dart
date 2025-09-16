@@ -163,6 +163,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
+        hideBackButton: true,
         title: "Calendar",
         onPress: _addEvent,
         trailing: Icons.add,
