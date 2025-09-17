@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ActionCard extends StatelessWidget {
   final String image;
@@ -29,7 +30,11 @@ class ActionCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(image, height: 32, width: 32),
-            Text(title, textAlign: TextAlign.center),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(),
+            ),
           ],
         ),
       ),

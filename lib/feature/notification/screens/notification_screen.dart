@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -44,21 +46,15 @@ class NotificationScreen extends StatelessWidget {
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "Task Deadline Reminder",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18,
-                            ),
+                            style: MyTextStyle.w5s18(),
                           ),
                           SizedBox(height: 6),
                           Text(
                             "Your task ‘Submit Project Proposal’ is due tomorrow at 10:00 AM.",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: MyTextStyle.w4s12(),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
@@ -70,11 +66,7 @@ class NotificationScreen extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       "1 min ago",
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black54,
-                      ),
+                      style:  MyTextStyle.w4s12()
                     ),
                   ],
                 ),

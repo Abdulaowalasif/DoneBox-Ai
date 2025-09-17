@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/conts/app_colors.dart';
+import '../../../core/conts/my_text_style.dart';
 
 class TaskDetailsScreen extends StatelessWidget {
   const TaskDetailsScreen({super.key});
@@ -43,13 +44,7 @@ class TaskDetailsScreen extends StatelessWidget {
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Task Details",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    Text("Task Details", style: MyTextStyle.w5s20()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [const Text("Category"), const Text("Work")],
@@ -67,10 +62,11 @@ class TaskDetailsScreen extends StatelessWidget {
                       children: [
                         Text("Notification"),
                         Obx(
-                          () =>  Switch(
+                          () => Switch(
                             value: controller.activeNotification.value,
                             onChanged: (val) {
-                              controller.activeNotification.value=!controller.activeNotification.value;
+                              controller.activeNotification.value =
+                                  !controller.activeNotification.value;
                             },
                             activeColor: AppColors.primaryColor,
                             inactiveThumbColor: Colors.grey,
@@ -88,38 +84,37 @@ class TaskDetailsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Subtasks",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Subtasks", style: MyTextStyle.w5s20()),
                   TextButton(
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (ctx) {
-                          final TextEditingController subtaskController = TextEditingController();
+                          final TextEditingController subtaskController =
+                              TextEditingController();
                           return Dialog(
                             insetPadding: EdgeInsets.all(20),
                             // removes default margin
                             child: Container(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width, // full screen width
+                              width: MediaQuery.of(
+                                context,
+                              ).size.width, // full screen width
                               padding: const EdgeInsets.all(20),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
+                                  Text(
                                     "Add Subtask",
-                                    style: TextStyle(fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                    style: MyTextStyle.w5s20().copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
                                   ),
                                   const SizedBox(height: 20),
                                   TextField(
                                     controller: subtaskController,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                       hintText: "Enter subtask",
+                                      hintStyle: MyTextStyle.w4s16(),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
@@ -129,17 +124,27 @@ class TaskDetailsScreen extends StatelessWidget {
                                     children: [
                                       TextButton(
                                         onPressed: () => Navigator.pop(ctx),
-                                        child: const Text("Cancel"),
+                                        child: Text(
+                                          "Cancel",
+                                          style: MyTextStyle.w4s16(),
+                                        ),
                                       ),
-                                      CustomButton(text: "Add", onPressed: () {
-                                        if (subtaskController.text.isNotEmpty) {
-                                          controller.addSubTask(
-                                              subtaskController.text);
-                                        }
-                                        Navigator.pop(ctx);
-                                      }, width: 100)
+                                      CustomButton(
+                                        text: "Add",
+                                        onPressed: () {
+                                          if (subtaskController
+                                              .text
+                                              .isNotEmpty) {
+                                            controller.addSubTask(
+                                              subtaskController.text,
+                                            );
+                                          }
+                                          Navigator.pop(ctx);
+                                        },
+                                        width: 100,
+                                      ),
                                     ],
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -149,42 +154,39 @@ class TaskDetailsScreen extends StatelessWidget {
                     },
                     child: Text(
                       "+ Add SubTask",
-                      style: TextStyle(color: AppColors.primaryColor),
+                      style: MyTextStyle.w5s20().copyWith(
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                   ),
-
                 ],
               ),
               Obx(
-                    () =>
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.subTasks.length,
-                      itemBuilder: (context, index) {
-                        final subTask = controller.subTasks[index];
-                        return ListTile(
-                          leading: Checkbox(
-                            value: subTask["done"],
-                            onChanged: (val) =>
-                                controller.toggleSubTask(index, val ?? false),
-                            activeColor: AppColors.primaryColor,
-                          ),
-                          title: Text(subTask["title"]),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () => controller.removeSubTask(index),
-                          ),
-                        );
-                      },
-                    ),
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controller.subTasks.length,
+                  itemBuilder: (context, index) {
+                    final subTask = controller.subTasks[index];
+                    return ListTile(
+                      leading: Checkbox(
+                        value: subTask["done"],
+                        onChanged: (val) =>
+                            controller.toggleSubTask(index, val ?? false),
+                        activeColor: AppColors.primaryColor,
+                      ),
+                      title: Text(subTask["title"]),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () => controller.removeSubTask(index),
+                      ),
+                    );
+                  },
+                ),
               ),
 
               /// Attachments
-              const Text(
-                "Attachments",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
+              Text("Attachments", style: MyTextStyle.w5s20()),
 
               Obx(
                 () => Wrap(
@@ -220,7 +222,9 @@ class TaskDetailsScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             Text(
                               "Add File",
-                              style: TextStyle(color: AppColors.primaryColor),
+                              style: MyTextStyle.w4s18().copyWith(
+                                color: AppColors.primaryColor,
+                              ),
                             ),
                           ],
                         ),

@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/conts/my_text_style.dart';
 import '../widgets/productivity_trend_chart.dart';
 import '../widgets/weekly_bar_chart.dart';
 
@@ -35,18 +36,9 @@ class InsightsScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Weekly completion rate",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: MyTextStyle.w5s20(),
                         ),
-                        Text(
-                          "50%",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                        Text("50%", style: MyTextStyle.w5s14()),
                       ],
                     ),
                     SizedBox(
@@ -61,19 +53,13 @@ class InsightsScreen extends StatelessWidget {
                     ),
                     Text(
                       "34 tasks completed out of 42 tasks",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: MyTextStyle.w5s14(),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
-                "Productivity Trend",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
+              Text("Productivity Trend", style: MyTextStyle.w5s20()),
               const SizedBox(height: 10),
               Container(
                 width: double.infinity,
@@ -89,10 +75,7 @@ class InsightsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
-                "Category Breakdown",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
+              Text("Category Breakdown", style: MyTextStyle.w5s20()),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,13 +95,7 @@ class InsightsScreen extends StatelessWidget {
                               color: AppColors.primaryColor,
                             ),
                           ),
-                          Text(
-                            "Work",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          Text("Work", style: MyTextStyle.w5s14()),
                         ],
                       ),
                       Row(
@@ -132,13 +109,7 @@ class InsightsScreen extends StatelessWidget {
                               color: Color(0xFFCEA917),
                             ),
                           ),
-                          Text(
-                            "Personal",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          Text("Personal", style: MyTextStyle.w5s14()),
                         ],
                       ),
                     ],
@@ -158,13 +129,7 @@ class InsightsScreen extends StatelessWidget {
                       Row(
                         spacing: 10,
                         children: [
-                          Text(
-                            "70%",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          Text("70%", style: MyTextStyle.w5s14()),
                           Container(
                             height: 15,
                             width: 15,
@@ -178,13 +143,7 @@ class InsightsScreen extends StatelessWidget {
                       Row(
                         spacing: 10,
                         children: [
-                          Text(
-                            "30%",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          Text("30%", style: MyTextStyle.w5s14()),
                           Container(
                             height: 15,
                             width: 15,
@@ -208,19 +167,10 @@ class InsightsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "AI Analysis",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                        Text("AI Analysis", style: MyTextStyle.w5s20()),
                         Text(
                           "Your productivity increased by 12% compared to last week. Most of your completed work are in the work  category.",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: MyTextStyle.w5s14(),
                         ),
                       ],
                     ),
@@ -232,10 +182,7 @@ class InsightsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Recommendations",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Recommendations", style: MyTextStyle.w5s20()),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondaryColor,
@@ -243,21 +190,15 @@ class InsightsScreen extends StatelessWidget {
                     onPressed: () {
                       Share.share("Share your insights with others!");
                     },
-                    child: Text(
-                      "Share insights",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                    ),
+                    child: Text("Share insights", style: MyTextStyle.w5s14()),
                   ),
                 ],
               ),
               const SizedBox(height: 20),
               Text(
                 "\u2022 Try adding focus session in the morning",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+
+                style: MyTextStyle.w5s14(),
               ),
               const SizedBox(height: 10),
 
@@ -268,10 +209,8 @@ class InsightsScreen extends StatelessWidget {
                   children: [
                     Text(
                       "\u2022 Prioritize pending personal task",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
+
+                      style: MyTextStyle.w5s14(),
                     ),
                     Row(
                       spacing: 10,
@@ -279,9 +218,8 @@ class InsightsScreen extends StatelessWidget {
                         Icon(Icons.save_alt, color: AppColors.primaryColor),
                         Text(
                           "Export as Pdf",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+
+                          style: MyTextStyle.w5s14().copyWith(
                             color: AppColors.primaryColor,
                           ),
                         ),
@@ -291,7 +229,6 @@ class InsightsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-
             ],
           ),
         ),

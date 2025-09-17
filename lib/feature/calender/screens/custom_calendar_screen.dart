@@ -1,7 +1,10 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../../core/conts/my_text_style.dart';
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -79,71 +82,104 @@ class _CalendarScreenState extends State<CalendarScreen> {
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setDialogState) {
-            return AlertDialog(
-              title: Text("Add Event"),
-              content: SingleChildScrollView(
-                child: Column(
-                  spacing: 10,
-                  children: [
-                    TextField(
-                      controller: titleController,
-                      decoration: InputDecoration(hintText: "Event Title"),
-                    ),
-                    TextField(
-                      controller: categoryController,
-                      decoration: InputDecoration(hintText: "Category"),
-                    ),
-                    TextField(
-                      controller: timeController,
-                      decoration: InputDecoration(
-                        hintText: "Time (e.g. 10:00 AM)",
+            return Dialog(
+              insetPadding: EdgeInsets.all(20), // removes default padding
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width, // full width
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Add Event",
+                        style: MyTextStyle.w4s18().copyWith(
+                          color: AppColors.primaryColor,
+                        ),
                       ),
-                    ),
-                    DropdownButton<String>(
-                      value: selectedPriority,
-                      isExpanded: true,
-                      items: ["High", "Medium", "Low"]
-                          .map(
-                            (p) => DropdownMenuItem(value: p, child: Text(p)),
-                          )
-                          .toList(),
-                      onChanged: (val) {
-                        if (val != null) {
-                          setDialogState(() {
-                            selectedPriority = val;
-                          });
-                        }
-                      },
-                    ),
-                  ],
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                          hintText: "Event Title",
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: categoryController,
+                        decoration: const InputDecoration(hintText: "Category"),
+                      ),
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: timeController,
+                        decoration: const InputDecoration(
+                          hintText: "Time (e.g. 10:00 AM)",
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          borderRadius: BorderRadius.circular(10),
+                          dropdownColor: AppColors.secondaryColor,
+                          value: selectedPriority,
+                          isExpanded: true,
+                          items: ["High", "Medium", "Low"]
+                              .map(
+                                (p) => DropdownMenuItem(
+                                  value: p,
+                                  child: Text(p, style: GoogleFonts.poppins()),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (val) {
+                            if (val != null) {
+                              setDialogState(() {
+                                selectedPriority = val;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text("Cancel", style: MyTextStyle.w5s18()),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor,
+                            ),
+                            child: Text(
+                              "Add",
+                              style: MyTextStyle.w5s18().copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              if (titleController.text.isNotEmpty) {
+                                Navigator.pop(context, {
+                                  "title": titleController.text,
+                                  "category": categoryController.text.isNotEmpty
+                                      ? categoryController.text
+                                      : "General",
+                                  "time": timeController.text.isNotEmpty
+                                      ? timeController.text
+                                      : "--:--",
+                                  "priority": selectedPriority,
+                                });
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              actions: [
-                TextButton(
-                  child: Text("Cancel", style: TextStyle(color: Colors.black)),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryColor,
-                  ),
-                  child: Text("Add", style: TextStyle(color: Colors.white)),
-                  onPressed: () {
-                    if (titleController.text.isNotEmpty) {
-                      Navigator.pop(context, {
-                        "title": titleController.text,
-                        "category": categoryController.text.isNotEmpty
-                            ? categoryController.text
-                            : "General",
-                        "time": timeController.text.isNotEmpty
-                            ? timeController.text
-                            : "--:--",
-                        "priority": selectedPriority,
-                      });
-                    }
-                  },
-                ),
-              ],
             );
           },
         );
@@ -245,10 +281,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
               ),
             ),
-            Text(
-              "Today",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-            ),
+            Text("Today", style: MyTextStyle.w5s20()),
             Expanded(
               child: ListView.separated(
                 itemCount: _getEventsForDay(_selectedDay!).length,
@@ -260,33 +293,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
                   return ListTile(
                     leading: Icon(Icons.circle, size: 12, color: priorityColor),
-                    title: Text(
-                      event["title"],
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
+                    title: Text(event["title"], style: MyTextStyle.w5s18()),
                     subtitle: Text(
                       event["category"],
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey,
-                      ),
+                      style: MyTextStyle.w5s16(),
                     ),
                     trailing: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          event["time"],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
+                        Text(event["time"], style: MyTextStyle.w5s14()),
                         SizedBox(height: 4),
                         Container(
                           padding: EdgeInsets.symmetric(
@@ -299,7 +314,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                           child: Text(
                             event["priority"],
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: MyTextStyle.w5s14().copyWith(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],

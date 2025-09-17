@@ -1,4 +1,5 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -44,7 +45,7 @@ class CustomButton extends StatelessWidget {
                 ? Center(child: CircularProgressIndicator(color: Colors.white))
                 : Text(
                     text,
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    style: MyTextStyle.w5s16().copyWith(color: Colors.white),
                   ),
           ],
         ),

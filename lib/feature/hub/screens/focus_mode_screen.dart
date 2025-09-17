@@ -5,6 +5,9 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../core/conts/my_text_style.dart';
 
 class FocusModeScreen extends StatelessWidget {
   const FocusModeScreen({super.key});
@@ -25,14 +28,11 @@ class FocusModeScreen extends StatelessWidget {
                 Obx(
                   () => Text(
                     controller.timer.value.toString(),
-                    style: const TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: MyTextStyle.w6s30(),
                   ),
                 ),
                 Obx(
-                  () =>  CustomButton(
+                  () => CustomButton(
                     text: controller.isRunning.value ? "Pause" : "Start",
                     onPressed: controller.toggleFocusSession,
                     width: 150,
@@ -52,20 +52,11 @@ class FocusModeScreen extends StatelessWidget {
                     spacing: 10,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Session Settings",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      Text("Session Settings", style: MyTextStyle.w5s16()),
                       Obx(
                         () => Text(
                           controller.sessionDescription.value,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: MyTextStyle.w4s16(),
                         ),
                       ),
                       Row(
@@ -73,15 +64,9 @@ class FocusModeScreen extends StatelessWidget {
                         children: [
                           Row(
                             spacing: 10,
-                            children: const [
+                            children: [
                               Icon(Icons.watch_later_outlined),
-                              Text(
-                                "Duration",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              Text("Duration", style: MyTextStyle.w5s16()),
                             ],
                           ),
                           Obx(
@@ -107,7 +92,7 @@ class FocusModeScreen extends StatelessWidget {
                                         ),
                                         child: Text(
                                           d,
-                                          style: TextStyle(
+                                          style: GoogleFonts.poppins(
                                             color:
                                                 controller
                                                         .selectedDuration
@@ -132,24 +117,15 @@ class FocusModeScreen extends StatelessWidget {
                         children: [
                           Row(
                             spacing: 10,
-                            children: const [
+                            children: [
                               Icon(Icons.watch_later_outlined),
-                              Text(
-                                "Breaks",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              Text("Breaks", style: MyTextStyle.w5s16()),
                             ],
                           ),
                           Obx(
                             () => Text(
                               controller.selectedBreak.value,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: MyTextStyle.w5s16(),
                             ),
                           ),
                         ],
@@ -159,15 +135,9 @@ class FocusModeScreen extends StatelessWidget {
                         children: [
                           Row(
                             spacing: 10,
-                            children: const [
+                            children: [
                               Icon(Icons.alarm),
-                              Text(
-                                "Sounds",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              Text("Sounds", style: MyTextStyle.w5s16()),
                             ],
                           ),
                           Obx(
@@ -177,9 +147,7 @@ class FocusModeScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     controller.selectedSound.value,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                                    style: MyTextStyle.w5s16().copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
@@ -210,22 +178,14 @@ class FocusModeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             "Linked task",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                            style: MyTextStyle.w5s16().copyWith(
+                              color: AppColors.primaryColor,
                             ),
                           ),
                           TextButton(
-                            child: Text(
-                              "Change",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.primaryColor,
-                              ),
-                            ),
+                            child: Text("Change", style: MyTextStyle.w5s16()),
                             onPressed: () => controller.changeLinkedTask(),
                           ),
                         ],
@@ -240,19 +200,13 @@ class FocusModeScreen extends StatelessWidget {
                                 const Icon(CupertinoIcons.text_alignleft),
                                 Text(
                                   controller.linkedTask.value,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: MyTextStyle.w5s16(),
                                 ),
                               ],
                             ),
                             Text(
                               controller.linkedTaskCategory.value,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: MyTextStyle.w5s16(),
                             ),
                           ],
                         ),
@@ -283,17 +237,13 @@ class FocusModeScreen extends StatelessWidget {
                       children: [
                         Text(
                           controller.sessionMessage.value,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+
+                          style: MyTextStyle.w5s16(),
                         ),
                         Text(
                           "${controller.completedSessions.value} focus sessions completed.",
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+
+                          style: MyTextStyle.w5s16(),
                         ),
                       ],
                     ),

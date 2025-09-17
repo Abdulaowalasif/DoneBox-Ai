@@ -1,5 +1,6 @@
-
 import 'package:flutter/cupertino.dart';
+
+import '../../../core/conts/my_text_style.dart';
 
 class AiAssistantItemCard extends StatelessWidget {
   final IconData icon;
@@ -9,7 +10,12 @@ class AiAssistantItemCard extends StatelessWidget {
   final Color? textColor;
 
   const AiAssistantItemCard({
-    super.key, required this.icon, required this.category, required this.title, this.iconColor, this.textColor,
+    super.key,
+    required this.icon,
+    required this.category,
+    required this.title,
+    this.iconColor,
+    this.textColor,
   });
 
   @override
@@ -20,11 +26,11 @@ class AiAssistantItemCard extends StatelessWidget {
         Row(
           spacing: 20,
           children: [
-            Icon(icon,color: iconColor,),
-            Text(category,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),)
+            Icon(icon, color: iconColor),
+            Text(category, style: MyTextStyle.w5s16()),
           ],
         ),
-        Text(title,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: textColor),)
+        Text(title, style: MyTextStyle.w5s16().copyWith(color: textColor)),
       ],
     );
   }

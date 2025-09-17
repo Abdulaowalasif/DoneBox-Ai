@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/conts/app_colors.dart';
+import '../../../core/conts/my_text_style.dart';
 
 class NotesCard extends StatelessWidget {
   final String title;
@@ -32,20 +33,11 @@ class NotesCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              Text(
-                time,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-              ),
+              Text(title, style: MyTextStyle.w5s20()),
+              Text(time, style: MyTextStyle.w4s12()),
             ],
           ),
-          Text(
-            subTitle,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-          ),
+          Text(subTitle, style: MyTextStyle.w5s14()),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.secondaryColor,
@@ -53,7 +45,11 @@ class NotesCard extends StatelessWidget {
             onPressed: () {},
             child: Text(
               buttonText,
-              style: TextStyle(color: AppColors.primaryColor),
+
+              style: GoogleFonts.poppins(
+                color: AppColors.primaryColor,
+                fontSize: 16,
+              ),
             ),
           ),
         ],

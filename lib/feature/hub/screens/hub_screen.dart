@@ -3,9 +3,11 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/conts/app_colors.dart';
 import '../../../core/conts/image_icon_const.dart';
+import '../../../core/conts/my_text_style.dart';
 import '../../../routes/routes_names.dart';
 import '../../widgets/action_card.dart';
 
@@ -69,10 +71,7 @@ class HubScreen extends StatelessWidget {
               ),
             ),
 
-            Text(
-              "Active projects",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-            ),
+            Text("Active projects", style: MyTextStyle.w5s20()),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,13 +80,7 @@ class HubScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 10,
                   children: [
-                    Text(
-                      "Website Redesign",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    Text("Website Redesign", style: MyTextStyle.w5s18()),
                     Row(
                       spacing: 20,
                       children: [
@@ -101,7 +94,7 @@ class HubScreen extends StatelessWidget {
                             value: 0.7,
                           ),
                         ),
-                        Text("70%"),
+                        Text("70%", style: GoogleFonts.poppins()),
                       ],
                     ),
                   ],
@@ -116,13 +109,7 @@ class HubScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 10,
                   children: [
-                    Text(
-                      "Team Onboarding",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    Text("Team Onboarding", style: MyTextStyle.w5s18()),
                     Row(
                       spacing: 20,
                       children: [
@@ -136,7 +123,7 @@ class HubScreen extends StatelessWidget {
                             value: 0.2,
                           ),
                         ),
-                        Text("20%"),
+                        Text("20%", style: GoogleFonts.poppins()),
                       ],
                     ),
                   ],
@@ -144,10 +131,7 @@ class HubScreen extends StatelessWidget {
               ],
             ),
 
-            Text(
-              "Today’s highligts",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-            ),
+            Text("Today’s highligts", style: MyTextStyle.w5s20()),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,19 +147,10 @@ class HubScreen extends StatelessWidget {
                         color: Colors.blueAccent,
                       ),
                     ),
-                    Text(
-                      "Weekly review",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text("Weekly review", style: MyTextStyle.w5s14()),
                   ],
                 ),
-                Text(
-                  "9:00 AM",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
+                Text("9:00 AM", style: MyTextStyle.w5s14()),
               ],
             ),
             Row(
@@ -192,19 +167,10 @@ class HubScreen extends StatelessWidget {
                         color: Colors.green,
                       ),
                     ),
-                    Text(
-                      "Team meeting",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text("Team meeting", style: MyTextStyle.w5s14()),
                   ],
                 ),
-                Text(
-                  "10:00 AM",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
+                Text("10:00 AM", style: MyTextStyle.w5s14()),
               ],
             ),
 

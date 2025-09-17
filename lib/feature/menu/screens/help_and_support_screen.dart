@@ -2,6 +2,7 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/help_support_card.dart';
 
@@ -19,7 +20,10 @@ class HelpAndSupportScreen extends StatelessWidget {
             children: [
               TextField(
                 decoration: InputDecoration(
-                  hint: Text("search FAQs, guides or keywords"),
+                  hint: Text(
+                    "search FAQs, guides or keywords",
+                    style: GoogleFonts.poppins(),
+                  ),
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),

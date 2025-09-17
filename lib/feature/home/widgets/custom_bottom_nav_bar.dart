@@ -1,6 +1,7 @@
 import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/bottom_nav_controller.dart';
 
@@ -51,7 +52,7 @@ class CustomBottomNavBar extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               color: isSelected ? Colors.blue : Colors.grey,
               fontSize: 12,
             ),

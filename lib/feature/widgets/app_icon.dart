@@ -1,3 +1,4 @@
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:flutter/material.dart';
 import '../../core/conts/app_colors.dart';
 
@@ -23,11 +24,7 @@ class AppIcon extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           "DoneBox Ai",
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 22, // bigger text
-          ),
+          style: MyTextStyle.appIcon()
         ),
       ],
     );

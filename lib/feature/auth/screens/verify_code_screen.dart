@@ -1,4 +1,5 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/auth/controller/otp_controller.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
@@ -39,23 +40,15 @@ class VerifyCodeScreen extends StatelessWidget {
                 children: [
                   AppIcon(),
                   SizedBox(height: height * 0.02),
+
                   /// Title
-                  Text(
-                    "Verify Code",
-                    style: TextStyle(
-                      fontSize: isPortrait ? width * 0.07 : width * 0.05,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text("Verify Code", style: MyTextStyle.w6s30()),
                   const SizedBox(height: 8),
 
                   /// Subtitle
                   Text(
                     "Please check your email and enter the code",
-                    style: TextStyle(
-                      fontSize: isPortrait ? width * 0.04 : width * 0.035,
-                      color: Colors.grey[700],
-                    ),
+                    style: MyTextStyle.w4s16(),
                   ),
                   SizedBox(height: height * 0.06),
 
@@ -75,11 +68,7 @@ class VerifyCodeScreen extends StatelessWidget {
                             focusNode: controller.focusNodes[index],
                             maxLength: 1,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: width * 0.06,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
+                            style: MyTextStyle.w5s20(),
                             keyboardType: TextInputType.number,
                             onChanged: (value) =>
                                 controller.onOtpEntered(value, index),
@@ -122,10 +111,8 @@ class VerifyCodeScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '2:32',
-                      style: TextStyle(
-                        color: AppColors.buttonColor,
-                        fontWeight: FontWeight.w700,
-                        fontSize: isPortrait ? width * 0.06 : width * 0.05,
+                      style: MyTextStyle.w5s18().copyWith(
+                        color: AppColors.primaryColor,
                       ),
                     ),
                   ),
@@ -135,17 +122,13 @@ class VerifyCodeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Didn’t receive code?",
-                        style: TextStyle(fontSize: width * 0.04),
-                      ),
+                      Text("Didn’t receive code?", style: MyTextStyle.w4s16()),
                       TextButton(
                         onPressed: () {},
                         child: Text(
                           "Resend it",
-                          style: TextStyle(
+                          style: MyTextStyle.w4s16().copyWith(
                             color: AppColors.buttonColor,
-                            fontSize: width * 0.04,
                           ),
                         ),
                       ),

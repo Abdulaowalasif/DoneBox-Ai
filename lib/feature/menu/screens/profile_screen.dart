@@ -3,6 +3,9 @@ import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../core/conts/my_text_style.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -40,59 +43,56 @@ class ProfileScreen extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.center,
-                child: Text(
-                  "Itunuoluwa Abidoye",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                ),
+                child: Text("Itunuoluwa Abidoye", style: MyTextStyle.w5s16()),
               ),
               const SizedBox(height: 20),
-              Text(
-                "Name",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
+              Text("Name", style: MyTextStyle.w5s18()),
               TextField(
                 decoration: InputDecoration(
                   hint: Text(
                     "Itunuoluwa Abidoye",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
-              Text(
-                "Your Emaill",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
+              Text("Your Emaill", style: MyTextStyle.w5s18()),
               TextField(
                 decoration: InputDecoration(
                   hint: Text(
                     "Itunuoluwa@gmail.com",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
-              Text(
-                "Phone",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
+              Text("Phone", style: MyTextStyle.w5s18()),
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.phone),
                   hint: Text(
                     "+ 254 00555856",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
-              Text(
-                "Location",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
+              Text("Location", style: MyTextStyle.w5s18()),
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.phone),
                   hint: Text(
                     "Dhaka, Bangladesh",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),

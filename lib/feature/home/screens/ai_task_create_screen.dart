@@ -1,4 +1,5 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/home/controllers/ai_task_create_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
@@ -62,27 +63,15 @@ class AiTaskCreateScreen extends StatelessWidget {
                     children: [
                       Text(
                         controller.taskTitle.value,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: MyTextStyle.w5s20(),
                       ),
                       Text(
                         controller.taskDescription.value,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: MyTextStyle.w4s16(),
                       ),
 
                       // Category Section
-                      const Text(
-                        "Category",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      Text("Category", style: MyTextStyle.w5s20()),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: controller.categories.map((cat) {
@@ -100,9 +89,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 cat,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
+                                style: MyTextStyle.w5s14().copyWith(
                                   color: Colors.white,
                                 ),
                               ),
@@ -115,19 +102,10 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "Due date",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          Text("Due date", style: MyTextStyle.w5s16()),
                           Text(
                             controller.dueDate.value,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:  MyTextStyle.w5s16()
                           ),
                         ],
                       ),
@@ -136,19 +114,13 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                           Text(
                             "Time",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:  MyTextStyle.w5s16()
                           ),
                           Text(
                             controller.time.value,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:  MyTextStyle.w5s16()
                           ),
                         ],
                       ),
@@ -157,12 +129,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                           Text(
                             "Notification",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: MyTextStyle.w5s16()
                           ),
                           Obx(
                             () => Switch(
@@ -182,12 +151,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                           Text(
                             "Reminder",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:  MyTextStyle.w5s16()
                           ),
                           Obx(
                             () => DropdownButtonHideUnderline(
@@ -228,12 +194,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                           Text(
                             "Priority",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:  MyTextStyle.w5s16()
                           ),
                           Obx(
                             () => DropdownButtonHideUnderline(
@@ -283,11 +246,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                                 controller.attachedFile.value.isEmpty
                                     ? "Attach File"
                                     : controller.attachedFile.value,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
+                                style:  MyTextStyle.w4s16()
                               ),
                             ),
                           ),

@@ -1,4 +1,5 @@
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/forgot_pass_controller.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
@@ -45,30 +46,21 @@ class ForgotPasswordScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
                   Text(
                     "Forgot password",
-                    style: TextStyle(
-                      fontSize: isPortrait ? width * 0.07 : width * 0.05,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: MyTextStyle.w6s30(),
                   ),
                   const SizedBox(height: 8),
 
                   /// Subtitle
                   Text(
                     "Please enter your email address to reset password.",
-                    style: TextStyle(
-                      fontSize: isPortrait ? width * 0.04 : width * 0.035,
-                      color: Colors.black,
-                    ),
+                    style: MyTextStyle.w4s16()
                   ),
                   SizedBox(height: height * 0.08),
 
                   /// Label
                   Text(
                     "Your Email",
-                    style: TextStyle(
-                      fontSize: width * 0.045,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style:MyTextStyle.w4s18()
                   ),
                   const SizedBox(height: 8),
 

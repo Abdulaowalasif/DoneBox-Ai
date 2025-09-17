@@ -1,8 +1,10 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/conts/image_icon_const.dart';
+import '../../../core/conts/my_text_style.dart';
 
 class LiveChatScreen extends StatelessWidget {
   const LiveChatScreen({super.key});
@@ -26,6 +28,7 @@ class LiveChatScreen extends StatelessWidget {
               filled: true,
               fillColor: Colors.white,
               hintText: "Ask Anything",
+              hintStyle: GoogleFonts.poppins(),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
@@ -50,7 +53,7 @@ class LiveChatScreen extends StatelessWidget {
             children: [
               Text(
                 "Need help using DoneBox? Our live chat support is here for you. Whether it’s a quick question or detailed guidance, we’ll respond in real-time.",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: MyTextStyle.w5s16(),
               ),
               Align(
                 alignment: Alignment.topRight,
@@ -69,11 +72,8 @@ class LiveChatScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             color: AppColors.secondaryColor,
                           ),
-                          child: const Text(
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          child: Text(
+                            style: MyTextStyle.w5s16(),
                             "Hey, got task for you—we need to prep a presentation for the client "
                             "meeting at 2pm, next Monday. It’s about showcasing our new products "
                             "and how they fit customer needs. Can you handle putting the slides together?",
@@ -105,10 +105,7 @@ class LiveChatScreen extends StatelessWidget {
                           child: Text(
                             "Hey, got task for you—we need to prep a presentation for the client meeting at 2pm, next",
                             softWrap: true,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: MyTextStyle.w5s16(),
                           ),
                         ),
                       ),

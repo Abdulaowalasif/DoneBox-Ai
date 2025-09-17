@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/conts/my_text_style.dart';
+
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback onPress;
@@ -54,11 +56,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             Center(
               child: Text(
                 title,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: MyTextStyle.w5s20().copyWith(color: Colors.white),
               ),
             ),
             Align(

@@ -1,4 +1,5 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/auth/controller/reset_pass_controller.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:doneboxai/routes/routes_names.dart';
@@ -52,10 +53,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   /// Title
                   Text(
                     "New Password",
-                    style: TextStyle(
-                      fontSize: isPortrait ? width * 0.05 : width * 0.035,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: MyTextStyle.w4s18(),
                   ),
                   SizedBox(height: height * 0.015),
 
@@ -83,10 +81,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   /// Confirm Password
                   Text(
                     "Confirm Password",
-                    style: TextStyle(
-                      fontSize: isPortrait ? width * 0.045 : width * 0.035,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: MyTextStyle.w4s18()
                   ),
                   SizedBox(height: height * 0.015),
 
@@ -157,10 +152,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 /// Success Title
                                 Text(
                                   'Password Changed!',
-                                  style: TextStyle(
-                                    fontSize: width * 0.055,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: MyTextStyle.w5s20()
                                 ),
 
                                 SizedBox(height: height * 0.015),
@@ -169,7 +161,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 Text(
                                   'Return to the login page to enter your\naccount with your new password.',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: width * 0.04),
+                                  style: MyTextStyle.w4s18(),
                                 ),
 
                                 SizedBox(height: height * 0.03),

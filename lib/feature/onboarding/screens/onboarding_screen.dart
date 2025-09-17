@@ -1,11 +1,13 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/app_consts.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/core/storage/app_storage.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen1.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen2.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen3.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../core/conts/image_icon_const.dart';
 import '../controller/onboarding_controller.dart';
 
@@ -39,10 +41,7 @@ class OnboardingPager extends StatelessWidget {
                   },
                   child: Text(
                     "Skip",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: width * 0.045,
-                    ),
+                    style:MyTextStyle.w7s20()
                   ),
                 ),
               ),

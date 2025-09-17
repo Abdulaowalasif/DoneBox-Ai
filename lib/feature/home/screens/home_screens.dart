@@ -49,8 +49,8 @@ class HomeScreens extends StatelessWidget {
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        Text("My Tasks", style: MyTextStyle.w7s20()),
-                        const SizedBox(width: 20),
+                        Text("My Tasks", style: MyTextStyle.w5s20()),
+                        const SizedBox(width: 15),
                         SizedBox(
                           height: 30,
                           child: TabBar(
@@ -91,10 +91,7 @@ class HomeScreens extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Quick actions",
-                style:MyTextStyle.w7s20(),
-              ),
+              Text("Quick actions", style: MyTextStyle.w5s20()),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(

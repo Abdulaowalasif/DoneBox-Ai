@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class EmailSupportScreen extends StatelessWidget {
   const EmailSupportScreen({super.key});
 
@@ -42,26 +44,17 @@ class EmailSupportScreen extends StatelessWidget {
             children: [
               Text(
                 "Prefer email? We’ve got you covered. Send detailed questions, feedback, or bug reports, and we’ll respond within 24 hours.",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: MyTextStyle.w5s16(),
               ),
-              Text(
-                data,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text(data, style: MyTextStyle.w5s16()),
               RichText(
                 text: TextSpan(
                   text: "Contact Email : ",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
+                  style: MyTextStyle.w5s16(),
                   children: [
                     TextSpan(
                       text: "support@donebox.ai",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                      style: MyTextStyle.w5s16().copyWith(
                         color: AppColors.primaryColor,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -74,17 +67,11 @@ class EmailSupportScreen extends StatelessWidget {
                 text: TextSpan(
                   text:
                       "DoneBox ensures you get timely assistance even if you’re not online for live chat. Simply compose your email and send it to ",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
+                  style: MyTextStyle.w5s16(),
                   children: [
                     TextSpan(
                       text: "support@donebox.ai",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                      style: MyTextStyle.w5s16().copyWith(
                         color: AppColors.primaryColor,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -92,10 +79,7 @@ class EmailSupportScreen extends StatelessWidget {
                     ),
                     TextSpan(
                       text: " and our team will take care of the rest. ",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: MyTextStyle.w5s16(),
                     ),
                   ],
                 ),

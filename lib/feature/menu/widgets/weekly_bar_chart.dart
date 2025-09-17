@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class WeeklyBarChart extends StatelessWidget {
   const WeeklyBarChart({super.key});
 
@@ -34,7 +36,7 @@ class WeeklyBarChart extends StatelessWidget {
                   if (value.toInt() >= 0 && value.toInt() < days.length) {
                     return Text(
                       days[value.toInt()],
-                      style: const TextStyle(fontSize: 12),
+                      style: MyTextStyle.w4s12(),
                     );
                   }
                   return const SizedBox.shrink();

@@ -1,5 +1,8 @@
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../core/conts/my_text_style.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
@@ -36,35 +39,24 @@ class PrivacyPolicyScreen extends StatelessWidget {
             children: [
               Text(
                 "DoneBox is a task and reminder app. We respect your privacy and only collect what’s needed to provide our services.",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                style: MyTextStyle.w5s14(),
               ),
               const SizedBox(height: 20),
-              Text(
-                "Information We Collect",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text("Information We Collect", style: MyTextStyle.w5s16()),
               const SizedBox(height: 10),
-              Text(infoCollect),
+              Text(infoCollect, style: GoogleFonts.poppins()),
               const SizedBox(height: 20),
-              Text(
-                "How We Use Data",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text("How We Use Data", style: MyTextStyle.w5s16()),
               const SizedBox(height: 10),
-              Text(howWeUseData),
+              Text(howWeUseData, style: GoogleFonts.poppins()),
               const SizedBox(height: 20),
-              Text(
-                "Sharing",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text("Sharing", style: MyTextStyle.w5s16()),
               const SizedBox(height: 10),
-              Text(dataSharing), const SizedBox(height: 20),
-              Text(
-                "Security & Retention",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text(dataSharing, style: GoogleFonts.poppins()),
+              const SizedBox(height: 20),
+              Text("Security & Retention", style: MyTextStyle.w5s16()),
               const SizedBox(height: 10),
-              Text(dataRetention),
+              Text(dataRetention, style: GoogleFonts.poppins()),
             ],
           ),
         ),

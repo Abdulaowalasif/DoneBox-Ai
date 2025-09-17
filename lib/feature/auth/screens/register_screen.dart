@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/conts/image_icon_const.dart';
+import '../../../core/conts/my_text_style.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_fields.dart';
 
@@ -41,28 +42,16 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Sign Up to\nyour account",
-                    style: TextStyle(
-                      fontSize: isPortrait ? 24 : 28, // Dynamic font size
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text("Sign Up to\nyour account", style: MyTextStyle.w6s30()),
                   SizedBox(height: 8),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
-                    style: TextStyle(
-                      fontSize: isPortrait ? 14 : 16, // Dynamic font size
-                      color: Colors.black,
-                    ),
+                    style: MyTextStyle.w4s16(),
                   ),
                   SizedBox(height: screenSize.height * 0.05),
 
                   // Dynamic height based on screen size
-                  const Text(
-                    "Your Name",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
+                  Text("Your Name", style: MyTextStyle.w4s18()),
                   SizedBox(height: 8),
 
                   CustomTextField(
@@ -72,10 +61,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  const Text(
-                    "Your Email",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
+                  Text("Your Email", style: MyTextStyle.w4s18()),
                   SizedBox(height: 8),
 
                   CustomTextField(
@@ -85,10 +71,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  const Text(
-                    "Phone",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
+                  Text("Phone", style: MyTextStyle.w4s18()),
                   SizedBox(height: 8),
 
                   CustomTextField(
@@ -98,10 +81,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  const Text(
-                    "Password",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
+                  Text("Password", style: MyTextStyle.w4s18()),
                   SizedBox(height: 8),
 
                   Obx(
@@ -143,19 +123,19 @@ class RegisterScreen extends StatelessWidget {
                             color: Colors.black,
                           ),
                           children: [
-                            const TextSpan(
+                            TextSpan(
                               text:
                                   'By creating an account, I accept the terms & condition  &\n',
                             ),
                             TextSpan(
                               text: 'Privacy Policy',
-                              style: TextStyle(
+                              style: MyTextStyle.w4s16().copyWith(
                                 color: AppColors.primaryColor,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                Get.toNamed(RoutesName.privacyPolicy);
+                                  Get.toNamed(RoutesName.privacyPolicy);
                                 },
                             ),
                             const TextSpan(text: '.'),
@@ -215,14 +195,19 @@ class RegisterScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already Have An Account?"),
+                      Text(
+                        "Already Have An Account?",
+                        style: MyTextStyle.w4s16(),
+                      ),
                       TextButton(
                         onPressed: () {
                           Get.offAllNamed(RoutesName.login);
                         },
                         child: Text(
                           "Sign In",
-                          style: TextStyle(color: AppColors.buttonColor),
+                          style: MyTextStyle.w4s16().copyWith(
+                            color: AppColors.primaryColor,
+                          ),
                         ),
                       ),
                     ],

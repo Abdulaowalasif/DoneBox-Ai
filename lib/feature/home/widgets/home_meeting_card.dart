@@ -40,10 +40,10 @@ class HomeMeetingCard extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          Text("Meeting", style: MyTextStyle.w7s20()),
+                          Text("Meeting", style: MyTextStyle.w5s20()),
                         ],
                       ),
-                      Text("10:00 AM", style: MyTextStyle.w7s20()),
+                      Text("10:00 AM", style: MyTextStyle.w5s20()),
                     ],
                   ),
                   subtitle: Row(
@@ -90,7 +90,10 @@ class HomeMeetingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(ImageConst.aiIcon),
-                  Text("Task Create with ai", style: MyTextStyle.w4s16()),
+                  Text(
+                    "Task Create with ai",
+                    style: MyTextStyle.w4s16().copyWith(color: Colors.white),
+                  ),
                 ],
               ),
             ),

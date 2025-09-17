@@ -8,6 +8,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class CreateNewTaskScreen extends StatelessWidget {
   const CreateNewTaskScreen({super.key});
 
@@ -20,7 +22,6 @@ class CreateNewTaskScreen extends StatelessWidget {
         title: "Create New Task",
         trailing: Icons.save_outlined,
         onPress: () {
-          // TODO: Save logic
           Get.back();
         },
       ),
@@ -31,7 +32,6 @@ class CreateNewTaskScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
-
               /// Task Details
               Container(
                 padding: const EdgeInsets.all(10),
@@ -44,13 +44,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Task Details",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    Text("Task Details", style: MyTextStyle.w5s20()),
 
                     /// Category
                     Row(
@@ -58,33 +52,32 @@ class CreateNewTaskScreen extends StatelessWidget {
                       children: [
                         const Text("Category"),
                         Obx(
-                              () =>
-                              DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  borderRadius: BorderRadius.circular(10),
-                                  dropdownColor: AppColors.secondaryColor,
-                                  value: controller.category.value,
-                                  items: const [
-                                    DropdownMenuItem(
-                                      value: "Work",
-                                      child: Text("Work"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Personal",
-                                      child: Text("Personal"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Shopping",
-                                      child: Text("Shopping"),
-                                    ),
-                                  ],
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      controller.category.value = value;
-                                    }
-                                  },
+                          () => DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              borderRadius: BorderRadius.circular(10),
+                              dropdownColor: AppColors.secondaryColor,
+                              value: controller.category.value,
+                              items: const [
+                                DropdownMenuItem(
+                                  value: "Work",
+                                  child: Text("Work"),
                                 ),
-                              ),
+                                DropdownMenuItem(
+                                  value: "Personal",
+                                  child: Text("Personal"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "Shopping",
+                                  child: Text("Shopping"),
+                                ),
+                              ],
+                              onChanged: (value) {
+                                if (value != null) {
+                                  controller.category.value = value;
+                                }
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -95,32 +88,30 @@ class CreateNewTaskScreen extends StatelessWidget {
                       children: [
                         const Text("Due Date"),
                         Obx(
-                              () =>
-                              GestureDetector(
-                                onTap: () async {
-                                  final picked = await showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime(2100),
-                                  );
-                                  if (picked != null) {
-                                    controller.dueDate.value =
-                                    "${picked.day}/${picked.month}/${picked
-                                        .year}";
-                                  }
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: AppColors.primaryColor,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Text(controller.dueDate.value),
+                          () => GestureDetector(
+                            onTap: () async {
+                              final picked = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2100),
+                              );
+                              if (picked != null) {
+                                controller.dueDate.value =
+                                    "${picked.day}/${picked.month}/${picked.year}";
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColors.primaryColor,
                                 ),
+                                borderRadius: BorderRadius.circular(5),
                               ),
+                              child: Text(controller.dueDate.value),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -131,29 +122,27 @@ class CreateNewTaskScreen extends StatelessWidget {
                       children: [
                         const Text("Time"),
                         Obx(
-                              () =>
-                              GestureDetector(
-                                onTap: () async {
-                                  final picked = await showTimePicker(
-                                    context: context,
-                                    initialTime: TimeOfDay.now(),
-                                  );
-                                  if (picked != null) {
-                                    controller.time.value =
-                                        picked.format(context);
-                                  }
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: AppColors.primaryColor,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Text(controller.time.value),
+                          () => GestureDetector(
+                            onTap: () async {
+                              final picked = await showTimePicker(
+                                context: context,
+                                initialTime: TimeOfDay.now(),
+                              );
+                              if (picked != null) {
+                                controller.time.value = picked.format(context);
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColors.primaryColor,
                                 ),
+                                borderRadius: BorderRadius.circular(5),
                               ),
+                              child: Text(controller.time.value),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -164,13 +153,12 @@ class CreateNewTaskScreen extends StatelessWidget {
                       children: [
                         const Text("Notification"),
                         Obx(
-                              () =>
-                              Switch(
-                                value: controller.notification.value,
-                                onChanged: (value) =>
+                          () => Switch(
+                            value: controller.notification.value,
+                            onChanged: (value) =>
                                 controller.notification.value = value,
-                                activeColor: AppColors.primaryColor,
-                              ),
+                            activeColor: AppColors.primaryColor,
+                          ),
                         ),
                       ],
                     ),
@@ -181,33 +169,32 @@ class CreateNewTaskScreen extends StatelessWidget {
                       children: [
                         const Text("Reminder"),
                         Obx(
-                              () =>
-                              DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  dropdownColor: AppColors.secondaryColor,
-                                  borderRadius: BorderRadius.circular(10),
-                                  value: controller.reminder.value,
-                                  items: const [
-                                    DropdownMenuItem(
-                                      value: "Daily",
-                                      child: Text("Daily"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Weekly",
-                                      child: Text("Weekly"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Monthly",
-                                      child: Text("Monthly"),
-                                    ),
-                                  ],
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      controller.reminder.value = value;
-                                    }
-                                  },
+                          () => DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              dropdownColor: AppColors.secondaryColor,
+                              borderRadius: BorderRadius.circular(10),
+                              value: controller.reminder.value,
+                              items: const [
+                                DropdownMenuItem(
+                                  value: "Daily",
+                                  child: Text("Daily"),
                                 ),
-                              ),
+                                DropdownMenuItem(
+                                  value: "Weekly",
+                                  child: Text("Weekly"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "Monthly",
+                                  child: Text("Monthly"),
+                                ),
+                              ],
+                              onChanged: (value) {
+                                if (value != null) {
+                                  controller.reminder.value = value;
+                                }
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -218,33 +205,32 @@ class CreateNewTaskScreen extends StatelessWidget {
                       children: [
                         const Text("Priority"),
                         Obx(
-                              () =>
-                              DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  borderRadius: BorderRadius.circular(10),
-                                  dropdownColor: AppColors.secondaryColor,
-                                  value: controller.priority.value,
-                                  items: const [
-                                    DropdownMenuItem(
-                                      value: "Low",
-                                      child: Text("Low"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Medium",
-                                      child: Text("Medium"),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "High",
-                                      child: Text("High"),
-                                    ),
-                                  ],
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      controller.priority.value = value;
-                                    }
-                                  },
+                          () => DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              borderRadius: BorderRadius.circular(10),
+                              dropdownColor: AppColors.secondaryColor,
+                              value: controller.priority.value,
+                              items: const [
+                                DropdownMenuItem(
+                                  value: "Low",
+                                  child: Text("Low"),
                                 ),
-                              ),
+                                DropdownMenuItem(
+                                  value: "Medium",
+                                  child: Text("Medium"),
+                                ),
+                                DropdownMenuItem(
+                                  value: "High",
+                                  child: Text("High"),
+                                ),
+                              ],
+                              onChanged: (value) {
+                                if (value != null) {
+                                  controller.priority.value = value;
+                                }
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -256,32 +242,30 @@ class CreateNewTaskScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Subtasks",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Subtasks", style: MyTextStyle.w5s20()),
                   TextButton(
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (ctx) {
-                          final TextEditingController subtaskController = TextEditingController();
+                          final TextEditingController subtaskController =
+                              TextEditingController();
                           return Dialog(
                             insetPadding: EdgeInsets.all(20),
                             // removes default margin
                             child: Container(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width, // full screen width
+                              width: MediaQuery.of(
+                                context,
+                              ).size.width, // full screen width
                               padding: const EdgeInsets.all(20),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
+                                  Text(
                                     "Add Subtask",
-                                    style: TextStyle(fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                    style: MyTextStyle.w5s20().copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
                                   ),
                                   const SizedBox(height: 20),
                                   TextField(
@@ -297,17 +281,27 @@ class CreateNewTaskScreen extends StatelessWidget {
                                     children: [
                                       TextButton(
                                         onPressed: () => Navigator.pop(ctx),
-                                        child: const Text("Cancel"),
+                                        child: Text(
+                                          "Cancel",
+                                          style: MyTextStyle.w4s18(),
+                                        ),
                                       ),
-                                      CustomButton(text: "Add", onPressed: () {
-                                        if (subtaskController.text.isNotEmpty) {
-                                          controller.addSubTask(
-                                              subtaskController.text);
-                                        }
-                                        Navigator.pop(ctx);
-                                      }, width: 100)
+                                      CustomButton(
+                                        text: "Add",
+                                        onPressed: () {
+                                          if (subtaskController
+                                              .text
+                                              .isNotEmpty) {
+                                            controller.addSubTask(
+                                              subtaskController.text,
+                                            );
+                                          }
+                                          Navigator.pop(ctx);
+                                        },
+                                        width: 100,
+                                      ),
                                     ],
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -317,59 +311,58 @@ class CreateNewTaskScreen extends StatelessWidget {
                     },
                     child: Text(
                       "+ Add SubTask",
-                      style: TextStyle(color: AppColors.primaryColor),
+                      style: MyTextStyle.w5s20().copyWith(
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                   ),
-
                 ],
               ),
 
               /// Subtask List
               Obx(
-                    () =>
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.subTasks.length,
-                      itemBuilder: (context, index) {
-                        final subTask = controller.subTasks[index];
-                        return ListTile(
-                          leading: Checkbox(
-                            value: subTask["done"],
-                            onChanged: (val) =>
-                                controller.toggleSubTask(index, val ?? false),
-                            activeColor: AppColors.primaryColor,
-                          ),
-                          title: Text(subTask["title"]),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () => controller.removeSubTask(index),
-                          ),
-                        );
-                      },
-                    ),
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controller.subTasks.length,
+                  itemBuilder: (context, index) {
+                    final subTask = controller.subTasks[index];
+                    return ListTile(
+                      leading: Checkbox(
+                        value: subTask["done"],
+                        onChanged: (val) =>
+                            controller.toggleSubTask(index, val ?? false),
+                        activeColor: AppColors.primaryColor,
+                      ),
+                      title: Text(subTask["title"]),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () => controller.removeSubTask(index),
+                      ),
+                    );
+                  },
+                ),
               ),
 
               /// Attachments
               /// Attachments
-              const Text(
-                "Attachments",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
+              Text("Attachments", style: MyTextStyle.w5s20()),
 
               /// Files row
               Obx(
-                    () => Wrap(
+                () => Wrap(
                   spacing: 10,
                   runSpacing: 10,
                   children: [
-
                     /// Add New File button
                     InkWell(
                       onTap: () async {
                         final result = await FilePicker.platform.pickFiles();
-                        if (result != null && result.files.single.path != null) {
-                          controller.addAttachment(File(result.files.single.path!));
+                        if (result != null &&
+                            result.files.single.path != null) {
+                          controller.addAttachment(
+                            File(result.files.single.path!),
+                          );
                         }
                       },
                       child: Container(
@@ -382,11 +375,17 @@ class CreateNewTaskScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.add_circle_outline, color: AppColors.primaryColor, size: 30),
+                            Icon(
+                              Icons.add_circle_outline,
+                              color: AppColors.primaryColor,
+                              size: 30,
+                            ),
                             const SizedBox(height: 8),
                             Text(
                               "Add File",
-                              style: TextStyle(color: AppColors.primaryColor),
+                              style: MyTextStyle.w4s18().copyWith(
+                                color: AppColors.primaryColor,
+                              ),
                             ),
                           ],
                         ),
@@ -412,14 +411,20 @@ class CreateNewTaskScreen extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.insert_drive_file, color: Colors.blue, size: 30),
+                                  const Icon(
+                                    Icons.insert_drive_file,
+                                    color: Colors.blue,
+                                    size: 30,
+                                  ),
                                   const SizedBox(height: 8),
                                   Text(
                                     file.path.split('/').last,
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(fontSize: 12),
+                                    style: MyTextStyle.w4s18().copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -434,7 +439,11 @@ class CreateNewTaskScreen extends StatelessWidget {
                                 child: const CircleAvatar(
                                   radius: 12,
                                   backgroundColor: Colors.red,
-                                  child: Icon(Icons.close, size: 14, color: Colors.white),
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 14,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
@@ -445,8 +454,6 @@ class CreateNewTaskScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
-
             ],
           ),
         ),

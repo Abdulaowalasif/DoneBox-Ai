@@ -2,6 +2,8 @@ import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
 
@@ -24,10 +26,7 @@ Getting started is easy! Just set up your profile, connect your tasks, and let D
           padding: EdgeInsetsGeometry.all(20),
           child: Column(
             children: [
-              Text(
-                data,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text(data, style: MyTextStyle.w5s16()),
               SizedBox(height: MediaQuery.of(context).size.height * 0.3),
               CustomButton(
                 text: "Get Started",

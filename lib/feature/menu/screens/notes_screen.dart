@@ -4,6 +4,7 @@ import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/my_text_style.dart';
 import '../widgets/notes_card.dart';
 
 class NotesScreen extends StatelessWidget {
@@ -27,26 +28,17 @@ class NotesScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Note Title",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Note Title", style: MyTextStyle.w5s16()),
                   const TextField(
                     decoration: InputDecoration(hintText: "Write Note title"),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "Note Topic",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Note Topic", style: MyTextStyle.w5s16()),
                   const TextField(
                     decoration: InputDecoration(hintText: "Write Note topic"),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "Description",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Description", style: MyTextStyle.w5s16()),
                   const TextField(
                     decoration: InputDecoration(
                       hintText: "Type your task Description",
@@ -61,10 +53,7 @@ class NotesScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  "Cancel",
-                  style: TextStyle(color: Colors.black),
-                ),
+                child: Text("Cancel", style: MyTextStyle.w5s16()),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -73,9 +62,9 @@ class NotesScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
+                child: Text(
                   "Save",
-                  style: TextStyle(color: Colors.white),
+                  style: MyTextStyle.w5s16().copyWith(color: Colors.white),
                 ),
               ),
             ],

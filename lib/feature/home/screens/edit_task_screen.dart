@@ -4,6 +4,7 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/conts/my_text_style.dart';
 import '../controllers/edit_task_controller.dart';
 
 class EditTaskScreen extends StatelessWidget {
@@ -38,13 +39,7 @@ class EditTaskScreen extends StatelessWidget {
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Task Details",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    Text("Task Details", style: MyTextStyle.w5s20()),
 
                     /// Category
                     Row(
@@ -72,7 +67,8 @@ class EditTaskScreen extends StatelessWidget {
                                 ),
                               ],
                               onChanged: (val) {
-                                if (val != null) controller.category.value = val;
+                                if (val != null)
+                                  controller.category.value = val;
                               },
                             ),
                           ),
@@ -187,7 +183,8 @@ class EditTaskScreen extends StatelessWidget {
                                 ),
                               ],
                               onChanged: (val) {
-                                if (val != null) controller.reminder.value = val;
+                                if (val != null)
+                                  controller.reminder.value = val;
                               },
                             ),
                           ),
@@ -221,7 +218,8 @@ class EditTaskScreen extends StatelessWidget {
                                 ),
                               ],
                               onChanged: (val) {
-                                if (val != null) controller.priority.value = val;
+                                if (val != null)
+                                  controller.priority.value = val;
                               },
                             ),
                           ),
@@ -236,34 +234,35 @@ class EditTaskScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Subtasks",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Subtasks", style: MyTextStyle.w5s20()),
                   TextButton(
                     onPressed: () {
-                      final TextEditingController subtaskController = TextEditingController();
+                      final TextEditingController subtaskController =
+                          TextEditingController();
                       showDialog(
                         context: context,
                         builder: (ctx) => Dialog(
-                          insetPadding: EdgeInsets.all(20), // Remove default margins
+                          insetPadding: EdgeInsets.all(20),
+                          // Remove default margins
                           child: Container(
-                            width: MediaQuery.of(context).size.width, // Full screen width
+                            width: MediaQuery.of(
+                              context,
+                            ).size.width, // Full screen width
                             padding: const EdgeInsets.all(20),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Text(
+                                Text(
                                   "Add Subtask",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                  style: MyTextStyle.w5s20().copyWith(
+                                    color: AppColors.primaryColor,
                                   ),
                                 ),
                                 const SizedBox(height: 20),
                                 TextField(
                                   controller: subtaskController,
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
+                                    hintStyle: MyTextStyle.w4s16(),
                                     hintText: "Enter subtask",
                                     border: OutlineInputBorder(),
                                   ),
@@ -274,9 +273,9 @@ class EditTaskScreen extends StatelessWidget {
                                   children: [
                                     TextButton(
                                       onPressed: () => Navigator.pop(ctx),
-                                      child: const Text(
+                                      child: Text(
                                         "Cancel",
-                                        style: TextStyle(color: Colors.black),
+                                        style: MyTextStyle.w4s16(),
                                       ),
                                     ),
                                     const SizedBox(width: 10),
@@ -286,13 +285,17 @@ class EditTaskScreen extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         if (subtaskController.text.isNotEmpty) {
-                                          controller.addSubTask(subtaskController.text);
+                                          controller.addSubTask(
+                                            subtaskController.text,
+                                          );
                                         }
                                         Navigator.pop(ctx);
                                       },
-                                      child: const Text(
+                                      child: Text(
                                         "Add",
-                                        style: TextStyle(color: Colors.white),
+                                        style: MyTextStyle.w4s16().copyWith(
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -305,10 +308,11 @@ class EditTaskScreen extends StatelessWidget {
                     },
                     child: Text(
                       "+ Add SubTask",
-                      style: TextStyle(color: AppColors.primaryColor),
+                      style: MyTextStyle.w5s20().copyWith(
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                   ),
-
                 ],
               ),
 
@@ -337,9 +341,9 @@ class EditTaskScreen extends StatelessWidget {
               ),
 
               /// Attachments
-              const Text(
+               Text(
                 "Attachments",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                  style: MyTextStyle.w5s20()
               ),
               Obx(
                 () => Wrap(
@@ -375,7 +379,9 @@ class EditTaskScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             Text(
                               "Add File",
-                              style: TextStyle(color: AppColors.primaryColor),
+                              style: MyTextStyle.w4s18().copyWith(
+                                color: AppColors.primaryColor,
+                              ),
                             ),
                           ],
                         ),
@@ -411,7 +417,9 @@ class EditTaskScreen extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(fontSize: 12),
+                                    style: MyTextStyle.w4s18().copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
                                   ),
                                 ],
                               ),

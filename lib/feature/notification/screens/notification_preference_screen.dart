@@ -5,6 +5,8 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class NotificationPreferenceScreen extends StatelessWidget {
   const NotificationPreferenceScreen({super.key});
 
@@ -20,78 +22,60 @@ class NotificationPreferenceScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 10,
           children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppColors.secondaryColor,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    /// Text Section
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Task Reminder",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "Get notified when it's time to work on a task.",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    /// Toggle Switch
-                    Obx(
-                      () => Switch(
-                        value: controller.isActive.value,
-                        thumbColor: WidgetStatePropertyAll(Colors.white),
-                        onChanged: (value) {
-                          controller.isActive.value =
-                              !controller.isActive.value;
-                        },
-                        activeColor: AppColors.primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppColors.secondaryColor,
               ),
-            const SizedBox(height: 20),
-            Text(
-              "Advanced Settings",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  /// Text Section
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Task Reminder", style: MyTextStyle.w5s18()),
+                        SizedBox(height: 6),
+                        Text(
+                          "Get notified when it's time to work on a task.",
+                          style: MyTextStyle.w4s12(),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  /// Toggle Switch
+                  Obx(
+                    () => Switch(
+                      value: controller.isActive.value,
+                      thumbColor: WidgetStatePropertyAll(Colors.white),
+                      onChanged: (value) {
+                        controller.isActive.value = !controller.isActive.value;
+                      },
+                      activeColor: AppColors.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(height: 20),
+            Text("Advanced Settings", style: MyTextStyle.w5s20()),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Silent Hours",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
+                Text("Silent Hours", style: MyTextStyle.w5s20()),
                 GestureDetector(
                   onTap: () => controller.pickSilentHours(context),
                   child: Obx(
-                        () => Text(
+                    () => Text(
                       controller.silentHours,
-                      style: TextStyle(
-                        fontSize: 16,
+                      style: MyTextStyle.w5s16().copyWith(
                         color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -113,9 +97,7 @@ class NotificationPreferenceScreen extends StatelessWidget {
                 onPressed: () => Get.back(),
                 child: Text(
                   "Cancel",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
+                  style: MyTextStyle.w5s18().copyWith(
                     color: AppColors.primaryColor,
                   ),
                 ),

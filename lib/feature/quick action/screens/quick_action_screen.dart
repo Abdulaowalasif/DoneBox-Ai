@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class QuickActionScreen extends StatelessWidget {
   const QuickActionScreen({super.key});
 
@@ -13,7 +15,7 @@ class QuickActionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final QuickActionController controller = Get.find();
     return Scaffold(
-      appBar: CustomAppbar(title: controller.title, onPress: () {  },),
+      appBar: CustomAppbar(title: controller.title, onPress: () {}),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: controller.title == "Daily Recap"
@@ -40,9 +42,7 @@ class QuickActionScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Sunday,May 25",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
+                            style: MyTextStyle.w5s20().copyWith(
                               color: AppColors.primaryColor,
                             ),
                           ),
@@ -62,10 +62,7 @@ class QuickActionScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Work on proposal",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: MyTextStyle.w5s16(),
                               ),
                             ],
                           ),
@@ -85,10 +82,7 @@ class QuickActionScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Client Feedback",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: MyTextStyle.w5s16(),
                               ),
                             ],
                           ),
@@ -108,18 +102,13 @@ class QuickActionScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Outline Presentation",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: MyTextStyle.w5s16(),
                               ),
                             ],
                           ),
                           Text(
                             "See More",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                            style: MyTextStyle.w5s20().copyWith(
                               color: AppColors.primaryColor,
                             ),
                           ),
@@ -134,17 +123,13 @@ class QuickActionScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Overall Progress",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
+                                    style: MyTextStyle.w5s20().copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
                                   Text(
                                     "50%",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
+                                    style: MyTextStyle.w5s20().copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
@@ -164,39 +149,17 @@ class QuickActionScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      "Inslights",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    Text("Insights", style: MyTextStyle.w5s20()),
                     Text(
                       "You completed 80% of your planned tasks today. Great job staying focused!",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: MyTextStyle.w5s14(),
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Upoming Tasks",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          "Monday",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
+                        Text("Upcoming Tasks", style: MyTextStyle.w5s20()),
+                        Text("Monday", style: MyTextStyle.w5s16()),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -214,16 +177,10 @@ class QuickActionScreen extends StatelessWidget {
                                 color: Colors.red,
                               ),
                             ),
-                            Text("Call Sarah"),
+                            Text("Call Sarah", style: MyTextStyle.w4s16()),
                           ],
                         ),
-                        Text(
-                          "10:00 AM",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        Text("10:00 AM", style: MyTextStyle.w5s20()),
                       ],
                     ),
                     Row(
@@ -240,25 +197,17 @@ class QuickActionScreen extends StatelessWidget {
                                 color: Colors.green,
                               ),
                             ),
-                            Text("go to the gym"),
+                            Text("go to the gym", style: MyTextStyle.w4s16()),
                           ],
                         ),
-                        Text(
-                          "10:00 AM",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        Text("10:00 AM", style: MyTextStyle.w5s20()),
                       ],
                     ),
                     const SizedBox(height: 20),
                     CustomButton(
                       text: "Share Recap",
                       onPressed: () {
-                        Share.share(
-                          "Share your experience..."
-                        );
+                        Share.share("Share your experience...");
                       },
                       width: double.infinity,
                     ),
@@ -268,7 +217,9 @@ class QuickActionScreen extends StatelessWidget {
                         onPressed: () => Get.back(),
                         child: Text(
                           "Close",
-                          style: TextStyle(color: AppColors.primaryColor),
+                          style: MyTextStyle.w5s18().copyWith(
+                            color: AppColors.primaryColor,
+                          ),
                         ),
                       ),
                     ),
@@ -278,13 +229,13 @@ class QuickActionScreen extends StatelessWidget {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Text",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text("Text", style: MyTextStyle.w5s20()),
                   TextField(
                     maxLines: 3,
-                    decoration: InputDecoration(hintText: "Enter text"),
+                    decoration: InputDecoration(
+                      hintText: "Enter text",
+                      hintStyle: MyTextStyle.w4s16(),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   CustomButton(
@@ -295,13 +246,13 @@ class QuickActionScreen extends StatelessWidget {
                     width: double.infinity,
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    controller.title,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text(controller.title, style: MyTextStyle.w5s20()),
                   TextField(
                     maxLines: 2,
-                    decoration: InputDecoration(hintText: "Enter text"),
+                    decoration: InputDecoration(
+                      hintText: "Enter text",
+                      hintStyle: MyTextStyle.w4s16(),
+                    ),
                   ),
                 ],
               ),

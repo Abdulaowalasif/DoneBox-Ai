@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/my_text_style.dart';
 import '../widgets/ai_assistant_item_card.dart';
 
 class AiTaskAssistantScreen extends StatelessWidget {
@@ -55,11 +56,8 @@ class AiTaskAssistantScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                         color: AppColors.secondaryColor,
                                       ),
-                                      child: const Text(
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                      child: Text(
+                                        style: MyTextStyle.w5s16(),
                                         "Hey, got task for you—we need to prep a presentation for the client "
                                         "meeting at 2pm, next Monday. It’s about showcasing our new products "
                                         "and how they fit customer needs. Can you handle putting the slides together?",
@@ -96,87 +94,10 @@ class AiTaskAssistantScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                         color: AppColors.secondaryColor,
                                       ),
-                                      child: const Text(
+                                      child: Text(
                                         "Hey, got task for you—we need to prep a presentation for the client meeting at 2pm, next",
                                         softWrap: true,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                          0.7,
-                                    ),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: AppColors.secondaryColor,
-                                      ),
-                                      child: const Text(
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        "Hey, got task for you—we need to prep a presentation for the client "
-                                        "meeting at 2pm, next Monday. It’s about showcasing our new products "
-                                        "and how they fit customer needs. Can you handle putting the slides together?",
-                                        softWrap: true,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                Image.asset(
-                                  ImageConst.aiIcon,
-                                  height: 32,
-                                  width: 32,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                          0.7,
-                                    ),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: AppColors.secondaryColor,
-                                      ),
-                                      child: const Text(
-                                        "Hey, got task for you—we need to prep a presentation for the client meeting at 2pm, next",
-                                        softWrap: true,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        style: MyTextStyle.w5s16(),
                                       ),
                                     ),
                                   ),
@@ -199,12 +120,9 @@ class AiTaskAssistantScreen extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                       ),
-                      const Text(
+                      Text(
                         "Here is the task based on what you give",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: MyTextStyle.w4s16(),
                       ),
                     ],
                   ),
@@ -222,19 +140,13 @@ class AiTaskAssistantScreen extends StatelessWidget {
                       spacing: 10,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Presentation for the client meeting",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: MyTextStyle.w5s16(),
                         ),
-                        const Text(
+                        Text(
                           "Slide about showcasing new products and how they fit customer needs",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: MyTextStyle.w4s16(),
                         ),
                         Container(
                           height: 1,
@@ -299,11 +211,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
                           horizontal: 15,
                         ),
                         hintText: "Ask Anything",
-                        hintStyle: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        hintStyle: MyTextStyle.w4s12().copyWith(fontSize: 14),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(

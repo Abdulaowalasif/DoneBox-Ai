@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
@@ -23,7 +25,7 @@ class CustomTextField extends StatelessWidget {
         width: double.infinity,
         height: 55,
         child: TextField(
-          style: TextStyle(color: Colors.black),
+          style: MyTextStyle.w4s16(),
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(

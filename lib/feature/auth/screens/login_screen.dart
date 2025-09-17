@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/core/utils/helper_functions.dart';
 import 'package:doneboxai/feature/auth/controller/login_controller.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
@@ -48,29 +49,17 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
 
                   // Title
-                  Text(
-                    "Sign In to your account",
-                    style: TextStyle(
-                      fontSize: titleFontSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text("Sign In to your account", style: MyTextStyle.w6s30()),
                   SizedBox(height: height * 0.01),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
-                    style: TextStyle(fontSize: subtitleFontSize),
+                    style: MyTextStyle.w4s16(),
                   ),
 
                   SizedBox(height: height * 0.04),
 
                   // Email label
-                  Text(
-                    "Your Email",
-                    style: TextStyle(
-                      fontSize: labelFontSize,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  Text("Your Email", style: MyTextStyle.w4s18()),
                   SizedBox(height: height * 0.01),
 
                   CustomTextField(
@@ -82,13 +71,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: height * 0.025),
 
                   // Password label
-                  Text(
-                    "Password",
-                    style: TextStyle(
-                      fontSize: labelFontSize,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  Text("Password", style: MyTextStyle.w4s18()),
                   SizedBox(height: height * 0.01),
 
                   Obx(
@@ -125,9 +108,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Forgot Password?",
-                        style: TextStyle(
+                        style: MyTextStyle.w4s16().copyWith(
                           color: AppColors.buttonColor,
-                          fontSize: subtitleFontSize,
                         ),
                       ),
                     ),
@@ -179,15 +161,14 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Don’t Have An Account?",
-                        style: TextStyle(fontSize: subtitleFontSize),
+                        style: MyTextStyle.w4s16(),
                       ),
                       TextButton(
                         onPressed: () => Get.toNamed(RoutesName.register),
                         child: Text(
                           "Sign Up",
-                          style: TextStyle(
+                          style: MyTextStyle.w4s16().copyWith(
                             color: AppColors.buttonColor,
-                            fontSize: subtitleFontSize,
                           ),
                         ),
                       ),

@@ -5,7 +5,6 @@ class AppStorage {
 
   static Future<void> initStorage() async {
     await GetStorage.init();
-    print("get storage initialized");
   }
 
   static void write(String key, dynamic value) {

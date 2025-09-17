@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+
+import '../../../core/conts/my_text_style.dart';
 
 class HelpSupportCard extends StatelessWidget {
   final IconData icon;
@@ -42,10 +43,7 @@ class HelpSupportCard extends StatelessWidget {
                 spacing: 10,
                 children: [
                   Icon(icon),
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  Text(title, style: MyTextStyle.w5s20()),
                 ],
               ),
               Icon(Icons.arrow_forward_ios),
@@ -53,24 +51,15 @@ class HelpSupportCard extends StatelessWidget {
           ),
           GestureDetector(
             onTap: text1Tap,
-            child: Text(
-              text1,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-            ),
+            child: Text(text1, style: MyTextStyle.w5s14()),
           ),
           GestureDetector(
             onTap: text2Tap,
-            child: Text(
-              text2 ?? "",
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-            ),
+            child: Text(text2 ?? "", style: MyTextStyle.w5s14()),
           ),
           GestureDetector(
             onTap: text3Tap,
-            child: Text(
-              text3 ?? '',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-            ),
+            child: Text(text3 ?? '', style: MyTextStyle.w5s14()),
           ),
         ],
       ),

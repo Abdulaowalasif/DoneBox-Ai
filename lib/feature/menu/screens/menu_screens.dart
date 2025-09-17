@@ -6,6 +6,7 @@ import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/conts/my_text_style.dart';
 import '../widgets/settings_item.dart';
 
 class MenuScreens extends StatelessWidget {
@@ -44,17 +45,11 @@ class MenuScreens extends StatelessWidget {
                         children: [
                           Text(
                             "Chester Bennington",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: MyTextStyle.w5s16(),
                           ),
                           Text(
                             "Chester@gmail.com",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: MyTextStyle.w4s12().copyWith(fontSize: 14),
                           ),
                         ],
                       ),
@@ -64,9 +59,7 @@ class MenuScreens extends StatelessWidget {
                     onPressed: () {},
                     child: Text(
                       "Upgrade",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
+                      style: MyTextStyle.w5s16().copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
@@ -74,129 +67,68 @@ class MenuScreens extends StatelessWidget {
                 ],
               ),
               //productivity tools section
-              Text(
-                "Productivity Tools",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.secondaryColor, width: 1),
-                ),
-                child: Column(
-                  children: [
-                    SettingsItem(
-                      icon: Icons.event_note,
-                      title: "Notes",
-                      onPress: () => Get.toNamed(RoutesName.notes),
-                    ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      onPress: () => Get.toNamed(RoutesName.insight),
-                      icon: Icons.network_cell,
-                      title: "Insights",
-                    ),
-                  ],
-                ),
+              Text("Productivity Tools", style: MyTextStyle.w5s20()),
+              Column(
+                spacing: 5,
+                children: [
+                  SettingsItem(
+                    icon: Icons.event_note,
+                    title: "Notes",
+                    onPress: () => Get.toNamed(RoutesName.notes),
+                  ),
+                  SettingsItem(
+                    onPress: () => Get.toNamed(RoutesName.insight),
+                    icon: Icons.network_cell,
+                    title: "Insights",
+                  ),
+                ],
               ),
               //settings and profile section
-              Text(
-                "Settings & Profile",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.secondaryColor, width: 1),
-                ),
-                child: Column(
-                  children: [
-                    // Obx(
-                    //   () => SettingsItem(
-                    //     icon: Icons.nightlight_outlined,
-                    //     title: "Dark Mode",
-                    //     showToggle: true,
-                    //     toggleChanged: () {
-                    //       controller.darkMode.value =
-                    //           !controller.darkMode.value;
-                    //     },
-                    //     isActive: controller.darkMode.value,
-                    //   ),
-                    // ),
-                    // Container(
-                    //   height: 1,
-                    //   color: AppColors.secondaryColor,
-                    //   width: double.infinity,
-                    // ),
-                    Obx(
-                      () => SettingsItem(
-                        isActive: controller.pauseNotification.value,
-                        icon: Icons.notifications_none,
-                        title: "Pause Notification",
-                        showToggle: true,
-                        toggleChanged: () =>
-                            controller.pauseNotification.value =
-                                !controller.pauseNotification.value,
-                      ),
+              Text("Settings & Profile", style: MyTextStyle.w5s20()),
+              Column(
+                spacing: 5,
+                children: [
+                  Obx(
+                    () => SettingsItem(
+                      isActive: controller.pauseNotification.value,
+                      icon: Icons.notifications_none,
+                      title: "Pause Notification",
+                      showToggle: true,
+                      toggleChanged: () => controller.pauseNotification.value =
+                          !controller.pauseNotification.value,
                     ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      onPress: () => Get.toNamed(RoutesName.notificationPref),
-                      icon: Icons.notification_add_outlined,
-                      title: "Notification Preferences",
-                    ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      onPress: () => Get.toNamed(RoutesName.subscription),
-                      icon: Icons.subscriptions_outlined,
-                      title: "Subscription Tier",
-                    ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      onPress: () {
-                        Get.toNamed(RoutesName.profile);
-                      },
-                      icon: Icons.settings,
-                      title: "Account Settings",
-                    ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      onPress: () => Get.toNamed(RoutesName.helpAndSupport),
-                      icon: Icons.help_outline,
-                      title: "Help & Support",
-                    ),
-                    Container(
-                      height: 1,
-                      color: AppColors.secondaryColor,
-                      width: double.infinity,
-                    ),
-                    SettingsItem(
-                      onPress: () => Get.toNamed(RoutesName.privacyPolicy),
-                      icon: Icons.lock_open,
-                      title: "Privacy & Policy",
-                    ),
-                  ],
-                ),
+                  ),
+                  SettingsItem(
+                    onPress: () => Get.toNamed(RoutesName.notificationPref),
+                    icon: Icons.notification_add_outlined,
+                    title: "Notification Preferences",
+                  ),
+                  SettingsItem(
+                    onPress: () => Get.toNamed(RoutesName.subscription),
+                    icon: Icons.subscriptions_outlined,
+                    title: "Subscription Tier",
+                  ),
+
+                  SettingsItem(
+                    onPress: () {
+                      Get.toNamed(RoutesName.profile);
+                    },
+                    icon: Icons.settings,
+                    title: "Account Settings",
+                  ),
+
+                  SettingsItem(
+                    onPress: () => Get.toNamed(RoutesName.helpAndSupport),
+                    icon: Icons.help_outline,
+                    title: "Help & Support",
+                  ),
+
+                  SettingsItem(
+                    onPress: () => Get.toNamed(RoutesName.privacyPolicy),
+                    icon: Icons.lock_open,
+                    title: "Privacy & Policy",
+                  ),
+                ],
               ),
             ],
           ),

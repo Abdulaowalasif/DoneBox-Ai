@@ -1,12 +1,15 @@
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/conts/my_text_style.dart';
+
 class ProductUpdateScreen extends StatelessWidget {
   const ProductUpdateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const data='''\u2022Read guides and tutorials for advanced DoneBox features
+    const data =
+        '''\u2022Read guides and tutorials for advanced DoneBox features
 \u2022Learn about upcoming releases before everyone else
 \u2022Get tips and insights to boost your daily workflow''';
 
@@ -20,15 +23,12 @@ class ProductUpdateScreen extends StatelessWidget {
             children: [
               Text(
                 "Don’t miss a thing! Our blog and update section keeps you informed about the latest features, improvements, and productivity tips.",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: MyTextStyle.w5s16(),
               ),
-              Text(
-                data,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+              Text(data, style: MyTextStyle.w5s16()),
               Text(
                 "Stay ahead with DoneBox, and make sure you never miss a new update or important announcement.",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: MyTextStyle.w5s16(),
               ),
             ],
           ),
