@@ -49,12 +49,12 @@ class NotificationScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Task Deadline Reminder",
-                            style: MyTextStyle.w5s18(),
+                            style: MyTextStyle.w5s18(context),
                           ),
                           SizedBox(height: 6),
                           Text(
                             "Your task ‘Submit Project Proposal’ is due tomorrow at 10:00 AM.",
-                            style: MyTextStyle.w4s12(),
+                            style: MyTextStyle.w4s12(context),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
@@ -66,7 +66,7 @@ class NotificationScreen extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       "1 min ago",
-                      style:  MyTextStyle.w4s12()
+                      style:  MyTextStyle.w4s12(context)
                     ),
                   ],
                 ),

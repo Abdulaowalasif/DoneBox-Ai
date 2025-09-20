@@ -12,6 +12,7 @@ class LiveChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: CustomAppbar(title: "Live Chat", onPress: () {}),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
@@ -53,7 +54,7 @@ class LiveChatScreen extends StatelessWidget {
             children: [
               Text(
                 "Need help using DoneBox? Our live chat support is here for you. Whether it’s a quick question or detailed guidance, we’ll respond in real-time.",
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
               Align(
                 alignment: Alignment.topRight,
@@ -73,7 +74,7 @@ class LiveChatScreen extends StatelessWidget {
                             color: AppColors.secondaryColor,
                           ),
                           child: Text(
-                            style: MyTextStyle.w5s16(),
+                            style: MyTextStyle.w5s16(context),
                             "Hey, got task for you—we need to prep a presentation for the client "
                             "meeting at 2pm, next Monday. It’s about showcasing our new products "
                             "and how they fit customer needs. Can you handle putting the slides together?",
@@ -105,7 +106,7 @@ class LiveChatScreen extends StatelessWidget {
                           child: Text(
                             "Hey, got task for you—we need to prep a presentation for the client meeting at 2pm, next",
                             softWrap: true,
-                            style: MyTextStyle.w5s16(),
+                            style: MyTextStyle.w5s16(context),
                           ),
                         ),
                       ),

@@ -44,17 +44,17 @@ class EmailSupportScreen extends StatelessWidget {
             children: [
               Text(
                 "Prefer email? We’ve got you covered. Send detailed questions, feedback, or bug reports, and we’ll respond within 24 hours.",
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
-              Text(data, style: MyTextStyle.w5s16()),
+              Text(data, style: MyTextStyle.w5s16(context)),
               RichText(
                 text: TextSpan(
                   text: "Contact Email : ",
-                  style: MyTextStyle.w5s16(),
+                  style: MyTextStyle.w5s16(context),
                   children: [
                     TextSpan(
                       text: "support@donebox.ai",
-                      style: MyTextStyle.w5s16().copyWith(
+                      style: MyTextStyle.w5s16(context).copyWith(
                         color: AppColors.primaryColor,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -67,11 +67,11 @@ class EmailSupportScreen extends StatelessWidget {
                 text: TextSpan(
                   text:
                       "DoneBox ensures you get timely assistance even if you’re not online for live chat. Simply compose your email and send it to ",
-                  style: MyTextStyle.w5s16(),
+                  style: MyTextStyle.w5s16(context),
                   children: [
                     TextSpan(
                       text: "support@donebox.ai",
-                      style: MyTextStyle.w5s16().copyWith(
+                      style: MyTextStyle.w5s16(context).copyWith(
                         color: AppColors.primaryColor,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -79,7 +79,7 @@ class EmailSupportScreen extends StatelessWidget {
                     ),
                     TextSpan(
                       text: " and our team will take care of the rest. ",
-                      style: MyTextStyle.w5s16(),
+                      style: MyTextStyle.w5s16(context),
                     ),
                   ],
                 ),

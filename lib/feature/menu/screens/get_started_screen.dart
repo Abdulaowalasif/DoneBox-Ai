@@ -26,7 +26,7 @@ Getting started is easy! Just set up your profile, connect your tasks, and let D
           padding: EdgeInsetsGeometry.all(20),
           child: Column(
             children: [
-              Text(data, style: MyTextStyle.w5s16()),
+              Text(data, style: MyTextStyle.w5s16(context)),
               SizedBox(height: MediaQuery.of(context).size.height * 0.3),
               CustomButton(
                 text: "Get Started",

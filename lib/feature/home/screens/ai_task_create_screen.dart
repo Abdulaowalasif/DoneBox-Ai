@@ -63,15 +63,15 @@ class AiTaskCreateScreen extends StatelessWidget {
                     children: [
                       Text(
                         controller.taskTitle.value,
-                        style: MyTextStyle.w5s20(),
+                        style: MyTextStyle.w5s20(context),
                       ),
                       Text(
                         controller.taskDescription.value,
-                        style: MyTextStyle.w4s16(),
+                        style: MyTextStyle.w4s16(context),
                       ),
 
                       // Category Section
-                      Text("Category", style: MyTextStyle.w5s20()),
+                      Text("Category", style: MyTextStyle.w5s20(context)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: controller.categories.map((cat) {
@@ -89,7 +89,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 cat,
-                                style: MyTextStyle.w5s14().copyWith(
+                                style: MyTextStyle.w5s14(context).copyWith(
                                   color: Colors.white,
                                 ),
                               ),
@@ -102,10 +102,10 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Due date", style: MyTextStyle.w5s16()),
+                          Text("Due date", style: MyTextStyle.w5s16(context)),
                           Text(
                             controller.dueDate.value,
-                            style:  MyTextStyle.w5s16()
+                            style:  MyTextStyle.w5s16(context)
                           ),
                         ],
                       ),
@@ -116,11 +116,11 @@ class AiTaskCreateScreen extends StatelessWidget {
                         children: [
                            Text(
                             "Time",
-                            style:  MyTextStyle.w5s16()
+                            style:  MyTextStyle.w5s16(context)
                           ),
                           Text(
                             controller.time.value,
-                            style:  MyTextStyle.w5s16()
+                            style:  MyTextStyle.w5s16(context)
                           ),
                         ],
                       ),
@@ -131,7 +131,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                         children: [
                            Text(
                             "Notification",
-                            style: MyTextStyle.w5s16()
+                            style: MyTextStyle.w5s16(context)
                           ),
                           Obx(
                             () => Switch(
@@ -153,7 +153,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                         children: [
                            Text(
                             "Reminder",
-                            style:  MyTextStyle.w5s16()
+                            style:  MyTextStyle.w5s16(context)
                           ),
                           Obx(
                             () => DropdownButtonHideUnderline(
@@ -196,7 +196,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                         children: [
                            Text(
                             "Priority",
-                            style:  MyTextStyle.w5s16()
+                            style:  MyTextStyle.w5s16(context)
                           ),
                           Obx(
                             () => DropdownButtonHideUnderline(
@@ -246,7 +246,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                                 controller.attachedFile.value.isEmpty
                                     ? "Attach File"
                                     : controller.attachedFile.value,
-                                style:  MyTextStyle.w4s16()
+                                style:  MyTextStyle.w4s16(context)
                               ),
                             ),
                           ),

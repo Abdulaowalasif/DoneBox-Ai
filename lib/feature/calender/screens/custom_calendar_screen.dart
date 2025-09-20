@@ -93,7 +93,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     children: [
                       Text(
                         "Add Event",
-                        style: MyTextStyle.w4s18().copyWith(
+                        style: MyTextStyle.w4s18(context).copyWith(
                           color: AppColors.primaryColor,
                         ),
                       ),
@@ -145,7 +145,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            child: Text("Cancel", style: MyTextStyle.w5s18()),
+                            child: Text("Cancel", style: MyTextStyle.w5s18(context)),
                             onPressed: () => Navigator.pop(context),
                           ),
                           const SizedBox(width: 10),
@@ -155,7 +155,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             ),
                             child: Text(
                               "Add",
-                              style: MyTextStyle.w5s18().copyWith(
+                              style: MyTextStyle.w5s18(context).copyWith(
                                 color: Colors.white,
                               ),
                             ),
@@ -281,7 +281,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
               ),
             ),
-            Text("Today", style: MyTextStyle.w5s20()),
+            Text("Today", style: MyTextStyle.w5s20(context)),
             Expanded(
               child: ListView.separated(
                 itemCount: _getEventsForDay(_selectedDay!).length,
@@ -293,15 +293,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
                   return ListTile(
                     leading: Icon(Icons.circle, size: 12, color: priorityColor),
-                    title: Text(event["title"], style: MyTextStyle.w5s18()),
+                    title: Text(event["title"], style: MyTextStyle.w5s18(context)),
                     subtitle: Text(
                       event["category"],
-                      style: MyTextStyle.w5s16(),
+                      style: MyTextStyle.w5s16(context),
                     ),
                     trailing: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(event["time"], style: MyTextStyle.w5s14()),
+                        Text(event["time"], style: MyTextStyle.w5s14(context)),
                         SizedBox(height: 4),
                         Container(
                           padding: EdgeInsets.symmetric(
@@ -314,7 +314,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                           child: Text(
                             event["priority"],
-                            style: MyTextStyle.w5s14().copyWith(
+                            style: MyTextStyle.w5s14(context).copyWith(
                               color: Colors.white,
                             ),
                           ),

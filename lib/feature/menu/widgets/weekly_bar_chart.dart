@@ -36,7 +36,7 @@ class WeeklyBarChart extends StatelessWidget {
                   if (value.toInt() >= 0 && value.toInt() < days.length) {
                     return Text(
                       days[value.toInt()],
-                      style: MyTextStyle.w4s12(),
+                      style: MyTextStyle.w4s12(context),
                     );
                   }
                   return const SizedBox.shrink();

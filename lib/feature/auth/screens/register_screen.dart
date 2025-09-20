@@ -42,16 +42,16 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Sign Up to\nyour account", style: MyTextStyle.w6s30()),
+                  Text("Sign Up to\nyour account", style: MyTextStyle.w6s30(context)),
                   SizedBox(height: 8),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
-                    style: MyTextStyle.w4s16(),
+                    style: MyTextStyle.w4s16(context),
                   ),
                   SizedBox(height: screenSize.height * 0.05),
 
                   // Dynamic height based on screen size
-                  Text("Your Name", style: MyTextStyle.w4s18()),
+                  Text("Your Name", style: MyTextStyle.w4s18(context)),
                   SizedBox(height: 8),
 
                   CustomTextField(
@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  Text("Your Email", style: MyTextStyle.w4s18()),
+                  Text("Your Email", style: MyTextStyle.w4s18(context)),
                   SizedBox(height: 8),
 
                   CustomTextField(
@@ -71,7 +71,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  Text("Phone", style: MyTextStyle.w4s18()),
+                  Text("Phone", style: MyTextStyle.w4s18(context)),
                   SizedBox(height: 8),
 
                   CustomTextField(
@@ -81,7 +81,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  Text("Password", style: MyTextStyle.w4s18()),
+                  Text("Password", style: MyTextStyle.w4s18(context)),
                   SizedBox(height: 8),
 
                   Obx(
@@ -129,7 +129,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             TextSpan(
                               text: 'Privacy Policy',
-                              style: MyTextStyle.w4s16().copyWith(
+                              style: MyTextStyle.w4s16(context).copyWith(
                                 color: AppColors.primaryColor,
                                 fontSize: 14,
                               ),
@@ -197,7 +197,7 @@ class RegisterScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Already Have An Account?",
-                        style: MyTextStyle.w4s16(),
+                        style: MyTextStyle.w4s16(context),
                       ),
                       TextButton(
                         onPressed: () {
@@ -205,7 +205,7 @@ class RegisterScreen extends StatelessWidget {
                         },
                         child: Text(
                           "Sign In",
-                          style: MyTextStyle.w4s16().copyWith(
+                          style: MyTextStyle.w4s16(context).copyWith(
                             color: AppColors.primaryColor,
                           ),
                         ),

@@ -38,15 +38,15 @@ class ProgressCard extends StatelessWidget {
         children: [
           Text(
             "Good Morning, Hakim",
-            style: MyTextStyle.w4s16().copyWith(color: Colors.white),
+            style: MyTextStyle.w4s16(context).copyWith(color: Colors.white),
           ),
           Text(
             "Today’s progress summary",
-            style: MyTextStyle.w7s20().copyWith(color: Colors.white),
+            style: MyTextStyle.w7s20(context).copyWith(color: Colors.white),
           ),
           Text(
             "5 Tasks",
-            style: MyTextStyle.w4s16().copyWith(color: Colors.white),
+            style: MyTextStyle.w4s16(context).copyWith(color: Colors.white),
           ),
           Row(
             children: [
@@ -92,13 +92,13 @@ class ProgressCard extends StatelessWidget {
                       children: [
                         Text(
                           "Progress",
-                          style: MyTextStyle.w5s20().copyWith(
+                          style: MyTextStyle.w5s20(context).copyWith(
                             color: Colors.white,
                           ),
                         ),
                         Text(
                           "40%",
-                          style: MyTextStyle.w5s18().copyWith(
+                          style: MyTextStyle.w5s18(context).copyWith(
                             color: Colors.white,
                           ),
                         ),

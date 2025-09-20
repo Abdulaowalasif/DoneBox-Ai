@@ -27,10 +27,10 @@ class AiAssistantItemCard extends StatelessWidget {
           spacing: 20,
           children: [
             Icon(icon, color: iconColor),
-            Text(category, style: MyTextStyle.w5s16()),
+            Text(category, style: MyTextStyle.w5s16(context)),
           ],
         ),
-        Text(title, style: MyTextStyle.w5s16().copyWith(color: textColor)),
+        Text(title, style: MyTextStyle.w5s16(context).copyWith(color: textColor)),
       ],
     );
   }

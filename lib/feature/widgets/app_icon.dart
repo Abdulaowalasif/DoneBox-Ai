@@ -24,7 +24,7 @@ class AppIcon extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           "DoneBox Ai",
-          style: MyTextStyle.appIcon()
+          style: MyTextStyle.appIcon(context)
         ),
       ],
     );

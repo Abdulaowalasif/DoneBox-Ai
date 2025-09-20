@@ -38,7 +38,7 @@ class SettingsItem extends StatelessWidget {
                 children: [
                   Icon(icon, size: 32),
                   const SizedBox(width: 20),
-                  Text(title, style: MyTextStyle.w5s16()),
+                  Text(title, style: MyTextStyle.w5s16(context)),
                 ],
               ),
               showToggle == true

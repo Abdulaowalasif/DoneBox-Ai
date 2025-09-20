@@ -44,7 +44,7 @@ class TaskDetailsScreen extends StatelessWidget {
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Task Details", style: MyTextStyle.w5s20()),
+                    Text("Task Details", style: MyTextStyle.w5s20(context)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [const Text("Category"), const Text("Work")],
@@ -68,7 +68,7 @@ class TaskDetailsScreen extends StatelessWidget {
                               controller.activeNotification.value =
                                   !controller.activeNotification.value;
                             },
-                            activeColor: AppColors.primaryColor,
+                            activeTrackColor: AppColors.primaryColor,
                             inactiveThumbColor: Colors.grey,
                           ),
                         ),
@@ -84,7 +84,7 @@ class TaskDetailsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Subtasks", style: MyTextStyle.w5s20()),
+                  Text("Subtasks", style: MyTextStyle.w5s20(context)),
                   TextButton(
                     onPressed: () {
                       showDialog(
@@ -105,7 +105,7 @@ class TaskDetailsScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Add Subtask",
-                                    style: MyTextStyle.w5s20().copyWith(
+                                    style: MyTextStyle.w5s20(ctx).copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
@@ -114,7 +114,7 @@ class TaskDetailsScreen extends StatelessWidget {
                                     controller: subtaskController,
                                     decoration: InputDecoration(
                                       hintText: "Enter subtask",
-                                      hintStyle: MyTextStyle.w4s16(),
+                                      hintStyle: MyTextStyle.w4s16(context),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
@@ -126,7 +126,7 @@ class TaskDetailsScreen extends StatelessWidget {
                                         onPressed: () => Navigator.pop(ctx),
                                         child: Text(
                                           "Cancel",
-                                          style: MyTextStyle.w4s16(),
+                                          style: MyTextStyle.w4s16(ctx),
                                         ),
                                       ),
                                       CustomButton(
@@ -154,7 +154,7 @@ class TaskDetailsScreen extends StatelessWidget {
                     },
                     child: Text(
                       "+ Add SubTask",
-                      style: MyTextStyle.w5s20().copyWith(
+                      style: MyTextStyle.w5s20(context).copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
@@ -186,7 +186,7 @@ class TaskDetailsScreen extends StatelessWidget {
               ),
 
               /// Attachments
-              Text("Attachments", style: MyTextStyle.w5s20()),
+              Text("Attachments", style: MyTextStyle.w5s20(context)),
 
               Obx(
                 () => Wrap(
@@ -222,7 +222,7 @@ class TaskDetailsScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             Text(
                               "Add File",
-                              style: MyTextStyle.w4s18().copyWith(
+                              style: MyTextStyle.w4s18(context).copyWith(
                                 color: AppColors.primaryColor,
                               ),
                             ),

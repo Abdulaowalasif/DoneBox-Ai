@@ -24,14 +24,14 @@ class CommunityForumScreen extends StatelessWidget {
               Text(
                 "Join the DoneBox community and discover new ways to enhance your productivity.",
 
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
-              Text(data, style: MyTextStyle.w5s16()),
+              Text(data, style: MyTextStyle.w5s16(context)),
               Text(
                 "Collaboration and knowledge sharing help everyone get the most out of DoneBox.",
 
-                style: MyTextStyle.w5s16(),
-              ),
+                style: MyTextStyle.w5s16(context),
+                                         ),
             ],
           ),
         ),

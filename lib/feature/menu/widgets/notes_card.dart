@@ -33,11 +33,11 @@ class NotesCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: MyTextStyle.w5s20()),
-              Text(time, style: MyTextStyle.w4s12()),
+              Text(title, style: MyTextStyle.w5s20(context)),
+              Text(time, style: MyTextStyle.w4s12(context)),
             ],
           ),
-          Text(subTitle, style: MyTextStyle.w5s14()),
+          Text(subTitle, style: MyTextStyle.w5s14(context)),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.secondaryColor,

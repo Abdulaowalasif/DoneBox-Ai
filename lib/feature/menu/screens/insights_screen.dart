@@ -36,9 +36,9 @@ class InsightsScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Weekly completion rate",
-                          style: MyTextStyle.w5s20(),
+                          style: MyTextStyle.w5s20(context),
                         ),
-                        Text("50%", style: MyTextStyle.w5s14()),
+                        Text("50%", style: MyTextStyle.w5s14(context)),
                       ],
                     ),
                     SizedBox(
@@ -53,13 +53,13 @@ class InsightsScreen extends StatelessWidget {
                     ),
                     Text(
                       "34 tasks completed out of 42 tasks",
-                      style: MyTextStyle.w5s14(),
+                      style: MyTextStyle.w5s14(context),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 20),
-              Text("Productivity Trend", style: MyTextStyle.w5s20()),
+              Text("Productivity Trend", style: MyTextStyle.w5s20(context)),
               const SizedBox(height: 10),
               Container(
                 width: double.infinity,
@@ -75,7 +75,7 @@ class InsightsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text("Category Breakdown", style: MyTextStyle.w5s20()),
+              Text("Category Breakdown", style: MyTextStyle.w5s20(context)),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,7 +95,7 @@ class InsightsScreen extends StatelessWidget {
                               color: AppColors.primaryColor,
                             ),
                           ),
-                          Text("Work", style: MyTextStyle.w5s14()),
+                          Text("Work", style: MyTextStyle.w5s14(context)),
                         ],
                       ),
                       Row(
@@ -109,7 +109,7 @@ class InsightsScreen extends StatelessWidget {
                               color: Color(0xFFCEA917),
                             ),
                           ),
-                          Text("Personal", style: MyTextStyle.w5s14()),
+                          Text("Personal", style: MyTextStyle.w5s14(context)),
                         ],
                       ),
                     ],
@@ -129,7 +129,7 @@ class InsightsScreen extends StatelessWidget {
                       Row(
                         spacing: 10,
                         children: [
-                          Text("70%", style: MyTextStyle.w5s14()),
+                          Text("70%", style: MyTextStyle.w5s14(context)),
                           Container(
                             height: 15,
                             width: 15,
@@ -143,7 +143,7 @@ class InsightsScreen extends StatelessWidget {
                       Row(
                         spacing: 10,
                         children: [
-                          Text("30%", style: MyTextStyle.w5s14()),
+                          Text("30%", style: MyTextStyle.w5s14(context)),
                           Container(
                             height: 15,
                             width: 15,
@@ -167,10 +167,10 @@ class InsightsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("AI Analysis", style: MyTextStyle.w5s20()),
+                        Text("AI Analysis", style: MyTextStyle.w5s20(context)),
                         Text(
                           "Your productivity increased by 12% compared to last week. Most of your completed work are in the work  category.",
-                          style: MyTextStyle.w5s14(),
+                          style: MyTextStyle.w5s14(context),
                         ),
                       ],
                     ),
@@ -182,7 +182,7 @@ class InsightsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Recommendations", style: MyTextStyle.w5s20()),
+                  Text("Recommendations", style: MyTextStyle.w5s20(context)),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondaryColor,
@@ -190,7 +190,7 @@ class InsightsScreen extends StatelessWidget {
                     onPressed: () {
                       Share.share("Share your insights with others!");
                     },
-                    child: Text("Share insights", style: MyTextStyle.w5s14()),
+                    child: Text("Share insights", style: MyTextStyle.w5s14(context)),
                   ),
                 ],
               ),
@@ -198,7 +198,7 @@ class InsightsScreen extends StatelessWidget {
               Text(
                 "\u2022 Try adding focus session in the morning",
 
-                style: MyTextStyle.w5s14(),
+                style: MyTextStyle.w5s14(context),
               ),
               const SizedBox(height: 10),
 
@@ -210,7 +210,7 @@ class InsightsScreen extends StatelessWidget {
                     Text(
                       "\u2022 Prioritize pending personal task",
 
-                      style: MyTextStyle.w5s14(),
+                      style: MyTextStyle.w5s14(context),
                     ),
                     Row(
                       spacing: 10,
@@ -219,7 +219,7 @@ class InsightsScreen extends StatelessWidget {
                         Text(
                           "Export as Pdf",
 
-                          style: MyTextStyle.w5s14().copyWith(
+                          style: MyTextStyle.w5s14(context).copyWith(
                             color: AppColors.primaryColor,
                           ),
                         ),

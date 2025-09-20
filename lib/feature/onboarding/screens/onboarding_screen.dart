@@ -41,7 +41,7 @@ class OnboardingPager extends StatelessWidget {
                   },
                   child: Text(
                     "Skip",
-                    style:MyTextStyle.w7s20()
+                    style:MyTextStyle.w7s20(context)
                   ),
                 ),
               ),

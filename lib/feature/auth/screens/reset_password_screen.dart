@@ -53,7 +53,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   /// Title
                   Text(
                     "New Password",
-                    style: MyTextStyle.w4s18(),
+                    style: MyTextStyle.w4s18(context),
                   ),
                   SizedBox(height: height * 0.015),
 
@@ -81,7 +81,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   /// Confirm Password
                   Text(
                     "Confirm Password",
-                    style: MyTextStyle.w4s18()
+                    style: MyTextStyle.w4s18(context)
                   ),
                   SizedBox(height: height * 0.015),
 
@@ -152,7 +152,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 /// Success Title
                                 Text(
                                   'Password Changed!',
-                                  style: MyTextStyle.w5s20()
+                                  style: MyTextStyle.w5s20(context)
                                 ),
 
                                 SizedBox(height: height * 0.015),
@@ -161,7 +161,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 Text(
                                   'Return to the login page to enter your\naccount with your new password.',
                                   textAlign: TextAlign.center,
-                                  style: MyTextStyle.w4s18(),
+                                  style: MyTextStyle.w4s18(context),
                                 ),
 
                                 SizedBox(height: height * 0.03),

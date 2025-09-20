@@ -42,13 +42,13 @@ class VerifyCodeScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
 
                   /// Title
-                  Text("Verify Code", style: MyTextStyle.w6s30()),
+                  Text("Verify Code", style: MyTextStyle.w6s30(context)),
                   const SizedBox(height: 8),
 
                   /// Subtitle
                   Text(
                     "Please check your email and enter the code",
-                    style: MyTextStyle.w4s16(),
+                    style: MyTextStyle.w4s16(context),
                   ),
                   SizedBox(height: height * 0.06),
 
@@ -68,7 +68,7 @@ class VerifyCodeScreen extends StatelessWidget {
                             focusNode: controller.focusNodes[index],
                             maxLength: 1,
                             textAlign: TextAlign.center,
-                            style: MyTextStyle.w5s20(),
+                            style: MyTextStyle.w5s20(context),
                             keyboardType: TextInputType.number,
                             onChanged: (value) =>
                                 controller.onOtpEntered(value, index),
@@ -111,7 +111,7 @@ class VerifyCodeScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '2:32',
-                      style: MyTextStyle.w5s18().copyWith(
+                      style: MyTextStyle.w5s18(context).copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
@@ -122,12 +122,12 @@ class VerifyCodeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Didn’t receive code?", style: MyTextStyle.w4s16()),
+                      Text("Didn’t receive code?", style: MyTextStyle.w4s16(context)),
                       TextButton(
                         onPressed: () {},
                         child: Text(
                           "Resend it",
-                          style: MyTextStyle.w4s16().copyWith(
+                          style: MyTextStyle.w4s16(context).copyWith(
                             color: AppColors.buttonColor,
                           ),
                         ),

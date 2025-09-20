@@ -57,7 +57,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
                                         color: AppColors.secondaryColor,
                                       ),
                                       child: Text(
-                                        style: MyTextStyle.w5s16(),
+                                        style: MyTextStyle.w5s16(context),
                                         "Hey, got task for you—we need to prep a presentation for the client "
                                         "meeting at 2pm, next Monday. It’s about showcasing our new products "
                                         "and how they fit customer needs. Can you handle putting the slides together?",
@@ -97,7 +97,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
                                       child: Text(
                                         "Hey, got task for you—we need to prep a presentation for the client meeting at 2pm, next",
                                         softWrap: true,
-                                        style: MyTextStyle.w5s16(),
+                                        style: MyTextStyle.w5s16(context),
                                       ),
                                     ),
                                   ),
@@ -122,7 +122,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
                       ),
                       Text(
                         "Here is the task based on what you give",
-                        style: MyTextStyle.w4s16(),
+                        style: MyTextStyle.w4s16(context),
                       ),
                     ],
                   ),
@@ -142,11 +142,11 @@ class AiTaskAssistantScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Presentation for the client meeting",
-                          style: MyTextStyle.w5s16(),
+                          style: MyTextStyle.w5s16(context),
                         ),
                         Text(
                           "Slide about showcasing new products and how they fit customer needs",
-                          style: MyTextStyle.w4s16(),
+                          style: MyTextStyle.w4s16(context),
                         ),
                         Container(
                           height: 1,
@@ -211,7 +211,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
                           horizontal: 15,
                         ),
                         hintText: "Ask Anything",
-                        hintStyle: MyTextStyle.w4s12().copyWith(fontSize: 14),
+                        hintStyle: MyTextStyle.w4s12(context).copyWith(fontSize: 14),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(

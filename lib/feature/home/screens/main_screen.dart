@@ -52,7 +52,7 @@ class MainScreen extends StatelessWidget {
             backgroundColor: AppColors.secondaryColor,
             label: "Ai Assistant",
             labelBackgroundColor: AppColors.secondaryColor,
-            labelStyle: MyTextStyle.w4s16(),
+            labelStyle: MyTextStyle.w4s16(context),
             child: Image.asset(ImageConst.floatingAi, height: 28),
             onTap: () {
               Get.toNamed(RoutesName.aiAssistant);
@@ -62,7 +62,7 @@ class MainScreen extends StatelessWidget {
             backgroundColor: AppColors.secondaryColor,
             label: "Manual",
             labelBackgroundColor: AppColors.secondaryColor,
-            labelStyle: MyTextStyle.w4s16(),
+            labelStyle: MyTextStyle.w4s16(context),
             child: Image.asset(ImageConst.hand, height: 28),
             onTap: () {
               Get.toNamed(RoutesName.createNewTask);

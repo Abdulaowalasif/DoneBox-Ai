@@ -26,7 +26,7 @@ class ProductivityTrendChart extends StatelessWidget {
                 interval: 1,
                 showTitles: true,
                 getTitlesWidget: (value, meta) {
-                  final style = MyTextStyle.w4s16();
+                  final style = MyTextStyle.w4s16(context);
                   switch (value.toInt()) {
                     case 0:
                       return Text("Sat", style: style);

@@ -25,13 +25,13 @@ class ReportBugScreen extends StatelessWidget {
             children: [
               Text(
                 "Found a bug? Reporting it helps us make DoneBox better for everyone.",
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
-              Text(data, style: MyTextStyle.w5s16()),
+              Text(data, style: MyTextStyle.w5s16(context)),
               Text(
                 "Our team will prioritize fixing the bug, and your feedback will directly influence future updates.",
 
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
               const SizedBox(height: 20),
               TextField(

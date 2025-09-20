@@ -44,7 +44,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Task Details", style: MyTextStyle.w5s20()),
+                    Text("Task Details", style: MyTextStyle.w5s20(context)),
 
                     /// Category
                     Row(
@@ -242,7 +242,7 @@ class CreateNewTaskScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Subtasks", style: MyTextStyle.w5s20()),
+                  Text("Subtasks", style: MyTextStyle.w5s20(context)),
                   TextButton(
                     onPressed: () {
                       showDialog(
@@ -263,7 +263,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Add Subtask",
-                                    style: MyTextStyle.w5s20().copyWith(
+                                    style: MyTextStyle.w5s20(context).copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
@@ -283,7 +283,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                                         onPressed: () => Navigator.pop(ctx),
                                         child: Text(
                                           "Cancel",
-                                          style: MyTextStyle.w4s18(),
+                                          style: MyTextStyle.w4s18(context),
                                         ),
                                       ),
                                       CustomButton(
@@ -311,7 +311,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                     },
                     child: Text(
                       "+ Add SubTask",
-                      style: MyTextStyle.w5s20().copyWith(
+                      style: MyTextStyle.w5s20(context).copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
@@ -346,7 +346,7 @@ class CreateNewTaskScreen extends StatelessWidget {
 
               /// Attachments
               /// Attachments
-              Text("Attachments", style: MyTextStyle.w5s20()),
+              Text("Attachments", style: MyTextStyle.w5s20(context)),
 
               /// Files row
               Obx(
@@ -383,7 +383,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             Text(
                               "Add File",
-                              style: MyTextStyle.w4s18().copyWith(
+                              style: MyTextStyle.w4s18(context).copyWith(
                                 color: AppColors.primaryColor,
                               ),
                             ),
@@ -422,7 +422,7 @@ class CreateNewTaskScreen extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
-                                    style: MyTextStyle.w4s18().copyWith(
+                                    style: MyTextStyle.w4s18(context).copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),

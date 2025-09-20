@@ -49,17 +49,17 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
 
                   // Title
-                  Text("Sign In to your account", style: MyTextStyle.w6s30()),
+                  Text("Sign In to your account", style: MyTextStyle.w6s30(context)),
                   SizedBox(height: height * 0.01),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
-                    style: MyTextStyle.w4s16(),
+                    style: MyTextStyle.w4s16(context),
                   ),
 
                   SizedBox(height: height * 0.04),
 
                   // Email label
-                  Text("Your Email", style: MyTextStyle.w4s18()),
+                  Text("Your Email", style: MyTextStyle.w4s18(context)),
                   SizedBox(height: height * 0.01),
 
                   CustomTextField(
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: height * 0.025),
 
                   // Password label
-                  Text("Password", style: MyTextStyle.w4s18()),
+                  Text("Password", style: MyTextStyle.w4s18(context)),
                   SizedBox(height: height * 0.01),
 
                   Obx(
@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Forgot Password?",
-                        style: MyTextStyle.w4s16().copyWith(
+                        style: MyTextStyle.w4s16(context).copyWith(
                           color: AppColors.buttonColor,
                         ),
                       ),
@@ -161,13 +161,13 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Don’t Have An Account?",
-                        style: MyTextStyle.w4s16(),
+                        style: MyTextStyle.w4s16(context),
                       ),
                       TextButton(
                         onPressed: () => Get.toNamed(RoutesName.register),
                         child: Text(
                           "Sign Up",
-                          style: MyTextStyle.w4s16().copyWith(
+                          style: MyTextStyle.w4s16(context).copyWith(
                             color: AppColors.buttonColor,
                           ),
                         ),

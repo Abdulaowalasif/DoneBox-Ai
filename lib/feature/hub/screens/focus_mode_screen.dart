@@ -28,7 +28,7 @@ class FocusModeScreen extends StatelessWidget {
                 Obx(
                   () => Text(
                     controller.timer.value.toString(),
-                    style: MyTextStyle.w6s30(),
+                    style: MyTextStyle.w6s30(context),
                   ),
                 ),
                 Obx(
@@ -52,11 +52,11 @@ class FocusModeScreen extends StatelessWidget {
                     spacing: 10,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Session Settings", style: MyTextStyle.w5s16()),
+                      Text("Session Settings", style: MyTextStyle.w5s16(context)),
                       Obx(
                         () => Text(
                           controller.sessionDescription.value,
-                          style: MyTextStyle.w4s16(),
+                          style: MyTextStyle.w4s16(context),
                         ),
                       ),
                       Row(
@@ -66,7 +66,7 @@ class FocusModeScreen extends StatelessWidget {
                             spacing: 10,
                             children: [
                               Icon(Icons.watch_later_outlined),
-                              Text("Duration", style: MyTextStyle.w5s16()),
+                              Text("Duration", style: MyTextStyle.w5s16(context)),
                             ],
                           ),
                           Obx(
@@ -119,13 +119,13 @@ class FocusModeScreen extends StatelessWidget {
                             spacing: 10,
                             children: [
                               Icon(Icons.watch_later_outlined),
-                              Text("Breaks", style: MyTextStyle.w5s16()),
+                              Text("Breaks", style: MyTextStyle.w5s16(context)),
                             ],
                           ),
                           Obx(
                             () => Text(
                               controller.selectedBreak.value,
-                              style: MyTextStyle.w5s16(),
+                              style: MyTextStyle.w5s16(context),
                             ),
                           ),
                         ],
@@ -137,7 +137,7 @@ class FocusModeScreen extends StatelessWidget {
                             spacing: 10,
                             children: [
                               Icon(Icons.alarm),
-                              Text("Sounds", style: MyTextStyle.w5s16()),
+                              Text("Sounds", style: MyTextStyle.w5s16(context)),
                             ],
                           ),
                           Obx(
@@ -147,7 +147,7 @@ class FocusModeScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     controller.selectedSound.value,
-                                    style: MyTextStyle.w5s16().copyWith(
+                                    style: MyTextStyle.w5s16(context).copyWith(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
@@ -180,12 +180,12 @@ class FocusModeScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Linked task",
-                            style: MyTextStyle.w5s16().copyWith(
+                            style: MyTextStyle.w5s16(context).copyWith(
                               color: AppColors.primaryColor,
                             ),
                           ),
                           TextButton(
-                            child: Text("Change", style: MyTextStyle.w5s16()),
+                            child: Text("Change", style: MyTextStyle.w5s16(context)),
                             onPressed: () => controller.changeLinkedTask(),
                           ),
                         ],
@@ -200,13 +200,13 @@ class FocusModeScreen extends StatelessWidget {
                                 const Icon(CupertinoIcons.text_alignleft),
                                 Text(
                                   controller.linkedTask.value,
-                                  style: MyTextStyle.w5s16(),
+                                  style: MyTextStyle.w5s16(context),
                                 ),
                               ],
                             ),
                             Text(
                               controller.linkedTaskCategory.value,
-                              style: MyTextStyle.w5s16(),
+                              style: MyTextStyle.w5s16(context),
                             ),
                           ],
                         ),
@@ -238,12 +238,12 @@ class FocusModeScreen extends StatelessWidget {
                         Text(
                           controller.sessionMessage.value,
 
-                          style: MyTextStyle.w5s16(),
+                          style: MyTextStyle.w5s16(context),
                         ),
                         Text(
                           "${controller.completedSessions.value} focus sessions completed.",
 
-                          style: MyTextStyle.w5s16(),
+                          style: MyTextStyle.w5s16(context),
                         ),
                       ],
                     ),

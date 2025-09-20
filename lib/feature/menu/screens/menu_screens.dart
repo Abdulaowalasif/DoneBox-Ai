@@ -26,48 +26,35 @@ class MenuScreens extends StatelessWidget {
           padding: EdgeInsetsGeometry.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 20,
+            spacing: 10,
             children: [
               //user profile header section
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    spacing: 20,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        radius: 30,
-                        backgroundImage: AssetImage(ImageConst.user),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Chester Bennington",
-                            style: MyTextStyle.w5s16(),
-                          ),
-                          Text(
-                            "Chester@gmail.com",
-                            style: MyTextStyle.w4s12().copyWith(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ],
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 25,
+                  backgroundImage: AssetImage(ImageConst.user),
+                ),
+                title: Text(
+                  "Chester Bennington",
+                  style: MyTextStyle.w5s16(context),
+                ),
+                subtitle: Text(
+                  "Chester@gmail.com",
+                  style: MyTextStyle.w4s12(context).copyWith(fontSize: 14),
+                ),
+                trailing: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Upgrade",
+                    style: MyTextStyle.w5s16(
+                      context,
+                    ).copyWith(color: AppColors.primaryColor),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Upgrade",
-                      style: MyTextStyle.w5s16().copyWith(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               //productivity tools section
-              Text("Productivity Tools", style: MyTextStyle.w5s20()),
+              Text("Productivity Tools", style: MyTextStyle.w5s20(context)),
               Column(
                 spacing: 5,
                 children: [
@@ -84,7 +71,7 @@ class MenuScreens extends StatelessWidget {
                 ],
               ),
               //settings and profile section
-              Text("Settings & Profile", style: MyTextStyle.w5s20()),
+              Text("Settings & Profile", style: MyTextStyle.w5s20(context)),
               Column(
                 spacing: 5,
                 children: [
@@ -127,6 +114,11 @@ class MenuScreens extends StatelessWidget {
                     onPress: () => Get.toNamed(RoutesName.privacyPolicy),
                     icon: Icons.lock_open,
                     title: "Privacy & Policy",
+                  ),
+                  SettingsItem(
+                    onPress: () => Get.toNamed(RoutesName.login),
+                    icon: Icons.login_outlined,
+                    title: "Log out",
                   ),
                 ],
               ),

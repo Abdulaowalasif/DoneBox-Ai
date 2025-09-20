@@ -23,12 +23,12 @@ class ProductUpdateScreen extends StatelessWidget {
             children: [
               Text(
                 "Don’t miss a thing! Our blog and update section keeps you informed about the latest features, improvements, and productivity tips.",
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
-              Text(data, style: MyTextStyle.w5s16()),
+              Text(data, style: MyTextStyle.w5s16(context)),
               Text(
                 "Stay ahead with DoneBox, and make sure you never miss a new update or important announcement.",
-                style: MyTextStyle.w5s16(),
+                style: MyTextStyle.w5s16(context),
               ),
             ],
           ),

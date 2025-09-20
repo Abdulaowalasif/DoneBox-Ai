@@ -43,7 +43,7 @@ class HelpSupportCard extends StatelessWidget {
                 spacing: 10,
                 children: [
                   Icon(icon),
-                  Text(title, style: MyTextStyle.w5s20()),
+                  Text(title, style: MyTextStyle.w5s20(context)),
                 ],
               ),
               Icon(Icons.arrow_forward_ios),
@@ -51,15 +51,15 @@ class HelpSupportCard extends StatelessWidget {
           ),
           GestureDetector(
             onTap: text1Tap,
-            child: Text(text1, style: MyTextStyle.w5s14()),
+            child: Text(text1, style: MyTextStyle.w5s14(context)),
           ),
           GestureDetector(
             onTap: text2Tap,
-            child: Text(text2 ?? "", style: MyTextStyle.w5s14()),
+            child: Text(text2 ?? "", style: MyTextStyle.w5s14(context)),
           ),
           GestureDetector(
             onTap: text3Tap,
-            child: Text(text3 ?? '', style: MyTextStyle.w5s14()),
+            child: Text(text3 ?? '', style: MyTextStyle.w5s14(context)),
           ),
         ],
       ),

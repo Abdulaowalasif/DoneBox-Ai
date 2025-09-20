@@ -42,9 +42,9 @@ class QuickActionScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Sunday,May 25",
-                            style: MyTextStyle.w5s20().copyWith(
-                              color: AppColors.primaryColor,
-                            ),
+                            style: MyTextStyle.w5s20(
+                              context,
+                            ).copyWith(color: AppColors.primaryColor),
                           ),
                           Row(
                             spacing: 10,
@@ -62,7 +62,7 @@ class QuickActionScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Work on proposal",
-                                style: MyTextStyle.w5s16(),
+                                style: MyTextStyle.w5s16(context),
                               ),
                             ],
                           ),
@@ -82,7 +82,7 @@ class QuickActionScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Client Feedback",
-                                style: MyTextStyle.w5s16(),
+                                style: MyTextStyle.w5s16(context),
                               ),
                             ],
                           ),
@@ -102,15 +102,15 @@ class QuickActionScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Outline Presentation",
-                                style: MyTextStyle.w5s16(),
+                                style: MyTextStyle.w5s16(context),
                               ),
                             ],
                           ),
                           Text(
                             "See More",
-                            style: MyTextStyle.w5s20().copyWith(
-                              color: AppColors.primaryColor,
-                            ),
+                            style: MyTextStyle.w5s20(
+                              context,
+                            ).copyWith(color: AppColors.primaryColor),
                           ),
                           Container(color: AppColors.primaryColor, height: 1),
                           const SizedBox(height: 10),
@@ -123,15 +123,15 @@ class QuickActionScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Overall Progress",
-                                    style: MyTextStyle.w5s20().copyWith(
-                                      color: AppColors.primaryColor,
-                                    ),
+                                    style: MyTextStyle.w5s20(
+                                      context,
+                                    ).copyWith(color: AppColors.primaryColor),
                                   ),
                                   Text(
                                     "50%",
-                                    style: MyTextStyle.w5s20().copyWith(
-                                      color: AppColors.primaryColor,
-                                    ),
+                                    style: MyTextStyle.w5s20(
+                                      context,
+                                    ).copyWith(color: AppColors.primaryColor),
                                   ),
                                 ],
                               ),
@@ -149,17 +149,20 @@ class QuickActionScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text("Insights", style: MyTextStyle.w5s20()),
+                    Text("Insights", style: MyTextStyle.w5s20(context)),
                     Text(
                       "You completed 80% of your planned tasks today. Great job staying focused!",
-                      style: MyTextStyle.w5s14(),
+                      style: MyTextStyle.w5s14(context),
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Upcoming Tasks", style: MyTextStyle.w5s20()),
-                        Text("Monday", style: MyTextStyle.w5s16()),
+                        Text(
+                          "Upcoming Tasks",
+                          style: MyTextStyle.w5s20(context),
+                        ),
+                        Text("Monday", style: MyTextStyle.w5s16(context)),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -177,10 +180,13 @@ class QuickActionScreen extends StatelessWidget {
                                 color: Colors.red,
                               ),
                             ),
-                            Text("Call Sarah", style: MyTextStyle.w4s16()),
+                            Text(
+                              "Call Sarah",
+                              style: MyTextStyle.w4s16(context),
+                            ),
                           ],
                         ),
-                        Text("10:00 AM", style: MyTextStyle.w5s20()),
+                        Text("10:00 AM", style: MyTextStyle.w5s20(context)),
                       ],
                     ),
                     Row(
@@ -197,10 +203,13 @@ class QuickActionScreen extends StatelessWidget {
                                 color: Colors.green,
                               ),
                             ),
-                            Text("go to the gym", style: MyTextStyle.w4s16()),
+                            Text(
+                              "go to the gym",
+                              style: MyTextStyle.w4s16(context),
+                            ),
                           ],
                         ),
-                        Text("10:00 AM", style: MyTextStyle.w5s20()),
+                        Text("10:00 AM", style: MyTextStyle.w5s20(context)),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -217,9 +226,9 @@ class QuickActionScreen extends StatelessWidget {
                         onPressed: () => Get.back(),
                         child: Text(
                           "Close",
-                          style: MyTextStyle.w5s18().copyWith(
-                            color: AppColors.primaryColor,
-                          ),
+                          style: MyTextStyle.w5s18(
+                            context,
+                          ).copyWith(color: AppColors.primaryColor),
                         ),
                       ),
                     ),
@@ -229,12 +238,12 @@ class QuickActionScreen extends StatelessWidget {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Text", style: MyTextStyle.w5s20()),
+                  Text("Text", style: MyTextStyle.w5s20(context)),
                   TextField(
                     maxLines: 3,
                     decoration: InputDecoration(
                       hintText: "Enter text",
-                      hintStyle: MyTextStyle.w4s16(),
+                      hintStyle: MyTextStyle.w4s16(context),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -246,12 +255,12 @@ class QuickActionScreen extends StatelessWidget {
                     width: double.infinity,
                   ),
                   const SizedBox(height: 20),
-                  Text(controller.title, style: MyTextStyle.w5s20()),
+                  Text(controller.title, style: MyTextStyle.w5s20(context)),
                   TextField(
                     maxLines: 2,
                     decoration: InputDecoration(
                       hintText: "Enter text",
-                      hintStyle: MyTextStyle.w4s16(),
+                      hintStyle: MyTextStyle.w4s16(context),
                     ),
                   ),
                 ],

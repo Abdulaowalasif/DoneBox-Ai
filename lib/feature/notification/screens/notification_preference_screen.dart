@@ -36,11 +36,11 @@ class NotificationPreferenceScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Task Reminder", style: MyTextStyle.w5s18()),
+                        Text("Task Reminder", style: MyTextStyle.w5s18(context)),
                         SizedBox(height: 6),
                         Text(
                           "Get notified when it's time to work on a task.",
-                          style: MyTextStyle.w4s12(),
+                          style: MyTextStyle.w4s12(context),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -63,18 +63,18 @@ class NotificationPreferenceScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Text("Advanced Settings", style: MyTextStyle.w5s20()),
+            Text("Advanced Settings", style: MyTextStyle.w5s20(context)),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Silent Hours", style: MyTextStyle.w5s20()),
+                Text("Silent Hours", style: MyTextStyle.w5s20(context)),
                 GestureDetector(
                   onTap: () => controller.pickSilentHours(context),
                   child: Obx(
                     () => Text(
                       controller.silentHours,
-                      style: MyTextStyle.w5s16().copyWith(
+                      style: MyTextStyle.w5s16(context).copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
@@ -97,7 +97,7 @@ class NotificationPreferenceScreen extends StatelessWidget {
                 onPressed: () => Get.back(),
                 child: Text(
                   "Cancel",
-                  style: MyTextStyle.w5s18().copyWith(
+                  style: MyTextStyle.w5s18(context).copyWith(
                     color: AppColors.primaryColor,
                   ),
                 ),

@@ -43,10 +43,10 @@ class ProfileScreen extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.center,
-                child: Text("Itunuoluwa Abidoye", style: MyTextStyle.w5s16()),
+                child: Text("Itunuoluwa Abidoye", style: MyTextStyle.w5s16(context)),
               ),
               const SizedBox(height: 20),
-              Text("Name", style: MyTextStyle.w5s18()),
+              Text("Name", style: MyTextStyle.w5s18(context)),
               TextField(
                 decoration: InputDecoration(
                   hint: Text(
@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Text("Your Emaill", style: MyTextStyle.w5s18()),
+              Text("Your Emaill", style: MyTextStyle.w5s18(context)),
               TextField(
                 decoration: InputDecoration(
                   hint: Text(
@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Text("Phone", style: MyTextStyle.w5s18()),
+              Text("Phone", style: MyTextStyle.w5s18(context)),
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.phone),
@@ -83,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Text("Location", style: MyTextStyle.w5s18()),
+              Text("Location", style: MyTextStyle.w5s18(context)),
               TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.phone),

@@ -28,17 +28,17 @@ class NotesScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Note Title", style: MyTextStyle.w5s16()),
+                  Text("Note Title", style: MyTextStyle.w5s16(context)),
                   const TextField(
                     decoration: InputDecoration(hintText: "Write Note title"),
                   ),
                   const SizedBox(height: 20),
-                  Text("Note Topic", style: MyTextStyle.w5s16()),
+                  Text("Note Topic", style: MyTextStyle.w5s16(context)),
                   const TextField(
                     decoration: InputDecoration(hintText: "Write Note topic"),
                   ),
                   const SizedBox(height: 20),
-                  Text("Description", style: MyTextStyle.w5s16()),
+                  Text("Description", style: MyTextStyle.w5s16(context)),
                   const TextField(
                     decoration: InputDecoration(
                       hintText: "Type your task Description",
@@ -53,7 +53,7 @@ class NotesScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("Cancel", style: MyTextStyle.w5s16()),
+                child: Text("Cancel", style: MyTextStyle.w5s16(context)),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -64,7 +64,7 @@ class NotesScreen extends StatelessWidget {
                 },
                 child: Text(
                   "Save",
-                  style: MyTextStyle.w5s16().copyWith(color: Colors.white),
+                  style: MyTextStyle.w5s16(context).copyWith(color: Colors.white),
                 ),
               ),
             ],

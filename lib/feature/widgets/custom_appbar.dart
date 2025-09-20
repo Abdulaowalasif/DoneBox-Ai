@@ -56,7 +56,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             Center(
               child: Text(
                 title,
-                style: MyTextStyle.w5s20().copyWith(color: Colors.white),
+                style: MyTextStyle.w5s20(context).copyWith(color: Colors.white),
               ),
             ),
             Align(
