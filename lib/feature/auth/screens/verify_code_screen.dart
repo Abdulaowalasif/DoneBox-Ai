@@ -16,7 +16,6 @@ class VerifyCodeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
-    final isPortrait = height > width;
 
     return Scaffold(
       body: WillPopScope(
@@ -52,7 +51,6 @@ class VerifyCodeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.06),
 
-                  /// OTP Fields
                   /// OTP Fields
                   Center(
                     child: Wrap(
@@ -99,10 +97,22 @@ class VerifyCodeScreen extends StatelessWidget {
                   SizedBox(height: height * 0.03),
 
                   /// Verify Button
-                  CustomButton(
-                    width: double.infinity,
-                    text: "Verify OTP",
-                    onPressed: () => controller.verifyOtp(context),
+                  Obx(
+                    () => controller.isLoading.value
+                        ? CustomButton(
+                            text: "Verify Otp",
+                            onPressed: () {},
+                            width: double.infinity,
+                            isLoading: true,
+                          )
+                        : CustomButton(
+                            width: double.infinity,
+                            text: "Verify OTP",
+                            onPressed: () {
+                              controller.verifyOtp(context);
+                              controller.verifyCode();
+                            },
+                          ),
                   ),
                   SizedBox(height: height * 0.03),
 
@@ -111,9 +121,9 @@ class VerifyCodeScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '2:32',
-                      style: MyTextStyle.w5s18(context).copyWith(
-                        color: AppColors.primaryColor,
-                      ),
+                      style: MyTextStyle.w5s18(
+                        context,
+                      ).copyWith(color: AppColors.primaryColor),
                     ),
                   ),
                   SizedBox(height: height * 0.02),
@@ -122,14 +132,17 @@ class VerifyCodeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Didn’t receive code?", style: MyTextStyle.w4s16(context)),
+                      Text(
+                        "Didn’t receive code?",
+                        style: MyTextStyle.w4s16(context),
+                      ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
                           "Resend it",
-                          style: MyTextStyle.w4s16(context).copyWith(
-                            color: AppColors.buttonColor,
-                          ),
+                          style: MyTextStyle.w4s16(
+                            context,
+                          ).copyWith(color: AppColors.buttonColor),
                         ),
                       ),
                     ],

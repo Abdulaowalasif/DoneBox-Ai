@@ -4,8 +4,8 @@ class Endpoints {
   //base url
   static const baseUrl = "http://10.10.7.91:8007/api/v1/";
 
-  static const login = "auth/signup/";
-  static const signup = "auth/login/";
+  static const signup = "auth/signup/";
+  static const login = "auth/login/";
   static const logout = "auth/logout/";
 
   static const verifyOtp = "auth/verify-otp/";

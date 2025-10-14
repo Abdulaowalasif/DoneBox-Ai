@@ -203,49 +203,21 @@ class RegisterScreen extends StatelessWidget {
                   const SizedBox(height: 15),
 
                   Obx(
-                    () => CustomButton(
-                      width: double.infinity,
-                      isEnabled: controller.isAgreed.value,
-                      text: "Sign Up",
-                      onPressed: () {
-                        if (HelperFunctions.isValidEmail(
-                              controller.emailController.text,
-                            ) &&
-                            HelperFunctions.isValidPassword(
-                              controller.passwordController.text,
-                            ) &&
-                            HelperFunctions.isValidPhoneNumber(
-                              controller.phoneController.text,
-                            )) {
-                          Get.offAllNamed(RoutesName.login);
-                        } else {
-                          String message = '';
-
-                          if (!HelperFunctions.isValidEmail(
-                            controller.emailController.text,
-                          )) {
-                            message += 'Please enter a valid email.\n';
-                          }
-
-                          if (!HelperFunctions.isValidPassword(
-                            controller.passwordController.text,
-                          )) {
-                            message += 'Please enter a valid password.\n';
-                          }
-
-                          if (!HelperFunctions.isValidPhoneNumber(
-                            controller.phoneController.text,
-                          )) {
-                            message += 'Please enter a valid phone number.\n';
-                          }
-
-                          if (message.isNotEmpty) {
-                            Get.snackbar('Invalid Input', message.trim());
-                          }
-                        }
-                      },
-                    ),
+                    () => controller.isLoading.value
+                        ? CustomButton(
+                            text: "Sign Up",
+                            onPressed: () {},
+                            width: double.infinity,
+                            isLoading: true,
+                          )
+                        : CustomButton(
+                            width: double.infinity,
+                            isEnabled: controller.isAgreed.value,
+                            text: "Sign Up",
+                            onPressed: () => controller.register(),
+                          ),
                   ),
+
                   const SizedBox(height: 20),
 
                   Row(
