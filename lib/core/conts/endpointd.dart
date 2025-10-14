@@ -1,0 +1,20 @@
+class Endpoints {
+  Endpoints._();
+
+  //base url
+  static const baseUrl = "http://10.10.7.91:8007/api/v1/";
+
+  static const login = "auth/signup/";
+  static const signup = "auth/login/";
+  static const logout = "auth/logout/";
+
+  static const verifyOtp = "auth/verify-otp/";
+  static const resetPassword = "auth/reset-password/";
+  static const sendOtp = "auth/send-otp/";
+
+  static const refreshToken = "auth/refresh-token/";
+  static const verifyToken = "auth/verify-token/";
+
+  
+
+}

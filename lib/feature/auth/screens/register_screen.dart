@@ -19,7 +19,6 @@ class RegisterScreen extends StatelessWidget {
     final RegisterController controller = Get.find<RegisterController>();
 
     final screenSize = MediaQuery.of(context).size;
-    final isPortrait = screenSize.height > screenSize.width;
 
     return Scaffold(
       body: WillPopScope(
@@ -42,7 +41,10 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Sign Up to\nyour account", style: MyTextStyle.w6s30(context)),
+                  Text(
+                    "Sign Up to\nyour account",
+                    style: MyTextStyle.w6s30(context),
+                  ),
                   SizedBox(height: 8),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
@@ -51,14 +53,46 @@ class RegisterScreen extends StatelessWidget {
                   SizedBox(height: screenSize.height * 0.05),
 
                   // Dynamic height based on screen size
-                  Text("Your Name", style: MyTextStyle.w4s18(context)),
-                  SizedBox(height: 8),
-
-                  CustomTextField(
-                    hintText: "Enter Name",
-                    icon: Icons.person_outline,
-                    controller: controller.nameController,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Your First Name",
+                              style: MyTextStyle.w4s18(context),
+                            ),
+                            SizedBox(height: 8),
+                            CustomTextField(
+                              hintText: "Enter First Name",
+                              icon: Icons.person_outline,
+                              controller: controller.firstNameController,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 16), // spacing between the two fields
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Your Last Name",
+                              style: MyTextStyle.w4s18(context),
+                            ),
+                            SizedBox(height: 8),
+                            CustomTextField(
+                              hintText: "Enter Last Name",
+                              icon: Icons.person_outline,
+                              controller: controller.lastNameController,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+
                   const SizedBox(height: 20),
 
                   Text("Your Email", style: MyTextStyle.w4s18(context)),
@@ -98,6 +132,28 @@ class RegisterScreen extends StatelessWidget {
                           color: Colors.grey,
                         ),
                         onPressed: controller.togglePass,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  Text("Confirm Password", style: MyTextStyle.w4s18(context)),
+                  SizedBox(height: 8),
+
+                  Obx(
+                    () => CustomTextField(
+                      hintText: "Enter Confirm Password",
+                      icon: Icons.lock_outline,
+                      obscureText: controller.isConfirmPasswordHidden.value,
+                      controller: controller.confirmPasswordController,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          controller.isConfirmPasswordHidden.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.grey,
+                        ),
+                        onPressed: controller.toggleConfirmPass,
                       ),
                     ),
                   ),
@@ -205,9 +261,9 @@ class RegisterScreen extends StatelessWidget {
                         },
                         child: Text(
                           "Sign In",
-                          style: MyTextStyle.w4s16(context).copyWith(
-                            color: AppColors.primaryColor,
-                          ),
+                          style: MyTextStyle.w4s16(
+                            context,
+                          ).copyWith(color: AppColors.primaryColor),
                         ),
                       ),
                     ],

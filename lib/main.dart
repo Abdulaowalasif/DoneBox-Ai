@@ -1,7 +1,7 @@
 import 'package:doneboxai/core/bindings/apps_binding.dart';
-import 'package:doneboxai/core/conts/app_consts.dart';
 import 'package:doneboxai/core/storage/app_storage.dart';
 import 'package:doneboxai/core/theme/theme.dart';
+import 'package:doneboxai/feature/controllers/global_controllers.dart';
 import 'package:doneboxai/routes/app_routes.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:get_storage/get_storage.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppStorage.initStorage();
+  Get.put(GlobalController(), permanent: true);
   runApp(const MyApp());
 }
 

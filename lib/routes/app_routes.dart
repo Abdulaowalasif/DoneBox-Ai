@@ -29,6 +29,7 @@ import 'package:doneboxai/feature/menu/screens/product_update_screen.dart';
 import 'package:doneboxai/feature/menu/screens/profile_screen.dart';
 import 'package:doneboxai/feature/menu/screens/report_bug_screen.dart';
 import 'package:doneboxai/feature/menu/screens/subscription_screen.dart';
+import 'package:doneboxai/feature/notification/bindings/notification_binding.dart';
 import 'package:doneboxai/feature/notification/bindings/notification_pref_binding.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen.dart';
 import 'package:doneboxai/feature/onboarding/screens/onboarding_screen2.dart';
@@ -107,6 +108,7 @@ class AppRoutes {
       transition: Transition.rightToLeft,
     ),
     GetPage(
+      binding: NotificationBinding(),
       name: RoutesName.notification,
       page: () => NotificationScreen(),
       transition: Transition.rightToLeft,
@@ -223,11 +225,13 @@ class AppRoutes {
       name: RoutesName.home,
       page: () => HomeScreens(),
       transition: Transition.rightToLeft,
-    ),   GetPage(
+    ),
+    GetPage(
       name: RoutesName.hub,
       page: () => HubScreen(),
       transition: Transition.rightToLeft,
-    ),   GetPage(
+    ),
+    GetPage(
       name: RoutesName.calender,
       page: () => CalendarScreen(),
       transition: Transition.rightToLeft,

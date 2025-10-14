@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/global_controllers.dart';
+
 class OtpController extends GetxController {
+  final globalController = Get.find<GlobalController>();
   final List<TextEditingController> controllers = List.generate(
     6,
     (_) => TextEditingController(),
@@ -39,5 +44,9 @@ class OtpController extends GetxController {
     } else {
       Get.snackbar("Invalid Input", 'Enter all the digits');
     }
+  }
+
+  Future<void> verifyCode() async {
+
   }
 }
