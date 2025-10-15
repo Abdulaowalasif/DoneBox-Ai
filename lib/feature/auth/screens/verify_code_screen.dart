@@ -16,6 +16,7 @@ class VerifyCodeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
+    final arg = Get.arguments;
 
     return Scaffold(
       body: WillPopScope(
@@ -109,8 +110,11 @@ class VerifyCodeScreen extends StatelessWidget {
                             width: double.infinity,
                             text: "Verify OTP",
                             onPressed: () {
-                              controller.verifyOtp(context);
-                              controller.verifyCode();
+                              if (arg == "create_account") {
+                                controller.verifyCode();
+                              } else {
+                                controller.verifyResetCode();
+                              }
                             },
                           ),
                   ),

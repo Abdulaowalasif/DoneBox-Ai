@@ -51,7 +51,7 @@ class RegisterController extends GetxController {
       final response = await apiClient.post(Endpoints.signup, body: body);
       if (response['status_code'] == 201) {
         isLoading.value = false;
-        Get.toNamed(RoutesName.verifyOtp);
+        Get.toNamed(RoutesName.verifyOtp, arguments: "create_account");
       }
     } catch (e) {
       isLoading.value = false;

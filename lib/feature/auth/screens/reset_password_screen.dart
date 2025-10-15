@@ -109,78 +109,92 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   CustomButton(
                     width: double.infinity,
                     text: "Reset Password",
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(20),
+                    onPressed: () async {
+                      final response = await controller.resetPassword();
+
+                      // ✅ Check for success based on your API response
+                      if (response != null && response['success'] == true) {
+                        showModalBottomSheet(
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
                           ),
-                        ),
-                        builder: (context) {
-                          return Padding(
-                            padding: EdgeInsets.all(width * 0.06),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                /// Success Icon
-                                Container(
-                                  width: width * 0.3,
-                                  height: width * 0.3,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.secondaryColor,
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    width: width * 0.18,
-                                    height: width * 0.18,
+                          builder: (context) {
+                            return Padding(
+                              padding: EdgeInsets.all(width * 0.06),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  /// ✅ Success Icon
+                                  Container(
+                                    width: width * 0.3,
+                                    height: width * 0.3,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColors.buttonColor,
+                                      color: AppColors.secondaryColor,
                                     ),
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Colors.white,
-                                      size: width * 0.09,
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      width: width * 0.18,
+                                      height: width * 0.18,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppColors.buttonColor,
+                                      ),
+                                      child: Icon(
+                                        Icons.check,
+                                        color: Colors.white,
+                                        size: width * 0.09,
+                                      ),
                                     ),
                                   ),
-                                ),
 
-                                SizedBox(height: height * 0.03),
+                                  SizedBox(height: height * 0.03),
 
-                                /// Success Title
-                                Text(
-                                  'Password Changed!',
-                                  style: MyTextStyle.w5s20(context)
-                                ),
+                                  /// ✅ Success Title
+                                  Text(
+                                    'Password Changed!',
+                                    style: MyTextStyle.w5s20(context),
+                                  ),
 
-                                SizedBox(height: height * 0.015),
+                                  SizedBox(height: height * 0.015),
 
-                                /// Success Message
-                                Text(
-                                  'Return to the login page to enter your\naccount with your new password.',
-                                  textAlign: TextAlign.center,
-                                  style: MyTextStyle.w4s18(context),
-                                ),
+                                  /// ✅ Success Message
+                                  Text(
+                                    'Return to the login page to enter your\naccount with your new password.',
+                                    textAlign: TextAlign.center,
+                                    style: MyTextStyle.w4s18(context),
+                                  ),
 
-                                SizedBox(height: height * 0.03),
+                                  SizedBox(height: height * 0.03),
 
-                                /// Back Button
-                                CustomButton(
-                                  width: double.infinity,
-                                  text: 'Back to Sign In',
-                                  onPressed: () {
-                                    Get.offAllNamed(RoutesName.login);
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
+                                  /// ✅ Back Button
+                                  CustomButton(
+                                    width: double.infinity,
+                                    text: 'Back to Sign In',
+                                    onPressed: () {
+                                      Get.offAllNamed(RoutesName.login);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        // ❌ Show error if API failed
+                        Get.snackbar(
+                          "Failed",
+                          response?['message'] ?? "Password reset failed.",
+                          backgroundColor: Colors.red.withOpacity(0.1),
+                          colorText: Colors.red,
+                        );
+                      }
                     },
                   ),
+
                 ],
               ),
             ),

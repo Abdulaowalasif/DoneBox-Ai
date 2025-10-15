@@ -22,8 +22,12 @@ class _OnboardingScreen4State extends State<OnboardingScreen4> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       final firstTime = AppStorage.read(AppConstants.firstTime);
+      final access = AppStorage.read(AppConstants.accessToken);
+
       if (firstTime == null || firstTime == true) {
         Get.offAllNamed(RoutesName.onboarding1);
+      } else if (access != null) {
+        Get.offAllNamed(RoutesName.mainScreen);
       } else {
         Get.offAllNamed(RoutesName.login);
       }

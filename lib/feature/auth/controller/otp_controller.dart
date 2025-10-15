@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/global_controllers.dart';
+import 'forgot_pass_controller.dart';
 
 class OtpController extends GetxController {
   final globalController = Get.find<GlobalController>();
@@ -18,6 +19,7 @@ class OtpController extends GetxController {
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
   final apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final RegisterController signupController = Get.find();
+  final ForgotPasswordController forgotPasswordController = Get.find();
 
   var otp = ''.obs;
   RxBool isLoading = false.obs;
@@ -46,7 +48,7 @@ class OtpController extends GetxController {
 
   void verifyOtp(BuildContext context) {
     if (otp.value.length == 6) {
-      Get.toNamed(RoutesName.resetPass);
+      verifyCode();
     } else {
       Get.snackbar("Invalid Input", 'Enter all the digits');
     }
@@ -61,10 +63,30 @@ class OtpController extends GetxController {
     try {
       isLoading.value = true;
       final response = await apiClient.post(Endpoints.verifyOtp, body: body);
-      print(response);
       if (response["status_code"] == 200) {
         isLoading.value = false;
-        Get.toNamed(Endpoints.login);
+        Get.toNamed(RoutesName.login);
+      }
+    } catch (e) {
+      Get.snackbar("$e", "");
+      isLoading.value = false;
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> verifyResetCode() async {
+    final body = {
+      "email": forgotPasswordController.emailController.text.trim(),
+      "purpose": "reset_password",
+      "otp_code": otp.value,
+    };
+    try {
+      isLoading.value = true;
+      final response = await apiClient.post(Endpoints.verifyOtp, body: body);
+      if (response["status_code"] == 200) {
+        isLoading.value = false;
+        Get.toNamed(RoutesName.resetPass);
       }
     } catch (e) {
       Get.snackbar("$e", "");

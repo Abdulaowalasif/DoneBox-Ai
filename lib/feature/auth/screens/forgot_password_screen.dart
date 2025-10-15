@@ -43,24 +43,18 @@ class ForgotPasswordScreen extends StatelessWidget {
                 children: [
                   AppIcon(),
                   SizedBox(height: height * 0.02),
-                  Text(
-                    "Forgot password",
-                    style: MyTextStyle.w6s30(context),
-                  ),
+                  Text("Forgot password", style: MyTextStyle.w6s30(context)),
                   const SizedBox(height: 8),
 
                   /// Subtitle
                   Text(
                     "Please enter your email address to reset password.",
-                    style: MyTextStyle.w4s16(context)
+                    style: MyTextStyle.w4s16(context),
                   ),
                   SizedBox(height: height * 0.08),
 
                   /// Label
-                  Text(
-                    "Your Email",
-                    style:MyTextStyle.w4s18(context)
-                  ),
+                  Text("Your Email", style: MyTextStyle.w4s18(context)),
                   const SizedBox(height: 8),
 
                   /// Input
@@ -79,7 +73,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       if (HelperFunctions.isValidEmail(
                         controller.emailController.text,
                       )) {
-                        Get.toNamed(RoutesName.verifyOtp);
+                       controller.forgotPass();
                       } else {
                         Get.snackbar('Invalid Input', 'Enter a valid email');
                       }

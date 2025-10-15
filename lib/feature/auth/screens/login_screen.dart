@@ -49,7 +49,10 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
 
                   // Title
-                  Text("Sign In to your account", style: MyTextStyle.w6s30(context)),
+                  Text(
+                    "Sign In to your account",
+                    style: MyTextStyle.w6s30(context),
+                  ),
                   SizedBox(height: height * 0.01),
                   Text(
                     "Welcome Back! Please Enter Your Details.",
@@ -108,9 +111,9 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Forgot Password?",
-                        style: MyTextStyle.w4s16(context).copyWith(
-                          color: AppColors.buttonColor,
-                        ),
+                        style: MyTextStyle.w4s16(
+                          context,
+                        ).copyWith(color: AppColors.buttonColor),
                       ),
                     ),
                   ),
@@ -118,39 +121,13 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
 
                   // Sign in button
-                  CustomButton(
-                    width: double.infinity,
-                    onPressed: () {
-                      if (HelperFunctions.isValidEmail(
-                            controller.emailController.text,
-                          ) &&
-                          HelperFunctions.isValidPassword(
-                            controller.passwordController.text,
-                          )) {
-                        Get.offAllNamed(RoutesName.mainScreen);
-                      } else {
-                        String message = '';
-
-                        if (!HelperFunctions.isValidEmail(
-                          controller.emailController.text,
-                        )) {
-                          message += 'Please enter a valid email.\n';
-                        }
-
-                        String passwordError = HelperFunctions.validatePassword(
-                          controller.passwordController.text,
-                        );
-
-                        if (passwordError.isNotEmpty) {
-                          message += passwordError;
-                        }
-
-                        if (message.isNotEmpty) {
-                          Get.snackbar('Invalid Input', message.trim());
-                        }
-                      }
-                    },
-                    text: 'Sign In',
+                  Obx(
+                    () => CustomButton(
+                      width: double.infinity,
+                      onPressed: () => controller.login(),
+                      text: 'Sign In',
+                      isLoading: controller.isLoading.value,
+                    ),
                   ),
 
                   SizedBox(height: height * 0.025),
@@ -167,9 +144,9 @@ class LoginScreen extends StatelessWidget {
                         onPressed: () => Get.toNamed(RoutesName.register),
                         child: Text(
                           "Sign Up",
-                          style: MyTextStyle.w4s16(context).copyWith(
-                            color: AppColors.buttonColor,
-                          ),
+                          style: MyTextStyle.w4s16(
+                            context,
+                          ).copyWith(color: AppColors.buttonColor),
                         ),
                       ),
                     ],

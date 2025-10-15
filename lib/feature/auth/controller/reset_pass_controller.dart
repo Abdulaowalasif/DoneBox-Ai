@@ -1,8 +1,9 @@
-import 'dart:convert';
-
+import 'package:doneboxai/core/conts/endpointd.dart';
+import 'package:doneboxai/core/networks/api_client.dart';
+import 'package:doneboxai/feature/auth/controller/forgot_pass_controller.dart';
+import 'package:doneboxai/feature/auth/controller/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/global_controllers.dart';
 
 class ResetPasswordController extends GetxController {
@@ -11,6 +12,9 @@ class ResetPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final globalController = Get.find<GlobalController>();
+  final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
+  final forgetPasswordController = Get.find<ForgotPasswordController>();
+  final otpController = Get.find<OtpController>();
 
   void togglePass() {
     isPasswordHidden.value = !isPasswordHidden.value;
@@ -27,7 +31,23 @@ class ResetPasswordController extends GetxController {
     super.dispose();
   }
 
-  Future<void> resetPassword() async {
+  Future<dynamic> resetPassword() async {
+    try {
+      final body = {
+        "email": otpController.forgotPasswordController.emailController.text,
+        "otp_code": otpController.otp.value,
+        "password": passwordController.text,
+        "retype_password": confirmPasswordController.text,
+      };
+      final response = await _apiClient.post(
+        Endpoints.resetPassword,
+        body: body,
+      );
 
+      return response;
+
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
   }
 }
