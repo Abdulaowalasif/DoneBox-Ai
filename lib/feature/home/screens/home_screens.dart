@@ -31,7 +31,9 @@ class HomeScreens extends StatelessWidget {
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: isTablet ? 40 : 20),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isTablet ? 40 : 20,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -58,7 +60,7 @@ class HomeScreens extends StatelessWidget {
                             const SizedBox(width: 15),
                             SizedBox(
                               height: 30,
-                              width: isTablet ? 300 : null,
+                              width: isTablet ? null : 250,
                               child: TabBar(
                                 dividerColor: Colors.transparent,
                                 tabAlignment: TabAlignment.start,

@@ -116,7 +116,7 @@ class MenuScreens extends StatelessWidget {
                     title: "Privacy & Policy",
                   ),
                   SettingsItem(
-                    onPress: () => Get.toNamed(RoutesName.login),
+                    onPress: () => controller.logout(),
                     icon: Icons.login_outlined,
                     title: "Log out",
                   ),

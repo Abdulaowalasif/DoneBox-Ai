@@ -9,6 +9,7 @@ import '../../core/conts/my_text_style.dart';
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback onPress;
+  final VoidCallback? onBackPress;
   final int? navIds;
   final IconData? trailing;
   final bool? hideBackButton;
@@ -20,6 +21,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.trailing,
     required this.onPress,
     this.hideBackButton = false,
+    this.onBackPress,
   });
 
   @override
@@ -43,10 +45,10 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                     alignment: Alignment.centerLeft,
                     child: IconButton(
                       onPressed: () {
-                        if (navIds == null) {
-                          Get.back();
+                        if (onBackPress != null) {
+                          onBackPress!();
                         } else {
-                          Get.back(id: navIds);
+                          Get.back();
                         }
                       },
                       icon: Icon(Icons.arrow_back, color: Colors.white),

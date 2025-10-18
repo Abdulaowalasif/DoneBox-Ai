@@ -51,7 +51,7 @@ class HelpAndSupportScreen extends StatelessWidget {
               HelpSupportCard(
                 icon: Icons.contact_mail_outlined,
                 title: "Contact Support",
-                text1: "Live Chat",
+                text1: "Support",
                 text1Tap: () => Get.toNamed(RoutesName.liveChat),
                 text2: "Email Support",
                 text2Tap: () => Get.toNamed(RoutesName.emailSupport),

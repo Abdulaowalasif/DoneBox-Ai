@@ -15,7 +15,16 @@ class QuickActionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final QuickActionController controller = Get.find();
     return Scaffold(
-      appBar: CustomAppbar(title: controller.title, onPress: () {}),
+      resizeToAvoidBottomInset: true,
+      appBar: CustomAppbar(
+        title: controller.title,
+        onPress: () {},
+        onBackPress: () {
+          controller.textController.clear();
+          controller.responseController.clear();
+          Get.back();
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: controller.title == "Daily Recap"
@@ -235,35 +244,53 @@ class QuickActionScreen extends StatelessWidget {
                   ],
                 ),
               )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Text", style: MyTextStyle.w5s20(context)),
-                  TextField(
-                    maxLines: 3,
-                    decoration: InputDecoration(
-                      hintText: "Enter text",
-                      hintStyle: MyTextStyle.w4s16(context),
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Text", style: MyTextStyle.w5s20(context)),
+                    TextField(
+                      controller: controller.textController,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        hintText: "Enter text",
+                        hintStyle: MyTextStyle.w4s16(context),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  CustomButton(
-                    text: controller.title,
-                    onPressed: () {
-                      Get.back();
-                    },
-                    width: double.infinity,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(controller.title, style: MyTextStyle.w5s20(context)),
-                  TextField(
-                    maxLines: 2,
-                    decoration: InputDecoration(
-                      hintText: "Enter text",
-                      hintStyle: MyTextStyle.w4s16(context),
+                    const SizedBox(height: 20),
+                    Obx(
+                      () => CustomButton(
+                        isLoading: controller.isLoading.value,
+                        text: controller.title,
+                        onPressed: () {
+                          if (controller.title == "Summerize") {
+                            controller.getSummery();
+                          } else if (controller.title == "Reply") {
+                            controller.getReply();
+                          } else if (controller.title == "Explain") {
+                            controller.getExplain();
+                          }
+                        },
+                        width: double.infinity,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    Text(controller.title, style: MyTextStyle.w5s20(context)),
+                    TextField(
+                      enabled: false,
+                      controller: controller.responseController,
+                      minLines: 2,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        hintText: "Hi ",
+                        hintStyle: MyTextStyle.w4s16(context),
+                      ),
+                    ),
+                  ],
+                ),
               ),
       ),
     );

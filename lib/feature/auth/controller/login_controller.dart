@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:doneboxai/core/conts/app_consts.dart';
-import 'package:doneboxai/core/conts/endpointd.dart';
+import 'package:doneboxai/core/conts/endpoints.dart';
 import 'package:doneboxai/core/networks/api_client.dart';
 import 'package:doneboxai/core/storage/app_storage.dart';
 import 'package:doneboxai/feature/controllers/global_controllers.dart';

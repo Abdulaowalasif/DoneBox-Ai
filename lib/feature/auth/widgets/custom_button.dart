@@ -45,7 +45,9 @@ class CustomButton extends StatelessWidget {
                 ? Center(child: CircularProgressIndicator(color: Colors.white))
                 : Text(
                     text,
-                    style: MyTextStyle.w5s16(context).copyWith(color: Colors.white),
+                    style: MyTextStyle.w5s16(
+                      context,
+                    ).copyWith(color: Colors.white),
                   ),
           ],
         ),

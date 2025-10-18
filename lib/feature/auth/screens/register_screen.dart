@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          padding: EdgeInsets.all(screenSize.width * 0.05),
+          padding: EdgeInsets.all(20),
           // Dynamic padding based on screen size
           child: Center(
             child: SingleChildScrollView(
@@ -41,6 +41,7 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 50),
                   Text(
                     "Sign Up to\nyour account",
                     style: MyTextStyle.w6s30(context),

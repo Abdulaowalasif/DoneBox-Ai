@@ -17,6 +17,14 @@ class MyAppThemes {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: Colors.black),
         ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 12,

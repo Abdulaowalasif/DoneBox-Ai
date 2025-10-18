@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:doneboxai/core/conts/endpointd.dart';
+import 'package:doneboxai/core/conts/endpoints.dart';
 import 'package:doneboxai/core/networks/api_client.dart';
 import 'package:doneboxai/feature/auth/controller/register_controller.dart';
 import 'package:doneboxai/routes/routes_names.dart';

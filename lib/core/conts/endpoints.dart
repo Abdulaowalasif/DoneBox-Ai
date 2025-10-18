@@ -15,6 +15,8 @@ class Endpoints {
   static const refreshToken = "auth/refresh-token/";
   static const verifyToken = "auth/verify-token/";
 
-  
-
+  static const aiBaseUrl = "http://10.10.7.75:8000/";
+  static const summerize = "summarize";
+  static const explain = "explain";
+  static const reply = "reply";
 }
