@@ -15,6 +15,8 @@ class ResetPasswordController extends GetxController {
   final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final forgetPasswordController = Get.find<ForgotPasswordController>();
   final otpController = Get.find<OtpController>();
+  final formKey= GlobalKey<FormState>();
+
 
   void togglePass() {
     isPasswordHidden.value = !isPasswordHidden.value;

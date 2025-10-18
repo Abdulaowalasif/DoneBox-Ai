@@ -38,48 +38,56 @@ class ForgotPasswordScreen extends StatelessWidget {
           child: Center(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: width * 0.06),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppIcon(),
-                  SizedBox(height: height * 0.02),
-                  Text("Forgot password", style: MyTextStyle.w6s30(context)),
-                  const SizedBox(height: 8),
+              child: Form(
+                key: controller.formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppIcon(),
+                    SizedBox(height: height * 0.02),
+                    Text("Forgot password", style: MyTextStyle.w6s30(context)),
+                    const SizedBox(height: 8),
 
-                  /// Subtitle
-                  Text(
-                    "Please enter your email address to reset password.",
-                    style: MyTextStyle.w4s16(context),
-                  ),
-                  SizedBox(height: height * 0.08),
+                    /// Subtitle
+                    Text(
+                      "Please enter your email address to reset password.",
+                      style: MyTextStyle.w4s16(context),
+                    ),
+                    SizedBox(height: height * 0.08),
 
-                  /// Label
-                  Text("Your Email", style: MyTextStyle.w4s18(context)),
-                  const SizedBox(height: 8),
+                    /// Label
+                    Text("Your Email", style: MyTextStyle.w4s18(context)),
+                    const SizedBox(height: 8),
 
-                  /// Input
-                  CustomTextField(
-                    hintText: "Enter Email",
-                    icon: Icons.email_outlined,
-                    controller: controller.emailController,
-                  ),
-                  SizedBox(height: height * 0.03),
+                    /// Input
+                    CustomTextField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Please enter email";
+                        }
+                        return null;
+                      },
+                      hintText: "Enter Email",
+                      icon: Icons.email_outlined,
+                      controller: controller.emailController,
+                    ),
+                    SizedBox(height: height * 0.03),
 
-                  /// Button
-                  CustomButton(
-                    width: double.infinity,
-                    text: "Send OTP",
-                    onPressed: () {
-                      if (HelperFunctions.isValidEmail(
-                        controller.emailController.text,
-                      )) {
-                       controller.forgotPass();
-                      } else {
-                        Get.snackbar('Invalid Input', 'Enter a valid email');
-                      }
-                    },
-                  ),
-                ],
+                    /// Button
+                    Obx(
+                      () => CustomButton(
+                        isLoading: controller.isLoading.value,
+                        width: double.infinity,
+                        text: "Send OTP",
+                        onPressed: () {
+                          if (controller.formKey.currentState!.validate()) {
+                            controller.forgotPass();
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

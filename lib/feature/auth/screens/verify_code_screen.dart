@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/my_text_style.dart';
+import 'package:doneboxai/feature/auth/controller/forgot_pass_controller.dart';
 import 'package:doneboxai/feature/auth/controller/otp_controller.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
@@ -99,37 +100,34 @@ class VerifyCodeScreen extends StatelessWidget {
 
                   /// Verify Button
                   Obx(
-                    () => controller.isLoading.value
-                        ? CustomButton(
-                            text: "Verify Otp",
-                            onPressed: () {},
-                            width: double.infinity,
-                            isLoading: true,
-                          )
-                        : CustomButton(
-                            width: double.infinity,
-                            text: "Verify OTP",
-                            onPressed: () {
-                              if (arg == "create_account") {
-                                controller.verifyCode();
-                              } else {
-                                controller.verifyResetCode();
-                              }
-                            },
-                          ),
+                    () => CustomButton(
+                      isLoading: controller.isLoading.value,
+                      width: double.infinity,
+                      text: "Verify OTP",
+                      onPressed: () {
+                        if (arg == "create_account") {
+                          controller.verifyCode();
+                        } else {
+                          controller.verifyResetCode();
+                        }
+                      },
+                    ),
                   ),
                   SizedBox(height: height * 0.03),
 
                   /// Timer
                   Align(
                     alignment: Alignment.center,
-                    child: Text(
-                      '2:32',
-                      style: MyTextStyle.w5s18(
-                        context,
-                      ).copyWith(color: AppColors.primaryColor),
-                    ),
+                    child: Obx(() {
+                      return Text(
+                        controller.formattedTime,
+                        style: MyTextStyle.w5s18(
+                          context,
+                        ).copyWith(color: AppColors.primaryColor),
+                      );
+                    }),
                   ),
+
                   SizedBox(height: height * 0.02),
 
                   /// Resend
@@ -141,7 +139,24 @@ class VerifyCodeScreen extends StatelessWidget {
                         style: MyTextStyle.w4s16(context),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (arg == "create_account") {
+                            controller.resendOtp(
+                              "create_account",
+                              controller.signupController.emailController.text
+                                  .trim(),
+                            );
+                          } else if (arg == "reset_password") {
+                            controller.resendOtp(
+                              "reset_password",
+                              controller
+                                  .forgotPasswordController
+                                  .emailController
+                                  .text
+                                  .trim(),
+                            );
+                          }
+                        },
                         child: Text(
                           "Resend it",
                           style: MyTextStyle.w4s16(

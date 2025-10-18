@@ -16,6 +16,7 @@ class LoginController extends GetxController {
   RxBool isLoading = false.obs;
   final globalController = Get.find<GlobalController>();
   final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
+  final formKey = GlobalKey<FormState>();
 
   void togglePass() {
     isPasswordHidden.value = !isPasswordHidden.value;

@@ -21,6 +21,7 @@ class RegisterController extends GetxController {
   RxBool isConfirmPasswordHidden = true.obs;
   RxBool isAgreed = false.obs;
   RxBool isLoading = false.obs;
+  final formKey = GlobalKey<FormState>();
 
   final apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final globalController = Get.find<GlobalController>();
@@ -56,6 +57,8 @@ class RegisterController extends GetxController {
     } catch (e) {
       isLoading.value = false;
       Get.snackbar(" $e", "Please try again");
+    }finally{
+      isLoading.value = false;
     }
   }
 

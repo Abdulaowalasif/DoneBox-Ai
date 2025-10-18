@@ -13,6 +13,8 @@ class ForgotPasswordController extends GetxController {
   final globalController = Get.find<GlobalController>();
   final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   RxBool isLoading = false.obs;
+  final formKey=GlobalKey<FormState>();
+
 
   Future<void> forgotPass() async {
     if (emailController.text.isEmpty) {
@@ -32,6 +34,8 @@ class ForgotPasswordController extends GetxController {
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
+    }finally{
+      isLoading.value = false;
     }
   }
 

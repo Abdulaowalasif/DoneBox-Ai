@@ -12,7 +12,7 @@ class QuickActionController extends GetxController {
   final _apiClient = ApiClient(baseUrl: Endpoints.aiBaseUrl);
 
   final TextEditingController textController = TextEditingController();
-  final TextEditingController responseController = TextEditingController();
+  var responseController = "".obs;
 
   final isLoading = false.obs;
 
@@ -29,9 +29,9 @@ class QuickActionController extends GetxController {
       final response = await _apiClient.post(Endpoints.summerize, body: body);
 
       if (response['data'] != null) {
-        responseController.text = response['data'];
+        responseController.value = response['data'];
       } else {
-        responseController.text = "No summary available.";
+        responseController.value = "No summary available.";
       }
 
       print("Response: $response");
@@ -56,9 +56,9 @@ class QuickActionController extends GetxController {
       final response = await _apiClient.post(Endpoints.reply, body: body);
 
       if (response['data'] != null) {
-        responseController.text = response['data'];
+        responseController.value = response['data'];
       } else {
-        responseController.text = "No summary available.";
+        responseController.value = "No summary available.";
       }
 
       print("Response: $response");
@@ -83,9 +83,9 @@ class QuickActionController extends GetxController {
       final response = await _apiClient.post(Endpoints.explain, body: body);
 
       if (response['data'] != null) {
-        responseController.text = response['data'];
+        responseController.value = response['data'];
       } else {
-        responseController.text = "No summary available.";
+        responseController.value = "No summary available.";
       }
 
       print("Response: $response");
@@ -100,7 +100,6 @@ class QuickActionController extends GetxController {
   @override
   void dispose() {
     textController.dispose();
-    responseController.dispose();
     super.dispose();
   }
 }

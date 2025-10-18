@@ -10,15 +10,19 @@ class ProgressCard extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final cardHeight = screenHeight * 0.25;
-    final avatarSize = screenWidth * 0.12; // responsive avatar size
+    // Responsive scaling factors
+    final isSmallScreen = screenWidth < 360;
+    final isTablet = screenWidth >= 600;
+
+    final cardHeight = screenHeight * (isTablet ? 0.22 : 0.25);
+    final avatarSize = screenWidth * (isTablet ? 0.07 : 0.10);
     final avatarSpacing = avatarSize * 0.6;
+    final padding = screenWidth * 0.04;
 
     return Container(
-      height: cardHeight,
       width: double.infinity,
       margin: EdgeInsets.only(top: screenHeight * 0.01),
-      padding: EdgeInsets.all(screenWidth * 0.04),
+      padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
@@ -32,92 +36,131 @@ class ProgressCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Good Morning, Hakim",
-            style: MyTextStyle.w4s16(context).copyWith(color: Colors.white),
-          ),
-          Text(
-            "Today’s progress summary",
-            style: MyTextStyle.w7s20(context).copyWith(color: Colors.white),
-          ),
-          Text(
-            "5 Tasks",
-            style: MyTextStyle.w4s16(context).copyWith(color: Colors.white),
-          ),
-          Row(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                flex: 2,
-                child: SizedBox(
-                  height: avatarSize,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      for (int i = 0; i < 3; i++)
-                        Positioned(
-                          left: i * avatarSpacing,
-                          child: Image.asset(
-                            ImageConst.user,
-                            height: avatarSize,
-                            width: avatarSize,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      Positioned(
-                        left: 3 * avatarSpacing,
-                        child: Image.asset(
-                          ImageConst.addUser,
-                          height: avatarSize,
-                          width: avatarSize,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
+              /// Greeting Text
+              Text(
+                "Good Morning, Hakim",
+                style: MyTextStyle.w4s16(context).copyWith(
+                  fontSize: isSmallScreen
+                      ? 13
+                      : isTablet
+                      ? 18
+                      : 16,
+                  color: Colors.white,
                 ),
               ),
-              const SizedBox(width: 16),
-              Flexible(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
+
+              /// Title
+              Text(
+                "Today’s progress summary",
+                style: MyTextStyle.w7s20(context).copyWith(
+                  fontSize: isSmallScreen
+                      ? 16
+                      : isTablet
+                      ? 22
+                      : 20,
+                  color: Colors.white,
+                ),
+              ),
+
+              /// Task Count
+              Text(
+                "5 Tasks",
+                style: MyTextStyle.w4s16(context).copyWith(
+                  fontSize: isSmallScreen ? 13 : 16,
+                  color: Colors.white,
+                ),
+              ),
+
+              SizedBox(height: screenHeight * 0.005),
+
+              /// Avatar Row + Progress Section
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  /// Avatars
+                  Flexible(
+                    flex: 2,
+                    child: SizedBox(
+                      height: avatarSize,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          for (int i = 0; i < 3; i++)
+                            Positioned(
+                              left: i * avatarSpacing,
+                              child: Image.asset(
+                                ImageConst.user,
+                                height: avatarSize,
+                                width: avatarSize,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          Positioned(
+                            left: 3 * avatarSpacing,
+                            child: Image.asset(
+                              ImageConst.addUser,
+                              height: avatarSize,
+                              width: avatarSize,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(width: screenWidth * 0.04),
+
+                  /// Progress Details
+                  Flexible(
+                    flex: 3,
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          "Progress",
-                          style: MyTextStyle.w5s20(context).copyWith(
-                            color: Colors.white,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Progress",
+                              style: MyTextStyle.w5s20(context).copyWith(
+                                fontSize: isSmallScreen ? 14 : 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "40%",
+                              style: MyTextStyle.w5s18(context).copyWith(
+                                fontSize: isSmallScreen ? 13 : 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          "40%",
-                          style: MyTextStyle.w5s18(context).copyWith(
-                            color: Colors.white,
+                        SizedBox(height: screenHeight * 0.008),
+                        LinearProgressIndicator(
+                          minHeight: isSmallScreen ? 8 : 10,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
                           ),
+                          value: 0.4,
+                          color: const Color(0xFF9397EF),
+                          backgroundColor: Colors.white,
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
-                    const LinearProgressIndicator(
-                      minHeight: 10,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      value: 0.4,
-                      color: Color(0xFF9397EF),
-                      backgroundColor: Colors.white,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }

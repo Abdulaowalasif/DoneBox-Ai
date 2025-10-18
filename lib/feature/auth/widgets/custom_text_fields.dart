@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final Widget? suffixIcon;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
@@ -16,24 +17,20 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     required this.controller,
     this.suffixIcon,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: double.infinity,
-        height: 55,
-        child: TextField(
-          style: MyTextStyle.w4s16(context),
-          controller: controller,
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            prefixIcon: Icon(icon, color: Colors.grey),
-            suffixIcon: suffixIcon,
-            hintText: hintText,
-          ),
-        ),
+    return TextFormField(
+      validator: validator,
+      style: MyTextStyle.w4s16(context),
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: Colors.grey),
+        suffixIcon: suffixIcon,
+        hintText: hintText,
       ),
     );
   }

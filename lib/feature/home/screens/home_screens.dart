@@ -54,35 +54,7 @@ class HomeScreens extends StatelessWidget {
                         const SizedBox(height: 16),
                         const ProgressCard(),
                         const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Text("My Tasks", style: MyTextStyle.w5s20(context)),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                              height: 30,
-                              width: isTablet ? null : 250,
-                              child: TabBar(
-                                dividerColor: Colors.transparent,
-                                tabAlignment: TabAlignment.start,
-                                isScrollable: true,
-                                indicator: const UnderlineTabIndicator(
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 0,
-                                  ),
-                                ),
-                                labelColor: AppColors.primaryColor,
-                                unselectedLabelColor: Colors.grey,
-                                tabs: const [
-                                  Tab(text: "All"),
-                                  Tab(text: "Personal"),
-                                  Tab(text: "Work"),
-                                  Tab(text: "Others"),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        ResponsiveMyTasksRow(),
                         const SizedBox(height: 20),
                       ],
                     ),
@@ -148,6 +120,67 @@ class HomeScreens extends StatelessWidget {
               ),
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class ResponsiveMyTasksRow extends StatelessWidget {
+  const ResponsiveMyTasksRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isSmallScreen = constraints.maxWidth < 400;
+        final isMediumScreen = constraints.maxWidth < 700;
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            /// Title
+            Flexible(
+              flex: isSmallScreen ? 1 : 0,
+              child: Text(
+                "My Tasks",
+                style: MyTextStyle.w5s20(context),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+
+            const SizedBox(width: 10),
+
+            /// Tab Bar
+            Expanded(
+              flex: isSmallScreen ? 2 : 1,
+              child: SizedBox(
+                height: isSmallScreen ? 28 : 32,
+                child: TabBar(
+                  tabAlignment: TabAlignment.start,
+                  dividerColor: Colors.transparent,
+                  isScrollable: true,
+                  indicator: const UnderlineTabIndicator(
+                    borderSide: BorderSide(color: Colors.transparent, width: 0),
+                  ),
+                  labelColor: AppColors.primaryColor,
+                  unselectedLabelColor: Colors.grey,
+                  labelStyle:MyTextStyle.w5s14(context),
+                  unselectedLabelStyle: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),
+                  tabs: const [
+                    Tab(text: "All"),
+                    Tab(text: "Personal"),
+                    Tab(text: "Work"),
+                    Tab(text: "Others"),
+                  ],
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
