@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-
 
 class QuickActionScreen extends StatelessWidget {
   QuickActionScreen({super.key});
@@ -45,13 +45,16 @@ class QuickActionScreen extends StatelessWidget {
 
   /// ✅ Build Daily Recap Section with RepaintBoundary
   Widget _buildDailyRecap(BuildContext context) {
+    // Screenshot controller for capturing the recap
+    final ScreenshotController _screenshotController = ScreenshotController();
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// ✅ Wrap recap content with RepaintBoundary
-          RepaintBoundary(
-            key: _recapKey,
+          /// ✅ Screenshot wrapper
+          Screenshot(
+            controller: _screenshotController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -86,59 +89,74 @@ class QuickActionScreen extends StatelessWidget {
                       ),
                       Container(color: AppColors.primaryColor, height: 1),
                       const SizedBox(height: 10),
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Overall Progress",
-                                style: MyTextStyle.w5s20(
-                                  context,
-                                ).copyWith(color: AppColors.primaryColor),
-                              ),
-                              Text(
-                                "50%",
-                                style: MyTextStyle.w5s20(
-                                  context,
-                                ).copyWith(color: AppColors.primaryColor),
-                              ),
-                            ],
+                          Text(
+                            "Overall Progress",
+                            style: MyTextStyle.w5s20(
+                              context,
+                            ).copyWith(color: AppColors.primaryColor),
                           ),
-                          const SizedBox(height: 10),
-                          LinearProgressIndicator(
-                            color: AppColors.primaryColor,
-                            value: 0.5,
-                            backgroundColor: Colors.grey.shade50,
-                            minHeight: 10,
-                            borderRadius: BorderRadius.circular(10),
+                          Text(
+                            "50%",
+                            style: MyTextStyle.w5s20(
+                              context,
+                            ).copyWith(color: AppColors.primaryColor),
                           ),
                         ],
+                      ),
+                      const SizedBox(height: 10),
+                      LinearProgressIndicator(
+                        color: AppColors.primaryColor,
+                        value: 0.5,
+                        backgroundColor: Colors.grey.shade50,
+                        minHeight: 10,
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text("Insights", style: MyTextStyle.w5s20(context)),
-                Text(
-                  "You completed 80% of your planned tasks today. Great job staying focused!",
-                  style: MyTextStyle.w5s14(context),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Upcoming Tasks", style: MyTextStyle.w5s20(context)),
-                    Text("Monday", style: MyTextStyle.w5s16(context)),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                _upcomingTask(context, "Call Sarah", "10:00 AM", Colors.red),
-                _upcomingTask(
-                  context,
-                  "Go to the gym",
-                  "10:00 AM",
-                  Colors.green,
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Insights", style: MyTextStyle.w5s20(context)),
+                      Text(
+                        "You completed 80% of your planned tasks today. Great job staying focused!",
+                        style: MyTextStyle.w5s14(context),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Upcoming Tasks",
+                            style: MyTextStyle.w5s20(context),
+                          ),
+                          Text("Monday", style: MyTextStyle.w5s16(context)),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      _upcomingTask(
+                        context,
+                        "Call Sarah",
+                        "10:00 AM",
+                        Colors.red,
+                      ),
+                      _upcomingTask(
+                        context,
+                        "Go to the gym",
+                        "10:00 AM",
+                        Colors.green,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -146,33 +164,24 @@ class QuickActionScreen extends StatelessWidget {
 
           const SizedBox(height: 30),
 
-          /// ✅ Share Button (captures and shares recap section)
+          /// ✅ Share Button
           CustomButton(
             text: "Share Recap",
             onPressed: () async {
               try {
-                // Find the boundary widget
-                final boundary =
-                    _recapKey.currentContext?.findRenderObject()
-                        as RenderRepaintBoundary?;
-                if (boundary == null) return;
-
-                // Convert widget to image
-                final ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-                final byteData = await image.toByteData(
-                  format: ui.ImageByteFormat.png,
+                final imageBytes = await _screenshotController.capture(
+                  pixelRatio: 3.0,
                 );
-                final pngBytes = byteData!.buffer.asUint8List();
 
-                // Save temporarily
+                if (imageBytes == null) return;
+
                 final directory = await getTemporaryDirectory();
                 final imagePath = File('${directory.path}/recap.png');
-                await imagePath.writeAsBytes(pngBytes);
+                await imagePath.writeAsBytes(imageBytes);
 
-                // Share
                 await Share.shareXFiles([
                   XFile(imagePath.path),
-                ], text: 'Here’s my daily recap!');
+                ], text: "Here’s my daily recap!");
               } catch (e) {
                 Get.snackbar(
                   "Error",
@@ -186,6 +195,7 @@ class QuickActionScreen extends StatelessWidget {
             width: double.infinity,
           ),
 
+          /// ✅ Close Button
           Align(
             alignment: Alignment.center,
             child: TextButton(

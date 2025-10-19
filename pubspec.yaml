@@ -45,7 +45,7 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   google_fonts: ^6.2.1
   iconsax: ^0.0.8
-  screenshot: ^2.1.0
+  screenshot: ^3.0.0
   permission_handler: ^11.0.0
 
 
