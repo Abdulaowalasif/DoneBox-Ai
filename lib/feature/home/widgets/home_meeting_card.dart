@@ -68,7 +68,9 @@ class HomeMeetingCard extends StatelessWidget {
                       ),
                       Text(
                         "High",
-                        style: MyTextStyle.w5s14(context).copyWith(color: Colors.red),
+                        style: MyTextStyle.w5s14(
+                          context,
+                        ).copyWith(color: Colors.red),
                       ),
                     ],
                   ),
@@ -89,10 +91,12 @@ class HomeMeetingCard extends StatelessWidget {
                 spacing: 10,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(ImageConst.aiIcon),
+                  Image.asset(ImageConst.aiIcon, height: 40),
                   Text(
                     "Task Create with ai",
-                    style: MyTextStyle.w4s16(context).copyWith(color: Colors.white),
+                    style: MyTextStyle.w4s16(
+                      context,
+                    ).copyWith(color: Colors.white),
                   ),
                 ],
               ),

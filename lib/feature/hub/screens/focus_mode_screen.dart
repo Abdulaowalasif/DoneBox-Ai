@@ -60,6 +60,7 @@ class FocusModeScreen extends StatelessWidget {
                         ),
                       ),
                       Row(
+                        spacing: 10,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
@@ -69,35 +70,40 @@ class FocusModeScreen extends StatelessWidget {
                               Text("Duration", style: MyTextStyle.w5s16(context)),
                             ],
                           ),
+
                           Obx(
-                            () => Row(
-                              spacing: 10,
-                              children: controller.durations
-                                  .map(
-                                    (d) => GestureDetector(
-                                      onTap: () => controller.selectDuration(d),
+                                () => Flexible(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                physics: const BouncingScrollPhysics(),
+                                child: Row(
+                                  spacing: 10,
+                                  children: controller.durations.map((d) {
+                                    return GestureDetector(
+                                      onTap: () async {
+                                        if (d == "Custom") {
+                                          await controller.pickCustomDuration(context);
+                                        } else {
+                                          controller.selectDuration(d);
+                                        }
+                                      },
                                       child: Container(
                                         padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                          color:
-                                              controller
-                                                      .selectedDuration
-                                                      .value ==
-                                                  d
+                                          color: controller.selectedDuration.value == d
                                               ? AppColors.primaryColor
                                               : Colors.transparent,
-                                          borderRadius: BorderRadius.circular(
-                                            10,
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(
+                                            color: controller.selectedDuration.value == d
+                                                ? AppColors.primaryColor
+                                                : Colors.grey.shade400,
                                           ),
                                         ),
                                         child: Text(
                                           d,
                                           style: GoogleFonts.poppins(
-                                            color:
-                                                controller
-                                                        .selectedDuration
-                                                        .value ==
-                                                    d
+                                            color: controller.selectedDuration.value == d
                                                 ? Colors.white
                                                 : Colors.black,
                                             fontSize: 14,
@@ -105,11 +111,15 @@ class FocusModeScreen extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  )
-                                  .toList(),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                             ),
                           ),
+
+
+
                         ],
                       ),
                       Row(

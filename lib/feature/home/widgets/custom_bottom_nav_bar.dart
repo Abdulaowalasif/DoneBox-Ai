@@ -2,7 +2,6 @@ import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../controllers/bottom_nav_controller.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -43,21 +42,32 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget _buildNavItem(String icon, String label, int index) {
     bool isSelected = controller.selectedIndex.value == index;
 
-    return GestureDetector(
-      onTap: () => controller.changeIndex(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(icon, color: isSelected ? Colors.blue : Colors.grey),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: GoogleFonts.poppins(
-              color: isSelected ? Colors.blue : Colors.grey,
-              fontSize: 12,
-            ),
+    return Expanded(
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        // makes transparent areas tappable
+        onTap: () => controller.changeIndex(index),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                icon,
+                color: isSelected ? Colors.blue : Colors.black,
+                height: 26,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: GoogleFonts.poppins(
+                  color: isSelected ? Colors.blue : Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

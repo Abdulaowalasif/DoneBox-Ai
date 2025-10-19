@@ -190,7 +190,10 @@ class InsightsScreen extends StatelessWidget {
                     onPressed: () {
                       Share.share("Share your insights with others!");
                     },
-                    child: Text("Share insights", style: MyTextStyle.w5s14(context)),
+                    child: Text(
+                      "Share insights",
+                      style: MyTextStyle.w5s14(context),
+                    ),
                   ),
                 ],
               ),
@@ -198,7 +201,7 @@ class InsightsScreen extends StatelessWidget {
               Text(
                 "\u2022 Try adding focus session in the morning",
 
-                style: MyTextStyle.w5s14(context),
+                style: MyTextStyle.w5s14(context).copyWith(fontSize: 14),
               ),
               const SizedBox(height: 10),
 
@@ -210,17 +213,22 @@ class InsightsScreen extends StatelessWidget {
                     Text(
                       "\u2022 Prioritize pending personal task",
 
-                      style: MyTextStyle.w5s14(context),
+                      style: MyTextStyle.w5s14(context).copyWith(fontSize: 14),
                     ),
                     Row(
                       spacing: 10,
                       children: [
-                        Icon(Icons.save_alt, color: AppColors.primaryColor),
+                        Icon(
+                          Icons.save_alt,
+                          color: AppColors.primaryColor,
+                          size: 20,
+                        ),
                         Text(
                           "Export as Pdf",
 
                           style: MyTextStyle.w5s14(context).copyWith(
                             color: AppColors.primaryColor,
+                            fontSize: 14,
                           ),
                         ),
                       ],

@@ -1,11 +1,13 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FocusModeController extends GetxController {
-  RxString timer = "25:00".obs; // Default timer string
+  RxString timer = "25:00".obs;
   RxBool isRunning = false.obs;
 
-  RxInt totalSeconds = RxInt(25 * 60); // Default 25 minutes
+  RxInt totalSeconds = RxInt(25 * 60);
+  RxInt sessionTotalSeconds = RxInt(25 * 60); // ✅ fixed total for progress
   Timer? countdownTimer;
 
   // Session settings
@@ -36,16 +38,18 @@ class FocusModeController extends GetxController {
   }
 
   void startTimer() {
-    countdownTimer?.cancel(); // Cancel existing timer if any
+    countdownTimer?.cancel();
 
     countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (totalSeconds.value > 0) {
         totalSeconds.value--;
+
         final minutes = (totalSeconds.value ~/ 60).toString().padLeft(2, '0');
         final seconds = (totalSeconds.value % 60).toString().padLeft(2, '0');
         this.timer.value = "$minutes:$seconds";
 
-        progress.value = 1 - (totalSeconds.value / _getDurationInSeconds());
+        // ✅ Calculate progress based on original session duration
+        progress.value = 1 - (totalSeconds.value / sessionTotalSeconds.value);
       } else {
         timer.cancel();
         isRunning.value = false;
@@ -65,17 +69,23 @@ class FocusModeController extends GetxController {
         return 25 * 60;
       case "50 min":
         return 50 * 60;
-      case "Custom":
-        return 10; // Example for testing
       default:
-        return 25 * 60;
+        return sessionTotalSeconds.value;
     }
   }
 
-  /// Update duration and reset timer
-  void selectDuration(String d) {
+  /// Handles duration selection
+  void selectDuration(String d, {int? customMinutes}) {
     selectedDuration.value = d;
-    totalSeconds.value = _getDurationInSeconds();
+
+    if (d == "Custom" && customMinutes != null) {
+      totalSeconds.value = customMinutes * 60;
+      sessionTotalSeconds.value = customMinutes * 60;
+    } else {
+      totalSeconds.value = _getDurationInSeconds();
+      sessionTotalSeconds.value = _getDurationInSeconds();
+    }
+
     final minutes = (totalSeconds.value ~/ 60).toString().padLeft(2, '0');
     final seconds = (totalSeconds.value % 60).toString().padLeft(2, '0');
     timer.value = "$minutes:$seconds";
@@ -85,10 +95,33 @@ class FocusModeController extends GetxController {
     isRunning.value = false;
   }
 
-  void changeSound() => selectedSound.value = selectedSound.value == "Alarm" ? "Bell" : "Alarm";
+  void changeSound() =>
+      selectedSound.value = selectedSound.value == "Alarm" ? "Bell" : "Alarm";
 
   void changeLinkedTask() {
     linkedTask.value = "Prepare Presentation";
     linkedTaskCategory.value = "Work";
+  }
+
+  /// Open custom duration picker
+  Future<void> pickCustomDuration(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: const TimeOfDay(hour: 0, minute: 25),
+      helpText: "Select Custom Duration",
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null) {
+      final totalMinutes = picked.hour * 60 + picked.minute;
+      if (totalMinutes > 0) {
+        selectDuration("Custom", customMinutes: totalMinutes);
+      }
+    }
   }
 }

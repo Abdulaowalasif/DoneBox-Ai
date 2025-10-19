@@ -29,7 +29,10 @@ class SubscriptionScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Free Plan", style: MyTextStyle.w5s20(context)),
-                    Text("Your current plan", style: MyTextStyle.w5s14(context)),
+                    Text(
+                      "Your current plan",
+                      style: MyTextStyle.w5s14(context),
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       spacing: 5,
@@ -69,7 +72,10 @@ class SubscriptionScreen extends StatelessWidget {
                             size: 15,
                           ),
                         ),
-                        Text("Limit reminders", style: MyTextStyle.w5s14(context)),
+                        Text(
+                          "Limit reminders",
+                          style: MyTextStyle.w5s14(context),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -88,7 +94,10 @@ class SubscriptionScreen extends StatelessWidget {
                             size: 15,
                           ),
                         ),
-                        Text("Community support", style: MyTextStyle.w5s14(context)),
+                        Text(
+                          "Community support",
+                          style: MyTextStyle.w5s14(context),
+                        ),
                       ],
                     ),
                   ],
@@ -110,7 +119,7 @@ class SubscriptionScreen extends StatelessWidget {
                         CustomButton(
                           text: "Upgrade",
                           onPressed: () {},
-                          width: MediaQuery.of(context).size.width * 0.3,
+                          width: 130,
                         ),
                       ],
                     ),
@@ -130,7 +139,10 @@ class SubscriptionScreen extends StatelessWidget {
                             size: 15,
                           ),
                         ),
-                        Text("AI free feature", style: MyTextStyle.w5s14(context)),
+                        Text(
+                          "AI free feature",
+                          style: MyTextStyle.w5s14(context),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -251,7 +263,10 @@ class SubscriptionScreen extends StatelessWidget {
                 spacing: 10,
                 children: [
                   Icon(Icons.credit_card),
-                  Text("Current payment method", style: MyTextStyle.w5s14(context)),
+                  Text(
+                    "Current payment method",
+                    style: MyTextStyle.w5s14(context),
+                  ),
                 ],
               ),
               TextButton(
@@ -259,9 +274,9 @@ class SubscriptionScreen extends StatelessWidget {
                 child: Text(
                   "Change payment method",
 
-                  style: MyTextStyle.w5s14(context).copyWith(
-                    color: AppColors.primaryColor,
-                  ),
+                  style: MyTextStyle.w5s14(
+                    context,
+                  ).copyWith(color: AppColors.primaryColor),
                 ),
               ),
             ],

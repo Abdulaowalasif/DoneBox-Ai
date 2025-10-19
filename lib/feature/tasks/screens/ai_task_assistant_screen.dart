@@ -110,7 +110,7 @@ class AiTaskAssistantScreen extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    spacing: 20,
+                    spacing: 10,
                     children: [
                       CircleAvatar(
                         backgroundColor: AppColors.secondaryColor,
@@ -120,9 +120,12 @@ class AiTaskAssistantScreen extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                       ),
-                      Text(
-                        "Here is the task based on what you give",
-                        style: MyTextStyle.w4s16(context),
+                      Expanded(
+                        child: Text(
+                          "Here is the task based on what you give",
+                          style: MyTextStyle.w4s16(context),
+                          softWrap: true,
+                        ),
                       ),
                     ],
                   ),

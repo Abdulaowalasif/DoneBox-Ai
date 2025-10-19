@@ -5,6 +5,7 @@ import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../core/conts/my_text_style.dart';
 import '../widgets/settings_item.dart';
@@ -23,25 +24,25 @@ class MenuScreens extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 10,
             children: [
-              //user profile header section
+              // user profile header section
               ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  radius: 25,
+                  radius: 30,
                   backgroundImage: AssetImage(ImageConst.user),
                 ),
                 title: Text(
                   "Chester Bennington",
-                  style: MyTextStyle.w5s16(context),
+                  style: MyTextStyle.w5s16(context).copyWith(fontSize: 15),
                 ),
                 subtitle: Text(
                   "Chester@gmail.com",
-                  style: MyTextStyle.w4s12(context).copyWith(fontSize: 14),
+                  style: MyTextStyle.w4s12(context).copyWith(fontSize: 13),
                 ),
                 trailing: TextButton(
                   onPressed: () {},
@@ -53,24 +54,26 @@ class MenuScreens extends StatelessWidget {
                   ),
                 ),
               ),
-              //productivity tools section
+
+              // productivity tools section
               Text("Productivity Tools", style: MyTextStyle.w5s20(context)),
               Column(
                 spacing: 5,
                 children: [
                   SettingsItem(
-                    icon: Icons.event_note,
+                    icon: Iconsax.note_2,
                     title: "Notes",
                     onPress: () => Get.toNamed(RoutesName.notes),
                   ),
                   SettingsItem(
                     onPress: () => Get.toNamed(RoutesName.insight),
-                    icon: Icons.network_cell,
+                    icon: Iconsax.activity,
                     title: "Insights",
                   ),
                 ],
               ),
-              //settings and profile section
+
+              // settings and profile section
               Text("Settings & Profile", style: MyTextStyle.w5s20(context)),
               Column(
                 spacing: 5,
@@ -78,7 +81,7 @@ class MenuScreens extends StatelessWidget {
                   Obx(
                     () => SettingsItem(
                       isActive: controller.pauseNotification.value,
-                      icon: Icons.notifications_none,
+                      icon: Iconsax.notification,
                       title: "Pause Notification",
                       showToggle: true,
                       toggleChanged: () => controller.pauseNotification.value =
@@ -87,37 +90,32 @@ class MenuScreens extends StatelessWidget {
                   ),
                   SettingsItem(
                     onPress: () => Get.toNamed(RoutesName.notificationPref),
-                    icon: Icons.notification_add_outlined,
+                    icon: Iconsax.notification_favorite,
                     title: "Notification Preferences",
                   ),
                   SettingsItem(
                     onPress: () => Get.toNamed(RoutesName.subscription),
-                    icon: Icons.subscriptions_outlined,
+                    icon: Iconsax.crown,
                     title: "Subscription Tier",
                   ),
-
                   SettingsItem(
-                    onPress: () {
-                      Get.toNamed(RoutesName.profile);
-                    },
-                    icon: Icons.settings,
+                    onPress: () => Get.toNamed(RoutesName.profile),
+                    icon: Iconsax.setting,
                     title: "Account Settings",
                   ),
-
                   SettingsItem(
                     onPress: () => Get.toNamed(RoutesName.helpAndSupport),
-                    icon: Icons.help_outline,
+                    icon: Iconsax.message_question,
                     title: "Help & Support",
                   ),
-
                   SettingsItem(
                     onPress: () => Get.toNamed(RoutesName.privacyPolicy),
-                    icon: Icons.lock_open,
+                    icon: Iconsax.unlock,
                     title: "Privacy & Policy",
                   ),
                   SettingsItem(
                     onPress: () => controller.logout(),
-                    icon: Icons.login_outlined,
+                    icon: Iconsax.logout,
                     title: "Log out",
                   ),
                 ],

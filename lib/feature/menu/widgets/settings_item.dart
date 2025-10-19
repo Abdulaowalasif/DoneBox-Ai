@@ -22,21 +22,21 @@ class SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 2,
-      shadowColor: Colors.black,
-      borderRadius: BorderRadius.circular(10),
-      child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        padding: const EdgeInsets.all(15.0),
-        child: GestureDetector(
-          onTap: onPress,
+    return GestureDetector(
+      onTap: onPress,
+      child: Material(
+        elevation: 2,
+        shadowColor: Colors.black,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          padding: const EdgeInsets.all(15.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Icon(icon, size: 32),
+                  Icon(icon, size: 30),
                   const SizedBox(width: 20),
                   Text(title, style: MyTextStyle.w5s16(context)),
                 ],

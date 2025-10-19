@@ -134,7 +134,6 @@ class ResponsiveMyTasksRow extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isSmallScreen = constraints.maxWidth < 400;
-        final isMediumScreen = constraints.maxWidth < 700;
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +150,6 @@ class ResponsiveMyTasksRow extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(width: 10),
 
             /// Tab Bar
             Expanded(
