@@ -64,4 +64,22 @@ class HelperFunctions {
     }
     return sum % 10 == 0;
   }
+
+  static String currentTimeZone() {
+    final now = DateTime.now();
+    final offset = now.timeZoneOffset;
+
+    // Calculate total offset in hours and minutes
+    final hours = offset.inHours;
+    final minutes = offset.inMinutes.remainder(60);
+
+    // Format as GMT±HH:mm or GMT±H
+    final sign = hours >= 0 ? '+' : '-';
+    final formattedOffset = minutes == 0
+        ? 'GMT$sign${hours.abs()}'
+        : 'GMT$sign${hours.abs().toString().padLeft(2, '0')}:${minutes.abs().toString().padLeft(2, '0')}';
+
+    print('Timezone: $formattedOffset');
+    return formattedOffset;
+  }
 }
