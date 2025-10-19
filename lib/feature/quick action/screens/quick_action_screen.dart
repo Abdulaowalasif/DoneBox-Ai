@@ -1,15 +1,23 @@
+import 'dart:io';
+import 'dart:ui' as ui;
+import 'package:flutter/rendering.dart'; // ✅ add this line
+
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/quick%20action/controllers/quick_action_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../core/conts/my_text_style.dart';
+
 
 class QuickActionScreen extends StatelessWidget {
-  const QuickActionScreen({super.key});
+  QuickActionScreen({super.key});
+
+  final GlobalKey _recapKey = GlobalKey(); // ✅ used for screenshot capture
 
   @override
   Widget build(BuildContext context) {
@@ -35,94 +43,149 @@ class QuickActionScreen extends StatelessWidget {
     );
   }
 
+  /// ✅ Build Daily Recap Section with RepaintBoundary
   Widget _buildDailyRecap(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            decoration: BoxDecoration(
-              color: AppColors.secondaryColor,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.primaryColor, width: 1),
-            ),
+          /// ✅ Wrap recap content with RepaintBoundary
+          RepaintBoundary(
+            key: _recapKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Sunday, May 25",
-                  style: MyTextStyle.w5s20(
-                    context,
-                  ).copyWith(color: AppColors.primaryColor),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppColors.primaryColor, width: 1),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Sunday, May 25",
+                        style: MyTextStyle.w5s20(
+                          context,
+                        ).copyWith(color: AppColors.primaryColor),
+                      ),
+                      const SizedBox(height: 10),
+                      _taskItem(context, "Work on proposal"),
+                      _taskItem(context, "Client Feedback"),
+                      _taskItem(context, "Outline Presentation"),
+                      Text(
+                        "See More",
+                        style: MyTextStyle.w5s20(
+                          context,
+                        ).copyWith(color: AppColors.primaryColor),
+                      ),
+                      Container(color: AppColors.primaryColor, height: 1),
+                      const SizedBox(height: 10),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Overall Progress",
+                                style: MyTextStyle.w5s20(
+                                  context,
+                                ).copyWith(color: AppColors.primaryColor),
+                              ),
+                              Text(
+                                "50%",
+                                style: MyTextStyle.w5s20(
+                                  context,
+                                ).copyWith(color: AppColors.primaryColor),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          LinearProgressIndicator(
+                            color: AppColors.primaryColor,
+                            value: 0.5,
+                            backgroundColor: Colors.grey.shade50,
+                            minHeight: 10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 10),
-                _taskItem(context, "Work on proposal"),
-                _taskItem(context, "Client Feedback"),
-                _taskItem(context, "Outline Presentation"),
+                const SizedBox(height: 20),
+                Text("Insights", style: MyTextStyle.w5s20(context)),
                 Text(
-                  "See More",
-                  style: MyTextStyle.w5s20(
-                    context,
-                  ).copyWith(color: AppColors.primaryColor),
+                  "You completed 80% of your planned tasks today. Great job staying focused!",
+                  style: MyTextStyle.w5s14(context),
                 ),
-                Container(color: AppColors.primaryColor, height: 1),
-                const SizedBox(height: 10),
-                Column(
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Overall Progress",
-                          style: MyTextStyle.w5s20(
-                            context,
-                          ).copyWith(color: AppColors.primaryColor),
-                        ),
-                        Text(
-                          "50%",
-                          style: MyTextStyle.w5s20(
-                            context,
-                          ).copyWith(color: AppColors.primaryColor),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    LinearProgressIndicator(
-                      color: AppColors.primaryColor,
-                      value: 0.5,
-                      backgroundColor: Colors.grey.shade50,
-                      minHeight: 10,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                    Text("Upcoming Tasks", style: MyTextStyle.w5s20(context)),
+                    Text("Monday", style: MyTextStyle.w5s16(context)),
                   ],
+                ),
+                const SizedBox(height: 20),
+                _upcomingTask(context, "Call Sarah", "10:00 AM", Colors.red),
+                _upcomingTask(
+                  context,
+                  "Go to the gym",
+                  "10:00 AM",
+                  Colors.green,
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 20),
-          Text("Insights", style: MyTextStyle.w5s20(context)),
-          Text(
-            "You completed 80% of your planned tasks today. Great job staying focused!",
-            style: MyTextStyle.w5s14(context),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Upcoming Tasks", style: MyTextStyle.w5s20(context)),
-              Text("Monday", style: MyTextStyle.w5s16(context)),
-            ],
-          ),
-          const SizedBox(height: 20),
-          _upcomingTask(context, "Call Sarah", "10:00 AM", Colors.red),
-          _upcomingTask(context, "Go to the gym", "10:00 AM", Colors.green),
-          const SizedBox(height: 20),
+
+          const SizedBox(height: 30),
+
+          /// ✅ Share Button (captures and shares recap section)
           CustomButton(
             text: "Share Recap",
-            onPressed: () => Share.share("Share your experience..."),
+            onPressed: () async {
+              try {
+                // Find the boundary widget
+                final boundary =
+                    _recapKey.currentContext?.findRenderObject()
+                        as RenderRepaintBoundary?;
+                if (boundary == null) return;
+
+                // Convert widget to image
+                final ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+                final byteData = await image.toByteData(
+                  format: ui.ImageByteFormat.png,
+                );
+                final pngBytes = byteData!.buffer.asUint8List();
+
+                // Save temporarily
+                final directory = await getTemporaryDirectory();
+                final imagePath = File('${directory.path}/recap.png');
+                await imagePath.writeAsBytes(pngBytes);
+
+                // Share
+                await Share.shareXFiles([
+                  XFile(imagePath.path),
+                ], text: 'Here’s my daily recap!');
+              } catch (e) {
+                Get.snackbar(
+                  "Error",
+                  "Failed to capture recap.",
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                );
+              }
+            },
             width: double.infinity,
           ),
+
           Align(
             alignment: Alignment.center,
             child: TextButton(
@@ -140,6 +203,7 @@ class QuickActionScreen extends StatelessWidget {
     );
   }
 
+  /// Action UI for other quick actions
   Widget _buildActionUI(
     BuildContext context,
     QuickActionController controller,
@@ -199,14 +263,13 @@ class QuickActionScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-
-          /// ✅ FIXED: Pass observable to CopyableResponseField
           CopyableResponseField(response: controller.responseController),
         ],
       ),
     );
   }
 
+  /// Task item widget
   Widget _taskItem(BuildContext context, String title) {
     return Row(
       children: [
@@ -224,6 +287,7 @@ class QuickActionScreen extends StatelessWidget {
     );
   }
 
+  /// Upcoming task widget
   Widget _upcomingTask(
     BuildContext context,
     String title,
@@ -266,7 +330,6 @@ class CopyableResponseField extends StatelessWidget {
     return Obx(() {
       final text = response.value;
       return Column(
-        spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
