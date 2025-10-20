@@ -55,110 +55,118 @@ class QuickActionScreen extends StatelessWidget {
           /// ✅ Screenshot wrapper
           Screenshot(
             controller: _screenshotController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 10,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.secondaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: AppColors.primaryColor, width: 1),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Sunday, May 25",
+                          style: MyTextStyle.w5s20(
+                            context,
+                          ).copyWith(color: AppColors.primaryColor),
+                        ),
+                        const SizedBox(height: 10),
+                        _taskItem(context, "Work on proposal"),
+                        _taskItem(context, "Client Feedback"),
+                        _taskItem(context, "Outline Presentation"),
+                        Text(
+                          "See More",
+                          style: MyTextStyle.w5s20(
+                            context,
+                          ).copyWith(color: AppColors.primaryColor),
+                        ),
+                        Container(color: AppColors.primaryColor, height: 1),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Overall Progress",
+                              style: MyTextStyle.w5s20(
+                                context,
+                              ).copyWith(color: AppColors.primaryColor),
+                            ),
+                            Text(
+                              "50%",
+                              style: MyTextStyle.w5s20(
+                                context,
+                              ).copyWith(color: AppColors.primaryColor),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        LinearProgressIndicator(
+                          color: AppColors.primaryColor,
+                          value: 0.5,
+                          backgroundColor: Colors.grey.shade50,
+                          minHeight: 10,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ],
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    color: AppColors.secondaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: AppColors.primaryColor, width: 1),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Sunday, May 25",
-                        style: MyTextStyle.w5s20(
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Insights", style: MyTextStyle.w5s20(context)),
+                        Text(
+                          "You completed 80% of your planned tasks today. Great job staying focused!",
+                          style: MyTextStyle.w5s14(context),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Upcoming Tasks",
+                              style: MyTextStyle.w5s20(context),
+                            ),
+                            Text("Monday", style: MyTextStyle.w5s16(context)),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        _upcomingTask(
                           context,
-                        ).copyWith(color: AppColors.primaryColor),
-                      ),
-                      const SizedBox(height: 10),
-                      _taskItem(context, "Work on proposal"),
-                      _taskItem(context, "Client Feedback"),
-                      _taskItem(context, "Outline Presentation"),
-                      Text(
-                        "See More",
-                        style: MyTextStyle.w5s20(
+                          "Call Sarah",
+                          "10:00 AM",
+                          Colors.red,
+                        ),
+                        _upcomingTask(
                           context,
-                        ).copyWith(color: AppColors.primaryColor),
-                      ),
-                      Container(color: AppColors.primaryColor, height: 1),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Overall Progress",
-                            style: MyTextStyle.w5s20(
-                              context,
-                            ).copyWith(color: AppColors.primaryColor),
-                          ),
-                          Text(
-                            "50%",
-                            style: MyTextStyle.w5s20(
-                              context,
-                            ).copyWith(color: AppColors.primaryColor),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      LinearProgressIndicator(
-                        color: AppColors.primaryColor,
-                        value: 0.5,
-                        backgroundColor: Colors.grey.shade50,
-                        minHeight: 10,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ],
+                          "Go to the gym",
+                          "10:00 AM",
+                          Colors.green,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Insights", style: MyTextStyle.w5s20(context)),
-                      Text(
-                        "You completed 80% of your planned tasks today. Great job staying focused!",
-                        style: MyTextStyle.w5s14(context),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Upcoming Tasks",
-                            style: MyTextStyle.w5s20(context),
-                          ),
-                          Text("Monday", style: MyTextStyle.w5s16(context)),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      _upcomingTask(
-                        context,
-                        "Call Sarah",
-                        "10:00 AM",
-                        Colors.red,
-                      ),
-                      _upcomingTask(
-                        context,
-                        "Go to the gym",
-                        "10:00 AM",
-                        Colors.green,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 

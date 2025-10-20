@@ -23,7 +23,6 @@ class RegisterController extends GetxController {
   RxBool isLoading = false.obs;
   final formKey = GlobalKey<FormState>();
 
-  final apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final globalController = Get.find<GlobalController>();
 
   void togglePass() {
@@ -49,7 +48,7 @@ class RegisterController extends GetxController {
       "retype_password": confirmPasswordController.text.trim(),
     };
     try {
-      final response = await apiClient.post(Endpoints.signup, body: body);
+      final response = await globalController.apiClient.post(Endpoints.signup, body: body);
       if (response['status_code'] == 201) {
         isLoading.value = false;
         Get.toNamed(RoutesName.verifyOtp, arguments: "create_account");

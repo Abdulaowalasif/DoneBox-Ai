@@ -31,82 +31,93 @@ class AiTaskAssistantScreen extends StatelessWidget {
               child: Column(
                 spacing: 20,
                 children: [
-                  SizedBox(
-                    height: 300,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        spacing: 20,
-                        children: [
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                          0.7,
+                  SingleChildScrollView(
+                    child: Column(
+                      spacing: 20,
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth:
+                                        MediaQuery.of(context).size.width * 0.7,
+                                  ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: AppColors.secondaryColor,
                                     ),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: AppColors.secondaryColor,
-                                      ),
-                                      child: Text(
+                                    child: Obx(
+                                      () => Text(
                                         style: MyTextStyle.w5s16(context),
-                                        "Hey, got task for you—we need to prep a presentation for the client "
-                                        "meeting at 2pm, next Monday. It’s about showcasing our new products "
-                                        "and how they fit customer needs. Can you handle putting the slides together?",
+                                        controller.message.value ??
+                                            "Ask something",
                                         softWrap: true,
                                       ),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 8),
-                                Image.asset(
-                                  ImageConst.aiIcon,
-                                  height: 32,
-                                  width: 32,
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                          0.7,
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                ImageConst.aiIcon,
+                                height: 32,
+                                width: 32,
+                              ),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth:
+                                        MediaQuery.of(context).size.width * 0.7,
+                                  ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: AppColors.secondaryColor,
                                     ),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: AppColors.secondaryColor,
-                                      ),
-                                      child: Text(
-                                        "Hey, got task for you—we need to prep a presentation for the client meeting at 2pm, next",
-                                        softWrap: true,
-                                        style: MyTextStyle.w5s16(context),
-                                      ),
+                                    child: Obx(
+                                      () => controller.isLoading.value
+                                          ? CircularProgressIndicator(
+                                              color: Colors.white,
+                                              strokeAlign: 0.1,
+                                            )
+                                          : Text(
+                                              controller
+                                                      .errorMessage
+                                                      .value
+                                                      .isNotEmpty
+                                                  ? controller
+                                                        .errorMessage
+                                                        .value
+                                                  : controller
+                                                        .aiAssistantResponse['data']['title'],
+                                              softWrap: true,
+                                              style: MyTextStyle.w5s16(context),
+                                            ),
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Row(
@@ -143,13 +154,20 @@ class AiTaskAssistantScreen extends StatelessWidget {
                       spacing: 10,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Presentation for the client meeting",
-                          style: MyTextStyle.w5s16(context),
+                        Obx(
+                          () => Text(
+                            controller.aiAssistantResponse['data']['title'] ??
+                                "Ask Something",
+                            style: MyTextStyle.w5s16(context),
+                          ),
                         ),
-                        Text(
-                          "Slide about showcasing new products and how they fit customer needs",
-                          style: MyTextStyle.w4s16(context),
+                        Obx(
+                          () => Text(
+                            controller
+                                    .aiAssistantResponse['data']['description'] ??
+                                "Ask something",
+                            style: MyTextStyle.w4s16(context),
+                          ),
                         ),
                         Container(
                           height: 1,
@@ -158,15 +176,25 @@ class AiTaskAssistantScreen extends StatelessWidget {
                             border: Border.all(color: AppColors.secondaryColor),
                           ),
                         ),
-                        AiAssistantItemCard(
-                          icon: CupertinoIcons.folder,
-                          category: 'Category',
-                          title: 'Work',
+                        Obx(
+                          () => AiAssistantItemCard(
+                            icon: CupertinoIcons.folder,
+                            category: 'Category',
+                            title:
+                                controller
+                                    .aiAssistantResponse['data']['category'] ??
+                                "Ask Something",
+                          ),
                         ),
-                        AiAssistantItemCard(
-                          icon: Icons.calendar_today_sharp,
-                          category: 'Due Date',
-                          title: '15/09/2025',
+                        Obx(
+                          () => AiAssistantItemCard(
+                            icon: Icons.calendar_today_sharp,
+                            category: 'Due Date',
+                            title:
+                                controller
+                                    .aiAssistantResponse['data']['datetime_utc'] ??
+                                "Ask Something",
+                          ),
                         ),
                         AiAssistantRemindCard(
                           icon: CupertinoIcons.check_mark,
@@ -208,13 +236,16 @@ class AiTaskAssistantScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: controller.messageController,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 10,
                           horizontal: 15,
                         ),
                         hintText: "Ask Anything",
-                        hintStyle: MyTextStyle.w4s12(context).copyWith(fontSize: 14),
+                        hintStyle: MyTextStyle.w4s12(
+                          context,
+                        ).copyWith(fontSize: 14),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(
@@ -222,7 +253,10 @@ class AiTaskAssistantScreen extends StatelessWidget {
                           ),
                         ),
                         suffixIcon: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            controller.getAiAssistant();
+                            controller.messageController.clear();
+                          },
                           icon: Icon(Icons.send, color: AppColors.primaryColor),
                         ),
                       ),

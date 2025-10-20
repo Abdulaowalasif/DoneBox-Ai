@@ -15,7 +15,6 @@ class LoginController extends GetxController {
   RxBool isPasswordHidden = true.obs;
   RxBool isLoading = false.obs;
   final globalController = Get.find<GlobalController>();
-  final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final formKey = GlobalKey<FormState>();
 
   void togglePass() {
@@ -33,7 +32,10 @@ class LoginController extends GetxController {
         "email": emailController.text,
         "password": passwordController.text,
       };
-      final response = await _apiClient.post(Endpoints.login, body: body);
+      final response = await globalController.apiClient.post(
+        Endpoints.login,
+        body: body,
+      );
       if (response['status_code'] == 200) {
         AppStorage.write(AppConstants.accessToken, response['data']['access']);
         AppStorage.write(

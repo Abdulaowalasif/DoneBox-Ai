@@ -15,7 +15,6 @@ class OtpController extends GetxController {
     (_) => TextEditingController(),
   );
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
-  final apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final RegisterController signupController = Get.find();
   final ForgotPasswordController forgotPasswordController = Get.find();
 
@@ -101,7 +100,7 @@ class OtpController extends GetxController {
     };
     try {
       isLoading.value = true;
-      final response = await apiClient.post(Endpoints.verifyOtp, body: body);
+      final response = await globalController.apiClient.post(Endpoints.verifyOtp, body: body);
       if (response["status_code"] == 200) {
         Get.toNamed(RoutesName.login);
       }
@@ -120,7 +119,7 @@ class OtpController extends GetxController {
     };
     try {
       isLoading.value = true;
-      final response = await apiClient.post(Endpoints.verifyOtp, body: body);
+      final response = await globalController.apiClient.post(Endpoints.verifyOtp, body: body);
       if (response["status_code"] == 200) {
         Get.toNamed(RoutesName.resetPass);
       }
@@ -136,7 +135,7 @@ class OtpController extends GetxController {
     try {
       final body = {"email": email, "purpose": purpose};
       print(body);
-      final response = await apiClient.post(Endpoints.sendOtp, body: body);
+      final response = await globalController.apiClient.post(Endpoints.sendOtp, body: body);
 
       print(response);
       print(body);

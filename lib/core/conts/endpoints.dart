@@ -19,4 +19,5 @@ class Endpoints {
   static const summerize = "summarize";
   static const explain = "explain";
   static const reply = "reply";
+  static const reminder = "reminder";
 }

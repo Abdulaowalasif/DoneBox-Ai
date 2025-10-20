@@ -9,7 +9,6 @@ class QuickActionController extends GetxController {
   String title = "";
 
   final globalController = Get.find<GlobalController>();
-  final _apiClient = ApiClient(baseUrl: Endpoints.aiBaseUrl);
 
   final TextEditingController textController = TextEditingController();
   var responseController = "".obs;
@@ -26,7 +25,10 @@ class QuickActionController extends GetxController {
       isLoading.value = true;
 
       final body = {"text": textController.text};
-      final response = await _apiClient.post(Endpoints.summerize, body: body);
+      final response = await globalController.aiApiClient.post(
+        Endpoints.summerize,
+        body: body,
+      );
 
       if (response['data'] != null) {
         responseController.value = response['data'];
@@ -53,7 +55,10 @@ class QuickActionController extends GetxController {
       isLoading.value = true;
 
       final body = {"text": textController.text};
-      final response = await _apiClient.post(Endpoints.reply, body: body);
+      final response = await globalController.aiApiClient.post(
+        Endpoints.reply,
+        body: body,
+      );
 
       if (response['data'] != null) {
         responseController.value = response['data'];
@@ -80,7 +85,10 @@ class QuickActionController extends GetxController {
       isLoading.value = true;
 
       final body = {"text": textController.text};
-      final response = await _apiClient.post(Endpoints.explain, body: body);
+      final response = await globalController.aiApiClient.post(
+        Endpoints.explain,
+        body: body,
+      );
 
       if (response['data'] != null) {
         responseController.value = response['data'];

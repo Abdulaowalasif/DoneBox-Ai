@@ -11,10 +11,8 @@ import '../../controllers/global_controllers.dart';
 class ForgotPasswordController extends GetxController {
   TextEditingController emailController = TextEditingController();
   final globalController = Get.find<GlobalController>();
-  final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   RxBool isLoading = false.obs;
-  final formKey=GlobalKey<FormState>();
-
+  final formKey = GlobalKey<FormState>();
 
   Future<void> forgotPass() async {
     if (emailController.text.isEmpty) {
@@ -24,7 +22,10 @@ class ForgotPasswordController extends GetxController {
     isLoading.value = true;
     try {
       final body = {"email": emailController.text, "purpose": "reset_password"};
-      final response = await _apiClient.post(Endpoints.sendOtp, body: body);
+      final response = await globalController.apiClient.post(
+        Endpoints.sendOtp,
+        body: body,
+      );
 
       print(response);
 
@@ -34,7 +35,7 @@ class ForgotPasswordController extends GetxController {
       }
     } catch (e) {
       Get.snackbar("Error", e.toString());
-    }finally{
+    } finally {
       isLoading.value = false;
     }
   }

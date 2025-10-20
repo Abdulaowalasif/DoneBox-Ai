@@ -1,4 +1,7 @@
+import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../core/conts/image_icon_const.dart';
 import '../../../core/conts/my_text_style.dart';
 
@@ -103,11 +106,17 @@ class ProgressCard extends StatelessWidget {
                             ),
                           Positioned(
                             left: 3 * avatarSpacing,
-                            child: Image.asset(
-                              ImageConst.addUser,
-                              height: avatarSize,
-                              width: avatarSize,
-                              fit: BoxFit.cover,
+                            child: GestureDetector(
+                              onTap: () => Get.toNamed(RoutesName.createNewTask),
+                              child: CircleAvatar(
+                                radius: 22,
+                                backgroundColor: Colors.white,
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.black,
+                                  size: 32,
+                                ),
+                              ),
                             ),
                           ),
                         ],

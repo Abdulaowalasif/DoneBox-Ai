@@ -12,11 +12,11 @@ class ResetPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final globalController = Get.find<GlobalController>();
-  final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
+
+  // final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
   final forgetPasswordController = Get.find<ForgotPasswordController>();
   final otpController = Get.find<OtpController>();
-  final formKey= GlobalKey<FormState>();
-
+  final formKey = GlobalKey<FormState>();
 
   void togglePass() {
     isPasswordHidden.value = !isPasswordHidden.value;
@@ -41,13 +41,12 @@ class ResetPasswordController extends GetxController {
         "password": passwordController.text,
         "retype_password": confirmPasswordController.text,
       };
-      final response = await _apiClient.post(
+      final response = await globalController.apiClient.post(
         Endpoints.resetPassword,
         body: body,
       );
 
       return response;
-
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

@@ -12,8 +12,6 @@ class MainMenuController extends GetxController {
   RxBool pauseNotification = false.obs;
   final globalController = Get.find<GlobalController>();
 
-  final _apiClient = ApiClient(baseUrl: Endpoints.baseUrl);
-
   Future<void> fetchProfile() async {}
 
   Future<void> logout() async {
@@ -23,7 +21,7 @@ class MainMenuController extends GetxController {
       };
       final body = {"refresh_token": globalController.refreshToken};
 
-      final response = await _apiClient.post(
+      final response = await globalController.apiClient.post(
         Endpoints.logout,
         headers: headers,
         body: body,
