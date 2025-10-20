@@ -1,5 +1,6 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -93,9 +94,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     children: [
                       Text(
                         "Add Event",
-                        style: MyTextStyle.w4s18(context).copyWith(
-                          color: AppColors.primaryColor,
-                        ),
+                        style: MyTextStyle.w4s18(
+                          context,
+                        ).copyWith(color: AppColors.primaryColor),
                       ),
                       const SizedBox(height: 16),
                       TextField(
@@ -145,7 +146,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            child: Text("Cancel", style: MyTextStyle.w5s18(context)),
+                            child: Text(
+                              "Cancel",
+                              style: MyTextStyle.w5s18(context),
+                            ),
                             onPressed: () => Navigator.pop(context),
                           ),
                           const SizedBox(width: 10),
@@ -155,9 +159,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             ),
                             child: Text(
                               "Add",
-                              style: MyTextStyle.w5s18(context).copyWith(
-                                color: Colors.white,
-                              ),
+                              style: MyTextStyle.w5s18(
+                                context,
+                              ).copyWith(color: Colors.white),
                             ),
                             onPressed: () {
                               if (titleController.text.isNotEmpty) {
@@ -191,6 +195,39 @@ class _CalendarScreenState extends State<CalendarScreen> {
         final date = _normalizeDate(_selectedDay!);
         _events.putIfAbsent(date, () => []);
         _events[date]!.add(newEvent);
+      });
+    }
+  }
+
+  void _deleteEvent(DateTime day, int index) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Delete Event"),
+        content: Text("Are you sure you want to delete this event?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text("Cancel", style: TextStyle(color: Colors.black)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryColor,
+            ),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text("Delete", style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      setState(() {
+        final normalized = _normalizeDate(day);
+        _events[normalized]?.removeAt(index);
+        if (_events[normalized]?.isEmpty ?? false) {
+          _events.remove(normalized); // remove date entry if no events left
+        }
       });
     }
   }
@@ -292,35 +329,50 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   final event = _getEventsForDay(_selectedDay!)[index];
                   final priorityColor = _getPriorityColor(event["priority"]);
 
-                  return ListTile(
-                    leading: Icon(Icons.circle, size: 12, color: priorityColor),
-                    title: Text(event["title"], style: MyTextStyle.w5s18(context)),
-                    subtitle: Text(
-                      event["category"],
-                      style: MyTextStyle.w5s16(context),
-                    ),
-                    trailing: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(event["time"], style: MyTextStyle.w5s14(context)),
-                        SizedBox(height: 4),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
+                  return GestureDetector(
+                    onTap: () {
+                      _deleteEvent(_selectedDay!, index);
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.circle,
+                        size: 12,
+                        color: priorityColor,
+                      ),
+                      title: Text(
+                        event["title"],
+                        style: MyTextStyle.w5s18(context),
+                      ),
+                      subtitle: Text(
+                        event["category"],
+                        style: MyTextStyle.w5s16(context),
+                      ),
+                      trailing: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            event["time"],
+                            style: MyTextStyle.w5s14(context),
                           ),
-                          decoration: BoxDecoration(
-                            color: priorityColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            event["priority"],
-                            style: MyTextStyle.w5s14(context).copyWith(
-                              color: Colors.white,
+                          SizedBox(height: 4),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: priorityColor,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              event["priority"],
+                              style: MyTextStyle.w5s14(
+                                context,
+                              ).copyWith(color: Colors.white),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },
