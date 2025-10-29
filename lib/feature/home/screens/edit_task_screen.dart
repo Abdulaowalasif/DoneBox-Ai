@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:doneboxai/core/conts/app_colors.dart';
+import 'package:doneboxai/feature/home/controllers/task_details_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class EditTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final EditTaskController controller = Get.put(EditTaskController());
+    final TaskDetailsController taskDetailsController = Get.find();
 
     return Scaffold(
       appBar: CustomAppbar(
@@ -39,7 +41,12 @@ class EditTaskScreen extends StatelessWidget {
                   spacing: 20,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Task Details", style: MyTextStyle.w5s20(context)),
+                    Obx(
+                      () => Text(
+                        taskDetailsController.details['title'],
+                        style: MyTextStyle.w5s20(context),
+                      ),
+                    ),
 
                     /// Category
                     Row(
@@ -62,8 +69,8 @@ class EditTaskScreen extends StatelessWidget {
                                   child: Text("Personal"),
                                 ),
                                 DropdownMenuItem(
-                                  value: "Shopping",
-                                  child: Text("Shopping"),
+                                  value: "Others",
+                                  child: Text("Others"),
                                 ),
                               ],
                               onChanged: (val) {
@@ -254,9 +261,9 @@ class EditTaskScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "Add Subtask",
-                                  style: MyTextStyle.w5s20(context).copyWith(
-                                    color: AppColors.primaryColor,
-                                  ),
+                                  style: MyTextStyle.w5s20(
+                                    context,
+                                  ).copyWith(color: AppColors.primaryColor),
                                 ),
                                 const SizedBox(height: 20),
                                 TextField(
@@ -293,9 +300,9 @@ class EditTaskScreen extends StatelessWidget {
                                       },
                                       child: Text(
                                         "Add",
-                                        style: MyTextStyle.w4s16(context).copyWith(
-                                          color: Colors.white,
-                                        ),
+                                        style: MyTextStyle.w4s16(
+                                          context,
+                                        ).copyWith(color: Colors.white),
                                       ),
                                     ),
                                   ],
@@ -308,9 +315,9 @@ class EditTaskScreen extends StatelessWidget {
                     },
                     child: Text(
                       "+ Add SubTask",
-                      style: MyTextStyle.w5s20(context).copyWith(
-                        color: AppColors.primaryColor,
-                      ),
+                      style: MyTextStyle.w5s20(
+                        context,
+                      ).copyWith(color: AppColors.primaryColor),
                     ),
                   ),
                 ],
@@ -324,6 +331,7 @@ class EditTaskScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final subTask = controller.subTasks[index];
                     return ListTile(
+                      contentPadding: EdgeInsets.zero,
                       leading: Checkbox(
                         value: subTask["done"],
                         onChanged: (val) =>
@@ -341,17 +349,14 @@ class EditTaskScreen extends StatelessWidget {
               ),
 
               /// Attachments
-               Text(
-                "Attachments",
-                  style: MyTextStyle.w5s20(context)
-              ),
+              Text("Attachments", style: MyTextStyle.w5s20(context)),
               Obx(
                 () => Wrap(
                   spacing: 10,
                   runSpacing: 10,
                   children: [
                     /// Add File Button
-                    InkWell(
+                    GestureDetector(
                       onTap: () async {
                         final result = await FilePicker.platform.pickFiles();
                         if (result != null &&
@@ -379,9 +384,9 @@ class EditTaskScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             Text(
                               "Add File",
-                              style: MyTextStyle.w4s18(context).copyWith(
-                                color: AppColors.primaryColor,
-                              ),
+                              style: MyTextStyle.w4s18(
+                                context,
+                              ).copyWith(color: AppColors.primaryColor),
                             ),
                           ],
                         ),
@@ -417,9 +422,9 @@ class EditTaskScreen extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
-                                    style: MyTextStyle.w4s18(context).copyWith(
-                                      color: AppColors.primaryColor,
-                                    ),
+                                    style: MyTextStyle.w4s18(
+                                      context,
+                                    ).copyWith(color: AppColors.primaryColor),
                                   ),
                                 ],
                               ),

@@ -1,6 +1,8 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/core/conts/my_text_style.dart';
+import 'package:doneboxai/feature/home/bindings/home_bindings.dart';
+import 'package:doneboxai/feature/home/controllers/task_details_controller.dart';
 import 'package:doneboxai/feature/hub/screens/hub_screen.dart';
 import 'package:doneboxai/feature/menu/bindings/main_menu_binding.dart';
 import 'package:doneboxai/feature/menu/screens/menu_screens.dart';
@@ -17,6 +19,8 @@ import 'home_screens.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({super.key}) {
     MainMenuBinding().dependencies();
+    HomeBindings().dependencies();
+    Get.put(TaskDetailsController());
   }
 
   final BottomNavController controller = Get.find();

@@ -1,3 +1,4 @@
+import 'package:doneboxai/feature/home/controllers/home_controller.dart';
 import 'package:doneboxai/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,9 @@ import '../../../core/conts/image_icon_const.dart';
 import '../../../core/conts/my_text_style.dart';
 
 class ProgressCard extends StatelessWidget {
-  const ProgressCard({super.key});
+  final HomeController controller;
+
+  const ProgressCard({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +75,13 @@ class ProgressCard extends StatelessWidget {
               ),
 
               /// Task Count
-              Text(
-                "5 Tasks",
-                style: MyTextStyle.w4s16(context).copyWith(
-                  fontSize: isSmallScreen ? 13 : 16,
-                  color: Colors.white,
+              Obx(
+                () => Text(
+                  "${controller.todayProgress['total_tsk_count']} Tasks",
+                  style: MyTextStyle.w4s16(context).copyWith(
+                    fontSize: isSmallScreen ? 13 : 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
 
@@ -107,7 +112,8 @@ class ProgressCard extends StatelessWidget {
                           Positioned(
                             left: 3 * avatarSpacing,
                             child: GestureDetector(
-                              onTap: () => Get.toNamed(RoutesName.createNewTask),
+                              onTap: () =>
+                                  Get.toNamed(RoutesName.createNewTask),
                               child: CircleAvatar(
                                 radius: 22,
                                 backgroundColor: Colors.white,
@@ -143,25 +149,35 @@ class ProgressCard extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            Text(
-                              "40%",
-                              style: MyTextStyle.w5s18(context).copyWith(
-                                fontSize: isSmallScreen ? 13 : 16,
-                                color: Colors.white,
+                            Obx(
+                              () => Text(
+                                "${controller.todayProgress['percentage_completed']}%",
+                                style: MyTextStyle.w5s18(context).copyWith(
+                                  fontSize: isSmallScreen ? 13 : 16,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(height: screenHeight * 0.008),
-                        LinearProgressIndicator(
-                          minHeight: isSmallScreen ? 8 : 10,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          value: 0.4,
-                          color: const Color(0xFF9397EF),
-                          backgroundColor: Colors.white,
-                        ),
+
+                        Obx(() {
+                          final progress =
+                              (controller.todayProgress['percentage_completed'] ??
+                                      0)
+                                  .toDouble() /
+                              100;
+                          return LinearProgressIndicator(
+                            minHeight: isSmallScreen ? 8 : 10,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            value: progress.clamp(0.0, 1.0),
+                            color: const Color(0xFF9397EF),
+                            backgroundColor: Colors.white,
+                          );
+                        }),
                       ],
                     ),
                   ),

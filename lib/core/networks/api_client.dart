@@ -15,13 +15,21 @@ class ApiClient {
   };
 
   /// GET request
-  Future<dynamic> get(String endpoints, {Map<String, String>? headers}) async {
-    final url = Uri.parse('$baseUrl$endpoints');
-    final mergedHeaders = {..._defaultHeader, ...?headers};
-    final response = await _httpClient.get(url, headers: mergedHeaders);
+  Future<dynamic> get(
+      String endpoints, {
+        Map<String, String>? headers,
+        Map<String, dynamic>? query,
+      }) async {
+    // Build URL with query parameters if provided
+    final uri = Uri.parse('$baseUrl$endpoints').replace(queryParameters: query);
 
-    return _handleResponse(response, url);
+    final mergedHeaders = {..._defaultHeader, ...?headers};
+
+    final response = await _httpClient.get(uri, headers: mergedHeaders);
+
+    return _handleResponse(response, uri);
   }
+
 
   /// POST request
   Future<dynamic> post(

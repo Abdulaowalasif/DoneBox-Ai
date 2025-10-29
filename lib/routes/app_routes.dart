@@ -6,6 +6,7 @@ import 'package:doneboxai/feature/auth/screens/verify_code_screen.dart';
 import 'package:doneboxai/feature/calender/screens/custom_calendar_screen.dart';
 import 'package:doneboxai/feature/home/bindings/EditTaskBinding.dart';
 import 'package:doneboxai/feature/home/bindings/ai_task_create_binding.dart';
+import 'package:doneboxai/feature/home/bindings/home_bindings.dart';
 import 'package:doneboxai/feature/home/bindings/main_screen_binding.dart';
 import 'package:doneboxai/feature/home/bindings/task_details_binding.dart';
 import 'package:doneboxai/feature/home/screens/ai_task_create_screen.dart';
@@ -222,6 +223,7 @@ class AppRoutes {
       transition: Transition.rightToLeft,
     ),
     GetPage(
+      binding: HomeBindings(),
       name: RoutesName.home,
       page: () => HomeScreens(),
       transition: Transition.rightToLeft,

@@ -1,6 +1,8 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/core/conts/image_icon_const.dart';
 import 'package:doneboxai/core/conts/my_text_style.dart';
+import 'package:doneboxai/feature/home/controllers/home_controller.dart';
+import 'package:doneboxai/feature/home/controllers/task_details_controller.dart';
 import 'package:doneboxai/feature/widgets/action_card.dart';
 import 'package:doneboxai/feature/widgets/app_icon.dart';
 import 'package:doneboxai/routes/routes_names.dart';
@@ -18,6 +20,8 @@ class HomeScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(QuickActionController());
+    final homeController = Get.put(HomeController());
+    final TaskDetailsController detailsController = Get.find();
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -52,7 +56,7 @@ class HomeScreens extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        const ProgressCard(),
+                        ProgressCard(controller: homeController),
                         const SizedBox(height: 20),
                         ResponsiveMyTasksRow(),
                         const SizedBox(height: 20),
@@ -62,7 +66,11 @@ class HomeScreens extends StatelessWidget {
                 ),
               ],
               body: TabBarView(
-                children: List.generate(4, (index) => const HomeMeetingCard()),
+                children: List.generate(
+                  4,
+                  (index) =>
+                      HomeMeetingCard(detailsController: detailsController),
+                ),
               ),
             ),
             bottomNavigationBar: Padding(
@@ -149,7 +157,7 @@ class ResponsiveMyTasksRow extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-
+            const SizedBox(width: 20),
 
             /// Tab Bar
             Expanded(
@@ -165,7 +173,7 @@ class ResponsiveMyTasksRow extends StatelessWidget {
                   ),
                   labelColor: AppColors.primaryColor,
                   unselectedLabelColor: Colors.grey,
-                  labelStyle:MyTextStyle.w5s14(context),
+                  labelStyle: MyTextStyle.w5s14(context),
                   unselectedLabelStyle: const TextStyle(
                     fontWeight: FontWeight.w400,
                   ),

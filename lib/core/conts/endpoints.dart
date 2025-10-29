@@ -2,7 +2,7 @@ class Endpoints {
   Endpoints._();
 
   //base url
-  static const baseUrl = "http://10.10.7.91:8007/api/v1/";
+  static const baseUrl = "https://2a0bf65a5ea0.ngrok-free.app/api/v1/";
 
   static const signup = "auth/signup/";
   static const login = "auth/login/";
@@ -20,4 +20,7 @@ class Endpoints {
   static const explain = "explain";
   static const reply = "reply";
   static const reminder = "reminder";
+
+  static const todaySummery = "tasks/today-progress-summary";
+  static const tasks = "tasks/";
 }
