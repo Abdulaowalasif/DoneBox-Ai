@@ -45,6 +45,30 @@ class MyAppThemes {
           fontWeight: FontWeight.bold,
         ),
       ),
+      datePickerTheme: DatePickerThemeData(
+        backgroundColor: Colors.white,
+        headerBackgroundColor: AppColors.primaryColor,
+        headerForegroundColor: Colors.white,
+        dayForegroundColor: WidgetStatePropertyAll(Colors.black),
+        rangeSelectionBackgroundColor: AppColors.primaryColor,
+        rangePickerBackgroundColor: AppColors.primaryColor,
+        todayBorder: BorderSide.none,
+      ),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: Colors.white,
+        // Picker background
+        hourMinuteTextColor: Colors.black,
+        dayPeriodTextColor: Colors.black,
+        dayPeriodColor: AppColors.secondaryColor,
+        // AM/PM selected background
+        dayPeriodTextStyle: const TextStyle(color: Colors.white),
+        // AM/PM selected text
+        dialBackgroundColor: AppColors.secondaryColor,
+        // Dial background
+        dialHandColor: AppColors.primaryColor,
+        // Hand color
+        entryModeIconColor: AppColors.primaryColor, // Icon color
+      ),
     );
   }
 

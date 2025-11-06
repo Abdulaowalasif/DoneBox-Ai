@@ -1,7 +1,9 @@
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
+import 'package:doneboxai/feature/widgets/priority_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -76,7 +78,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     TextEditingController titleController = TextEditingController();
     TextEditingController categoryController = TextEditingController();
     TextEditingController timeController = TextEditingController();
-    String selectedPriority = "Low";
+    RxString selectedPriority = "Low".obs;
 
     final newEvent = await showDialog<Map<String, dynamic>>(
       context: context,
@@ -118,27 +120,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          borderRadius: BorderRadius.circular(10),
-                          dropdownColor: AppColors.secondaryColor,
-                          value: selectedPriority,
-                          isExpanded: true,
-                          items: ["High", "Medium", "Low"]
-                              .map(
-                                (p) => DropdownMenuItem(
-                                  value: p,
-                                  child: Text(p, style: GoogleFonts.poppins()),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (val) {
-                            if (val != null) {
-                              setDialogState(() {
-                                selectedPriority = val;
-                              });
-                            }
-                          },
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        width: double.infinity,
+                        child: PriorityDropdown(
+                          selectedPriority: selectedPriority,
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -173,7 +159,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   "time": timeController.text.isNotEmpty
                                       ? timeController.text
                                       : "--:--",
-                                  "priority": selectedPriority,
+                                  "priority": selectedPriority.toString(),
                                 });
                               }
                             },
@@ -358,7 +344,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 8,
-                              vertical: 4,
+                              vertical: 2,
                             ),
                             decoration: BoxDecoration(
                               color: priorityColor,

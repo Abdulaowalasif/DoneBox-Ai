@@ -3,6 +3,8 @@ import 'package:doneboxai/core/conts/my_text_style.dart';
 import 'package:doneboxai/feature/auth/widgets/custom_button.dart';
 import 'package:doneboxai/feature/home/controllers/ai_task_create_controller.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
+import 'package:doneboxai/feature/widgets/priority_dropdown.dart';
+import 'package:doneboxai/feature/widgets/reminder_dropdown.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,9 +91,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 cat,
-                                style: MyTextStyle.w5s14(context).copyWith(
-                                  color: Colors.white,
-                                ),
+                                style: MyTextStyle.w5s14(
+                                  context,
+                                ).copyWith(color: Colors.white),
                               ),
                             ),
                           );
@@ -105,7 +107,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                           Text("Due date", style: MyTextStyle.w5s16(context)),
                           Text(
                             controller.dueDate.value,
-                            style:  MyTextStyle.w5s16(context)
+                            style: MyTextStyle.w5s16(context),
                           ),
                         ],
                       ),
@@ -114,13 +116,10 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Text(
-                            "Time",
-                            style:  MyTextStyle.w5s16(context)
-                          ),
+                          Text("Time", style: MyTextStyle.w5s16(context)),
                           Text(
                             controller.time.value,
-                            style:  MyTextStyle.w5s16(context)
+                            style: MyTextStyle.w5s16(context),
                           ),
                         ],
                       ),
@@ -129,9 +128,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Text(
+                          Text(
                             "Notification",
-                            style: MyTextStyle.w5s16(context)
+                            style: MyTextStyle.w5s16(context),
                           ),
                           Obx(
                             () => Switch(
@@ -151,41 +150,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Text(
-                            "Reminder",
-                            style:  MyTextStyle.w5s16(context)
-                          ),
-                          Obx(
-                            () => DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                borderRadius: BorderRadius.circular(10),
-                                dropdownColor: AppColors.secondaryColor,
-                                value: controller.reminder.value,
-                                icon: const Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 20,
-                                ),
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "Daily",
-                                    child: Text("Daily"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "Weekly",
-                                    child: Text("Weekly"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "Never",
-                                    child: Text("Never"),
-                                  ),
-                                ],
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    controller.setReminder(value.toString());
-                                  }
-                                },
-                              ),
-                            ),
+                          Text("Reminder", style: MyTextStyle.w5s16(context)),
+                          ReminderDropdown(
+                            selectedReminder: controller.reminder,
                           ),
                         ],
                       ),
@@ -194,41 +161,9 @@ class AiTaskCreateScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Text(
-                            "Priority",
-                            style:  MyTextStyle.w5s16(context)
-                          ),
-                          Obx(
-                            () => DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                borderRadius: BorderRadius.circular(10),
-                                dropdownColor: AppColors.secondaryColor,
-                                value: controller.priority.value,
-                                icon: const Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 20,
-                                ),
-                                items: [
-                                  DropdownMenuItem(
-                                    value: "Low",
-                                    child: Text("Low"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "Medium",
-                                    child: Text("Medium"),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: "High",
-                                    child: Text("High"),
-                                  ),
-                                ],
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    controller.setPriority(value.toString());
-                                  }
-                                },
-                              ),
-                            ),
+                          Text("Priority", style: MyTextStyle.w5s16(context)),
+                          PriorityDropdown(
+                            selectedPriority: controller.priority,
                           ),
                         ],
                       ),
@@ -246,7 +181,7 @@ class AiTaskCreateScreen extends StatelessWidget {
                                 controller.attachedFile.value.isEmpty
                                     ? "Attach File"
                                     : controller.attachedFile.value,
-                                style:  MyTextStyle.w4s16(context)
+                                style: MyTextStyle.w4s16(context),
                               ),
                             ),
                           ),

@@ -48,7 +48,7 @@ class CustomBottomNavBar extends StatelessWidget {
         // makes transparent areas tappable
         onTap: () => controller.changeIndex(index),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

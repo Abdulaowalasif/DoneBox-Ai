@@ -1,11 +1,14 @@
 import 'dart:io';
 import 'package:doneboxai/core/conts/app_colors.dart';
 import 'package:doneboxai/feature/home/controllers/task_details_controller.dart';
+import 'package:doneboxai/feature/widgets/category_dropdown.dart';
 import 'package:doneboxai/feature/widgets/custom_appbar.dart';
+import 'package:doneboxai/feature/widgets/reminder_dropdown.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/conts/my_text_style.dart';
+import '../../widgets/priority_dropdown.dart';
 import '../controllers/edit_task_controller.dart';
 
 class EditTaskScreen extends StatelessWidget {
@@ -53,33 +56,7 @@ class EditTaskScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("Category"),
-                        Obx(
-                          () => DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              borderRadius: BorderRadius.circular(10),
-                              value: controller.category.value,
-                              dropdownColor: AppColors.secondaryColor,
-                              items: const [
-                                DropdownMenuItem(
-                                  value: "Work",
-                                  child: Text("Work"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Personal",
-                                  child: Text("Personal"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Others",
-                                  child: Text("Others"),
-                                ),
-                              ],
-                              onChanged: (val) {
-                                if (val != null)
-                                  controller.category.value = val;
-                              },
-                            ),
-                          ),
-                        ),
+                        CategoryDropdown(selectedCategory: controller.category),
                       ],
                     ),
 
@@ -165,72 +142,14 @@ class EditTaskScreen extends StatelessWidget {
                     ),
 
                     /// Reminder
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Reminder"),
-                        Obx(
-                          () => DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              borderRadius: BorderRadius.circular(10),
-                              value: controller.reminder.value,
-                              dropdownColor: AppColors.secondaryColor,
-                              items: const [
-                                DropdownMenuItem(
-                                  value: "Daily",
-                                  child: Text("Daily"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Weekly",
-                                  child: Text("Weekly"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Monthly",
-                                  child: Text("Monthly"),
-                                ),
-                              ],
-                              onChanged: (val) {
-                                if (val != null)
-                                  controller.reminder.value = val;
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    ReminderDropdown(selectedReminder: controller.reminder),
 
                     /// Priority
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("Priority"),
-                        Obx(
-                          () => DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              borderRadius: BorderRadius.circular(10),
-                              value: controller.priority.value,
-                              dropdownColor: AppColors.secondaryColor,
-                              items: const [
-                                DropdownMenuItem(
-                                  value: "Low",
-                                  child: Text("Low"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "Medium",
-                                  child: Text("Medium"),
-                                ),
-                                DropdownMenuItem(
-                                  value: "High",
-                                  child: Text("High"),
-                                ),
-                              ],
-                              onChanged: (val) {
-                                if (val != null)
-                                  controller.priority.value = val;
-                              },
-                            ),
-                          ),
-                        ),
+                        PriorityDropdown(selectedPriority: controller.priority),
                       ],
                     ),
                   ],

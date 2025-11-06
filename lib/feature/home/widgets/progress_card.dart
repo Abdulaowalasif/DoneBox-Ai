@@ -77,7 +77,7 @@ class ProgressCard extends StatelessWidget {
               /// Task Count
               Obx(
                 () => Text(
-                  "${controller.todayProgress['total_tsk_count']} Tasks",
+                  "${controller.todayProgress['total_tsk_count'] ?? 0} Tasks",
                   style: MyTextStyle.w4s16(context).copyWith(
                     fontSize: isSmallScreen ? 13 : 16,
                     color: Colors.white,
@@ -151,7 +151,7 @@ class ProgressCard extends StatelessWidget {
                             ),
                             Obx(
                               () => Text(
-                                "${controller.todayProgress['percentage_completed']}%",
+                                "${controller.todayProgress['percentage_completed'] ?? 0}%",
                                 style: MyTextStyle.w5s18(context).copyWith(
                                   fontSize: isSmallScreen ? 13 : 16,
                                   color: Colors.white,
@@ -164,9 +164,8 @@ class ProgressCard extends StatelessWidget {
 
                         Obx(() {
                           final progress =
-                              (controller.todayProgress['percentage_completed'] ??
-                                      0)
-                                  .toDouble() /
+                              ((controller.todayProgress['percentage_completed'] ?? 0)
+                                  .toDouble()) /
                               100;
                           return LinearProgressIndicator(
                             minHeight: isSmallScreen ? 8 : 10,
